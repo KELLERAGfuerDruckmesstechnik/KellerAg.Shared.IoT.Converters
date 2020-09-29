@@ -3,6 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <RazorLangVersion>3.0</RazorLangVersion>
+    <Authors>Sebastian Mojado</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Company>KELLER AG für Druckmesstechnik</Company>
   </PropertyGroup>
 
   <ItemGroup>
