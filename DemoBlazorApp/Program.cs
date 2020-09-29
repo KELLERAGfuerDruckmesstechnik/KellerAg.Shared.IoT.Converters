@@ -1,11 +1,7 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DemoBlazorApp
@@ -18,6 +14,9 @@ namespace DemoBlazorApp
             builder.RootComponents.Add<App>("app");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+
+            builder.Services.AddSingleton<FtpConversions>();
+            builder.Services.AddSingleton<KellerAg.Shared.IoT.Converters.IConvert, KellerAg.Shared.IoT.Converters.IoTConvert>();
 
             await builder.Build().RunAsync();
         }
