@@ -11,7 +11,7 @@ namespace DemoBlazorApp
 {
     public class FtpConversions
     {
-        private readonly IConvert _converter = new KellerAg.Shared.IoT.Converters.IoTConvert();
+        private readonly IConvert _converter = new IoTConvert();
 
         public string GsmCommunicationText { get; set; }
         public string GsmCommunicationToJson { get; set; }
@@ -22,7 +22,7 @@ namespace DemoBlazorApp
         public DeviceSettings DeviceConfiguration { get; set; }
         public string DeviceConfigurationJson { get; set; }
 
-        public int[] ChannelIds { get; set; }
+        private int[] ChannelIds { get; set; }
         public int[] MeasurementDefinitionIds { get; set; }
         public List<BlazorMeasurement> Measurements { get; set; }
 
@@ -31,12 +31,12 @@ namespace DemoBlazorApp
             bool hasExceptionHappened = false;
             try
             {
-                this.GsmCommunicationText = text;
-                this.GsmCommunicationToJson = this._converter.GsmCommunicationToJson(text);
+                GsmCommunicationText = text;
+                GsmCommunicationToJson = _converter.GsmCommunicationToJson(text);
             }
             catch (Exception e)
             {
-                this.GsmCommunicationToJson = $"GsmCommunicationToJson Conversion didn't work: {e}/{e.InnerException}";
+                GsmCommunicationToJson = $"GsmCommunicationToJson Conversion didn't work: {e}/{e.InnerException}";
                 hasExceptionHappened = true;
             }
 
@@ -44,52 +44,52 @@ namespace DemoBlazorApp
             {
                 if (!hasExceptionHappened)
                 {
-                    this.BusinessObjectResult = this._converter.GsmCommunicationJsonToBusinessObject(this.GsmCommunicationToJson);
-                    this.BusinessObject = this.BusinessObjectResult.BusinessObjectRoot;
-                    this.BusinessObjectJson = JsonConvert.SerializeObject(this.BusinessObject, Formatting.Indented);
+                    BusinessObjectResult = _converter.GsmCommunicationJsonToBusinessObject(GsmCommunicationToJson);
+                    BusinessObject = BusinessObjectResult.BusinessObjectRoot;
+                    BusinessObjectJson = JsonConvert.SerializeObject(BusinessObject, Formatting.Indented);
                 }
                 else
                 {
-                    this.BusinessObjectJson = $"GsmCommunicationJsonToBusinessObject Conversion didn't work.";
+                    BusinessObjectJson = $"GsmCommunicationJsonToBusinessObject Conversion didn't work.";
                 }
             }
             catch (Exception e)
             {
-                this.BusinessObjectJson = $"GsmCommunicationJsonToBusinessObject Conversion didn't work: {e}/{e.InnerException}";
+                BusinessObjectJson = $"GsmCommunicationJsonToBusinessObject Conversion didn't work: {e}/{e.InnerException}";
                 hasExceptionHappened = true;
             }
 
             if (!hasExceptionHappened)
             {
-                this.IsFileAConfigurationMessage = IsConfigurationMessage(this.BusinessObject);
-                if (this.IsFileAConfigurationMessage)
+                IsFileAConfigurationMessage = IsConfigurationMessage(BusinessObject);
+                if (IsFileAConfigurationMessage)
                 {
-                    this.DeviceConfiguration = this._converter.BusinessObjectToDeviceConfiguration(this.BusinessObject);
-                    this.DeviceConfigurationJson = JsonConvert.SerializeObject(this.DeviceConfiguration, Formatting.Indented);
+                    DeviceConfiguration = _converter.BusinessObjectToDeviceConfiguration(BusinessObject);
+                    DeviceConfigurationJson = JsonConvert.SerializeObject(DeviceConfiguration, Formatting.Indented);
                 }
                 else
                 {
-                    this.DeviceConfiguration = null;
+                    DeviceConfiguration = null;
                     
-                    this.ChannelIds = this.BusinessObject.Measurements.DataPointsByChannel.Keys.ToArray();
+                    ChannelIds = BusinessObject.Measurements.DataPointsByChannel.Keys.ToArray();
 
-                    Dictionary<DateTime, float[]> measurementValuesByTimeStamp = new Dictionary<DateTime, float[]>();
-                    for (int i = 0; i < this.ChannelIds.Length; i++)
+                    var measurementValuesByTimeStamp = new Dictionary<DateTime, float[]>();
+                    for (var i = 0; i < ChannelIds.Length; i++)
                     {
-                        var dataPointsPerChannel = this.BusinessObject.Measurements.DataPointsByChannel.ToArray()[i];
-                        foreach (var dataPoint in dataPointsPerChannel.Value)
+                        KeyValuePair<int, List<DataPoint>> dataPointsPerChannel = BusinessObject.Measurements.DataPointsByChannel.ToArray()[i];
+                        foreach (DataPoint dataPoint in dataPointsPerChannel.Value)
                         {
                             if (!measurementValuesByTimeStamp.ContainsKey(dataPoint.Time))
                             {
-                                measurementValuesByTimeStamp.Add(dataPoint.Time, new float[this.ChannelIds.Length]);
+                                measurementValuesByTimeStamp.Add(dataPoint.Time, new float[ChannelIds.Length]);
                             }
                             measurementValuesByTimeStamp[dataPoint.Time][i] = dataPoint.Value;
                         }
                     }
-                    this.Measurements = new List<BlazorMeasurement>();
-                    foreach (var (id, values) in measurementValuesByTimeStamp)
+                    Measurements = new List<BlazorMeasurement>();
+                    foreach ((DateTime id, float[] values) in measurementValuesByTimeStamp)
                     {
-                        this.Measurements.Add(new BlazorMeasurement()
+                        Measurements.Add(new BlazorMeasurement
                         {
                             Time = id, Values = values
                         });
@@ -99,7 +99,7 @@ namespace DemoBlazorApp
             }
             else
             {
-                this.DeviceConfigurationJson = "Conversion didn't work with given data";
+                DeviceConfigurationJson = "Conversion didn't work with given data";
             }
         }
 
@@ -119,12 +119,7 @@ namespace DemoBlazorApp
 
         public void UpdateLoRaPayloadToDtoConversion(string text)
         {
+            //todo
         }
-    }
-
-    public class BlazorMeasurement
-    {
-        public DateTime Time { get; set; }
-        public float[] Values { get; set; }
     }
 }

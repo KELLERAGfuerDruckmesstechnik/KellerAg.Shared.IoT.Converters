@@ -1,6 +1,6 @@
 ﻿@page "/demo-lora"
 @using KellerAg.Shared.LoRaPayloadConverter
-@inject KellerAg.Shared.IoT.Converters.IConvert Converter
+@inject IConvert Converter
 @using Newtonsoft.Json;
 @using JsonToBusinessObjects.DataContainers
 
@@ -110,7 +110,7 @@
     private const string ExampleLoRaPayloadInformationText   = "DAETABMtAAAAHCVPHbBAnfMsYyg=";  //TTN Port 4
     private const string ExampleLoRaPayloadConfigurationText = "20011300132F0D010301000500D3FF000001550005010503"; //Actility Port 5
 
-    private const string ExampleLoRaTransmissionTTNText      = @"{""app_id"":""ldtapplication"",""dev_id"":""ldtdevice1"",""hardware_serial"":""0004A30B001EC250"",""port"":1,""counter"":0,""payload_raw"":""AQUB03/AAAB/wAAAf8AAAD94px5BxdcKAAAAAA=="",""payload_fields"":{""Channel_1"":5.104235503814077e+38,""Channel_2"":5.104235503814077e+38,""Channel_3"":5.104235503814077e+38,""Channel_4"":0.9713000059127808,""channel"":""0000000111010011"",""ct"":5,""func"":1,""payload"":""AQswAD93JxNBu1wp""},""metadata"":{""time"":""2017-10-30T11:18:25.511380476Z"",""frequency"":867.1,""modulation"":""LORA"",""data_rate"":""SF12BW125"",""coding_rate"":""4/5"",""gateways"":[{""gtw_id"":""eui-c0ee40ffff29356b"",""timestamp"":300640588,""time"":"""",""channel"":3,""rssi"":-42,""snr"":9,""latitude"":47.49873,""longitude"":8.746949},{""gtw_id"":""kellergw2"",""gtw_trusted"":true,""timestamp"":509643924,""time"":""2017-10-30T11:17:44Z"",""channel"":3,""rssi"":-61,""snr"":9.5,""latitude"":47.498688,""longitude"":8.747711}]},""downlink_url"":""https://integrations.thethingsnetwork.org/ttn-eu/api/v2/down/ldtapplication/httpldttest?key=ttn-account-v2.4vThJdZ2IszcdwppUzCaLWsBmF1_GszPXEOglkR3AfA""}";
+    private const string ExampleLoRaTransmissionTTNText      = @"{""app_id"":""ldtapplication"",""dev_id"":""ldtdevice1"",""hardware_serial"":""0004A30B001EC250"",""port"":1,""counter"":0,""payload_raw"":""AQUB03/AAAB/wAAAf8AAAD94px5BxdcKAAAAAA=="",""payload_fields"":{""Channel_1"":5.104235503814077e+38,""Channel_2"":5.104235503814077e+38,""Channel_3"":5.104235503814077e+38,""Channel_4"":0.9713000059127808,""channel"":""0000000111010011"",""ct"":5,""func"":1,""payload"":""AQswAD93JxNBu1wp""},""metadata"":{""time"":""2017-10-30T11:18:25.511380476Z"",""frequency"":867.1,""modulation"":""LORA"",""data_rate"":""SF12BW125"",""coding_rate"":""4/5"",""gateways"":[{""gtw_id"":""eui-c0ee40ffff29356b"",""timestamp"":300640588,""time"":"""",""channel"":3,""rssi"":-42,""snr"":9,""latitude"":47.49873,""longitude"":8.746949},{""gtw_id"":""kellergw2"",""gtw_trusted"":true,""timestamp"":509643924,""time"":""2017-10-30T11:17:44Z"",""channel"":3,""rssi"":-61,""snr"":9.5,""latitude"":47.498688,""longitude"":8.747711}]},""downlink_url"":""https://integrations.thethingsnetwork.org/ttn-eu/api/v2/down/ldtapplication/httpldttest?key=ttn-account-v2.4vThJdZ2ISzcdwppUzCaLWsBmF1_GszPXEOglkR3AfA""}";
     private const string ExampleLoRaTransmissionActilityText = @"{""DevEUI_uplink"":{""Time"":""2017-11-07T09:51:01.107+01:00"",""DevEUI"":""0004A30B001E5CD8"",""FPort"":""1"",""FCntUp"":""7"",""ADRbit"":""1"",""MType"":""2"",""FCntDn"":""1"",""payload_hex"":""010501d37fc000007fc000007fc000003f76c8b441bb33333920ac08"",""mic_hex"":""22cf05de"",""Lrcid"":""00000401"",""LrrRSSI"":""-65.000000"",""LrrSNR"":""9.500000"",""SpFact"":""7"",""SubBand"":""G1"",""Channel"":""LC1"",""DevLrrCnt"":""1"",""Lrrid"":""004A09F8"",""Late"":""0"",""Lrrs"":{""Lrr"":[{""Lrrid"":""004A09F8"",""Chain"":""0"",""LrrRSSI"":""-65.000000"",""LrrSNR"":""9.500000"",""LrrESP"":""-65.461838""}]},""CustomerID"":""100000526"",""CustomerData"":{""loc"":{""lat"":""47.49825679999999"",""lon"":""8.747362100000032""},""alr"":{""pro"":""LORA/Generic"",""ver"":""1""}},""ModelCfg"":""1:New"",""AppSKey"":""d5bbf0b5f659f7d72eef31182b1788cc"",""InstantPER"":""0.000000"",""MeanPER"":""0.000000"",""DevAddr"":""094B5DAE""}}";
     private const string ExampleLoRaTransmissionLoriotText   = @"{""cmd"":""rx"",""seqno"":1131,""EUI"":""0004A30B001FFA11"",""ts"":1522938365141,""fcnt"":4,""port"":1,""freq"":868300000,""rssi"":-101,""snr"":6.2,""toa"":1974,""dr"":""SF12 BW125 4/5"",""ack"":false,""bat"":251,""data"":""010500d37fc000007fc000007fc000003f77006941cacccd""}";
 
@@ -129,7 +129,7 @@
     {
         ExampleLoRaPayloadText = payloadText;
         PayloadInformation payLoadInfo = Converter.LoRaPayloadToLoRaMessage(payloadText, _port);
-        string payLoadInfoText = Newtonsoft.Json.JsonConvert.SerializeObject(payLoadInfo, Formatting.Indented);
+        string payLoadInfoText = JsonConvert.SerializeObject(payLoadInfo, Formatting.Indented);
         _decryptedPayloadInfoText = payLoadInfoText;
         StateHasChanged();
     }
@@ -146,7 +146,7 @@
     {
         ExampleLoRaTransmissionText = value;
         BusinessObjectRoot businessObjectRoot = Converter.LoRaJsonMessageToBusinessObject(value);
-        var businessObjectRootText = Newtonsoft.Json.JsonConvert.SerializeObject(businessObjectRoot, Formatting.Indented);
+        var businessObjectRootText = JsonConvert.SerializeObject(businessObjectRoot, Formatting.Indented);
         _decryptedLoRaJsonMessageText = businessObjectRootText;
         StateHasChanged();
     }
