@@ -19,56 +19,59 @@
     <RadzenCard>
         <h2 id="usage">Usage</h2>
         <p>Nuget URL : <a href="https://www.nuget.org/packages/KellerAg.Shared.IoT.Converters/">https://www.nuget.org/packages/KellerAg.Shared.IoT.Converters/</a></p>
-        <pre><code class="lang-powershell">PM&gt; Install-Package KellerAg.Shared.IoT.Converters</code></pre>
+
+        <pre><code class="lang-powershell">    PM&gt; Install-Package KellerAg.Shared.IoT.Converters</code></pre>
         <p>Use these following namespaces</p>
         <pre>
-<code class="lang-csharp">
-<span class="hljs-keyword">using</span> KellerAg.Shared.IoT.Converters; <span class="hljs-comment">//for the converters</span>
-<span class="hljs-keyword">using</span> Entities.Data; <span class="hljs-comment">//for the DeviceSettings-DTO</span>
-<span class="hljs-keyword">using</span> JsonToBusinessObjects.Conversion; <span class="hljs-comment">//for some used entities/DTOs</span>
-<span class="hljs-keyword">using</span> JsonToBusinessObjects.DataContainers; <span class="hljs-comment">//for some used entities/DTOs</span>
+<code class="lang-csharp">    
+
+    <span class="hljs-keyword">using</span> KellerAg.Shared.IoT.Converters; <span class="hljs-comment">//for the converters</span>
+    <span class="hljs-keyword">using</span> Entities.Data; <span class="hljs-comment">//for the DeviceSettings-DTO</span>
+    <span class="hljs-keyword">using</span> JsonToBusinessObjects.Conversion; <span class="hljs-comment">//for some used entities/DTOs</span>
+    <span class="hljs-keyword">using</span> JsonToBusinessObjects.DataContainers; <span class="hljs-comment">//for some used entities/DTOs</span>
 </code>
 </pre>
         <h4 id="conversion-with-ftp-text-file">Conversion with FTP text file</h4>
         Have a look at the examples in <a href="https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters/blob/master/DemoBlazorApp/FtpConversions.cs">https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters/blob/master/DemoBlazorApp/FtpConversions.cs</a>
 
 <pre><code class="lang-csharp">
-IConvert <span class="hljs-attr">converter</span> = new KellerAg.Shared.IoT.Converters.IoTConvert();
+    IConvert <span class="hljs-attr">converter</span> = new KellerAg.Shared.IoT.Converters.IoTConvert();
 
-string <span class="hljs-attr">gsmCommunicationJsonText</span> = converter.GsmCommunicationToJson(text_content); // Gets the text content in Json format
-ConversionResult <span class="hljs-attr">conversionResult</span> = converter.GsmCommunicationJsonToBusinessObject(gsmCommunicationJsonText);
-JsonToBusinessObjects.DataContainers.BusinessObject <span class="hljs-attr">businessObject</span> = conversionResult.BusinessObjectRoot;
-Console.WriteLine($<span class="hljs-string">"The battery's capacity is {BusinessObject.DeviceInformation.BatteryCapacity} %"</span>)
-//or from DTO to a valid text file
-var <span class="hljs-attr">deviceConfiguration</span> = new Entites.Data.DeviceSettings{ <span class="hljs-attr">GeneralNetworkName</span> = <span class="hljs-string">"My Network Name"</span>, <span class="hljs-attr">GeneralLocationName</span> = <span class="hljs-string">"My Device Name"</span>, <span class="hljs-attr">GeneralAltitudeText</span> = <span class="hljs-string">"555"</span>, <span class="hljs-attr">HardwareConnectionType</span> = (byte?)<span class="hljs-number">5</span>, <span class="hljs-attr">MeasurementInterval</span> = <span class="hljs-number">48000</span>};
-<span class="hljs-attr">gsmCommunicationJsonText</span> = converter.DeviceConfigurationToGsmCommunication(deviceConfiguration);
+    string <span class="hljs-attr">gsmCommunicationJsonText</span> = converter.GsmCommunicationToJson(text_content); <span class="hljs-comment">// Gets the text content in Json format</span>
+    ConversionResult <span class="hljs-attr">conversionResult</span> = converter.GsmCommunicationJsonToBusinessObject(gsmCommunicationJsonText);
+    JsonToBusinessObjects.DataContainers.BusinessObject <span class="hljs-attr">businessObject</span> = conversionResult.BusinessObjectRoot;
+    Console.WriteLine($<span class="hljs-string">"The battery's capacity is {BusinessObject.DeviceInformation.BatteryCapacity} %"</span>)
+    <span class="hljs-comment">//or from DTO to a valid text file</span>
+    var <span class="hljs-attr">deviceConfiguration</span> = new Entites.Data.DeviceSettings{ <span class="hljs-attr">GeneralNetworkName</span> = <span class="hljs-string">"My Network Name"</span>, <span class="hljs-attr">GeneralLocationName</span> = <span class="hljs-string">"My Device Name"</span>, <span class="hljs-attr">GeneralAltitudeText</span> = <span class="hljs-string">"555"</span>, <span class="hljs-attr">HardwareConnectionType</span> = (byte?)<span class="hljs-number">5</span>, <span class="hljs-attr">MeasurementInterval</span> = <span class="hljs-number">48000</span>};
+    <span class="hljs-attr">gsmCommunicationJsonText</span> = converter.DeviceConfigurationToGsmCommunication(deviceConfiguration);
 </code></pre>
         <h4 id="conversion-with-lora-data">Conversion with LoRa data</h4>
-        <pre><code class="lang-csharp">/<span class="hljs-regexp">/ Have a look at the examples in https:/</span><span class="hljs-regexp">/github.com/</span>KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters/blob/master/DemoBlazorApp/Pages/DemoLora.razor 
-IConvert converter = new KellerAg.Shared.IoT.Converters.IoTConvert();
-
-KellerAg.Shared.LoRaPayloadConverter.PayloadInformation extractedInformation = converter.LoRaPayloadToLoRaMessage(<span class="hljs-string">"1F011302000313042F0DFF0E000F00100115051603"</span>,<span class="hljs-number">4</span>);
-Console.WriteLine(<span class="hljs-variable">"</span>There are {extractedInformation.Measurements.Count} measurements stored.<span class="hljs-variable">"</span>)
+        <pre><code class="lang-csharp"><span class="hljs-comment">// Have a look at the examples in https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters/blob/master/DemoBlazorApp/Pages/DemoLora.razor </span> 
+    IConvert converter=new KellerAg.Shared.IoT.Converters.IoTConvert();
+    KellerAg.Shared.LoRaPayloadConverter.PayloadInformation extractedInformation=converter.LoRaPayloadToLoRaMessage(<span class="hljs-string">"1F011302000313042F0DFF0E000F00100115051603"</span>,<span class="hljs-number">4</span>);
+    Console.WriteLine(<span class="hljs-string">"There are </span>{extractedInformation.Measurements.Count}<span class="hljs-string"> measurements stored."</span>)
 </code></pre>
-        or directly the whole JSON from the network server
+        or directly the whole JSON from the network server<br/>
         Example with a JSON from TheThingsNetwork:
         <pre><code>
-string exampleLoRaTransmissionTTNText = @@"{<span class="hljs-string">""</span>app_id<span class="hljs-string">""</span><span class="hljs-symbol">:<span class="hljs-string">""</span>ldtapplication<span class="hljs-string">""</span></span>,<span class="hljs-string">""</span>dev_id<span class="hljs-string">""</span><span class="hljs-symbol">:<span class="hljs-string">""</span>ldtdevice1<span class="hljs-string">""</span></span>,<span class="hljs-string">""</span>hardware_serial<span class="hljs-string">""</span><span class="hljs-symbol">:<span class="hljs-string">""</span></span><span class="hljs-number">0004</span>A30B001EC25<span class="hljs-number">0</span><span class="hljs-string">""</span>,<span class="hljs-string">""</span>port<span class="hljs-string">""</span><span class="hljs-symbol">:</span><span class="hljs-number">1</span>,<span class="hljs-string">""</span>counter<span class="hljs-string">""</span>
-<span class="hljs-symbol">:</span><span class="hljs-number">0</span>,<span class="hljs-string">""</span>payload_raw<span class="hljs-string">""</span><span class="hljs-symbol">:<span class="hljs-string">""</span>AQUB03/AAAB/wAAAf8AAAD94px5BxdcKAAAAAA=</span>=<span class="hljs-string">""</span>,<span class="hljs-string">""</span>payload_fields<span class="hljs-string">""</span><span class="hljs-symbol">:</span>{<span class="hljs-string">""</span>Channel_1<span class="hljs-string">""</span><span class="hljs-symbol">:</span><span class="hljs-number">5.104235503814077</span>e+<span class="hljs-number">38</span>,<span class="hljs-string">""</span>Channel_2<span class="hljs-string">""</span><span class="hljs-symbol">:</span><span class="hljs-number">5.104235503814077</span>
-e+<span class="hljs-number">38</span>,<span class="hljs-string">""</span>Channel_3<span class="hljs-string">""</span><span class="hljs-symbol">:</span><span class="hljs-number">5.104235503814077</span>e+<span class="hljs-number">38</span>,<span class="hljs-string">""</span>Channel_4<span class="hljs-string">""</span><span class="hljs-symbol">:</span><span class="hljs-number">0</span>.<span class="hljs-number">9713000059127808</span>,<span class="hljs-string">""</span>channel<span class="hljs-string">""</span><span class="hljs-symbol">:<span class="hljs-string">""</span></span><span class="hljs-number">0000000111010011</span><span class="hljs-string">""</span>,<span class="hljs-string">""</span>ct<span class="hljs-string">""</span><span class="hljs-symbol">:</span>
-<span class="hljs-number">5</span>,<span class="hljs-string">""</span>func<span class="hljs-string">""</span><span class="hljs-symbol">:</span><span class="hljs-number">1</span>,<span class="hljs-string">""</span>payload<span class="hljs-string">""</span><span class="hljs-symbol">:<span class="hljs-string">""</span>AQswAD93JxNBu1wp<span class="hljs-string">""</span></span>},<span class="hljs-string">""</span>metadata<span class="hljs-string">""</span><span class="hljs-symbol">:</span>{<span class="hljs-string">""</span>time<span class="hljs-string">""</span><span class="hljs-symbol">:<span class="hljs-string">""</span></span><span class="hljs-number">2017</span>-<span class="hljs-number">10</span>-<span class="hljs-number">30</span><span class="hljs-symbol">T11:</span>
-<span class="hljs-number">18</span><span class="hljs-symbol">:</span><span class="hljs-number">25.511380476</span>Z<span class="hljs-string">""</span>,<span class="hljs-string">""</span>frequency<span class="hljs-string">""</span><span class="hljs-symbol">:</span><span class="hljs-number">867.1</span>,<span class="hljs-string">""</span>modulation<span class="hljs-string">""</span><span class="hljs-symbol">:<span class="hljs-string">""</span>LORA<span class="hljs-string">""</span></span>,<span class="hljs-string">""</span>data_rate<span class="hljs-string">""</span><span class="hljs-symbol">:<span class="hljs-string">""</span>SF12BW125<span class="hljs-string">""</span></span>,<span class="hljs-string">""</span>coding_rate<span class="hljs-string">""</span><span class="hljs-symbol">:
-<span class="hljs-string">""</span></span><span class="hljs-number">4</span>/<span class="hljs-number">5</span><span class="hljs-string">""</span>,<span class="hljs-string">""</span>gateways<span class="hljs-string">""</span><span class="hljs-symbol">:</span>[{<span class="hljs-string">""</span>gtw_id<span class="hljs-string">""</span><span class="hljs-symbol">:<span class="hljs-string">""</span>eui-c0ee40ffff29356b<span class="hljs-string">""</span></span>,<span class="hljs-string">""</span>timestamp<span class="hljs-string">""</span><span class="hljs-symbol">:</span><span class="hljs-number">300640588</span>,<span class="hljs-string">""</span>time<span class="hljs-string">""</span><span class="hljs-symbol">:<span class="hljs-string">""</span><span class="hljs-string">""</span></span>,
-<span class="hljs-string">""</span>channel<span class="hljs-string">""</span><span class="hljs-symbol">:</span><span class="hljs-number">3</span>,<span class="hljs-string">""</span>rssi<span class="hljs-string">""</span><span class="hljs-symbol">:-</span><span class="hljs-number">42</span>,<span class="hljs-string">""</span>snr<span class="hljs-string">""</span><span class="hljs-symbol">:</span><span class="hljs-number">9</span>,<span class="hljs-string">""</span>latitude<span class="hljs-string">""</span><span class="hljs-symbol">:</span><span class="hljs-number">47.49873</span>,<span class="hljs-string">""</span>longitude<span class="hljs-string">""</span><span class="hljs-symbol">:</span><span class="hljs-number">8.746949</span>},{<span class="hljs-string">""</span>gtw_id<span class="hljs-string">""</span>
-<span class="hljs-symbol">:<span class="hljs-string">""</span>kellergw2<span class="hljs-string">""</span></span>,<span class="hljs-string">""</span>gtw_trusted<span class="hljs-string">""</span><span class="hljs-symbol">:true</span>,<span class="hljs-string">""</span>timestamp<span class="hljs-string">""</span><span class="hljs-symbol">:</span><span class="hljs-number">509643924</span>,<span class="hljs-string">""</span>time<span class="hljs-string">""</span><span class="hljs-symbol">:<span class="hljs-string">""</span></span><span class="hljs-number">2017</span>-<span class="hljs-number">10</span>-<span class="hljs-number">30</span><span class="hljs-symbol">T11:</span><span class="hljs-number">17</span><span class="hljs-symbol">:</span><span class="hljs-number">44</span>Z<span class="hljs-string">""</span>
-,<span class="hljs-string">""</span>channel<span class="hljs-string">""</span><span class="hljs-symbol">:</span><span class="hljs-number">3</span>,<span class="hljs-string">""</span>rssi<span class="hljs-string">""</span><span class="hljs-symbol">:-</span><span class="hljs-number">61</span>,<span class="hljs-string">""</span>snr<span class="hljs-string">""</span><span class="hljs-symbol">:</span><span class="hljs-number">9.5</span>,<span class="hljs-string">""</span>latitude<span class="hljs-string">""</span><span class="hljs-symbol">:</span><span class="hljs-number">47.498688</span>,<span class="hljs-string">""</span>longitude<span class="hljs-string">""</span><span class="hljs-symbol">:</span><span class="hljs-number">8.747711</span>}]},<span class="hljs-string">""</span>downlink_url<span class="hljs-string">""</span>
-<span class="hljs-symbol">:<span class="hljs-string">""</span>https</span><span class="hljs-symbol">://integrations.thethingsnetwork.org/ttn-eu/api/v2/down/ldtapplication/httpldttest?key=ttn-account-v2.4vThJdZ2ISzcdwppUzCaLWsBmF1_GszPXEOglkR3AfA""</span>}<span class="hljs-string">";
+    string exampleLoRaTransmissionTTNText = @@"{""app_id"":""ldtapplication"",""dev_id"":""ldtdevice1"",""hardware_serial"":""0004A30B001EC250"",""port"":1,""counter""
+:0,""payload_raw"":""AQUB03/AAAB/wAAAf8AAAD94px5BxdcKAAAAAA=="",""payload_fields"":{""Channel_1"":5.104235503814077e+38,""Channel_2"":5.104235503814077
+e+38,""Channel_3"":5.104235503814077e+38,""Channel_4"":0.9713000059127808,""channel"":""0000000111010011"",""ct"":
+5,""func"":1,""payload"":""AQswAD93JxNBu1wp""},""metadata"":{""time"":""2017-10-30T11:
+18:25.511380476Z"",""frequency"":867.1,""modulation"":""LORA"",""data_rate"":""SF12BW125"",""coding_rate"":
+""4/5"",""gateways"":[{""gtw_id"":""eui-c0ee40ffff29356b"",""timestamp"":300640588,""time"":"""",
+""channel"":3,""rssi"":-42,""snr"":9,""latitude"":47.49873,""longitude"":8.746949},{""gtw_id""
+:""kellergw2"",""gtw_trusted"":true,""timestamp"":509643924,""time"":""2017-10-30T11:17:44Z""
+,""channel"":3,""rssi"":-61,""snr"":9.5,""latitude"":47.498688,""longitude"":8.747711}]},""downlink_url""
+:""https://integrations.thethingsnetwork.org/ttn-eu/api/v2/down/ldtapplication/httpldttest?key=ttn-account-v2.4vThJdZ2ISzcdwppUzCaLWsBmF1_GszPXEOglkR3AfA""}";
     
-JsonToBusinessObjects.DataContainers.BusinessObjectRoot businessObject = Converter.LoRaJsonMessageToBusinessObject(exampleLoRaTransmissionTTNText);
-    Console.WriteLine($"</span>There are {businessObject.LoRaData.Measurements.Count} measurements stored from the device with the EUI {businessObject.LoRaData.EUI}.<span class="hljs-string">")</span></code></pre>
-        //or from DTO to a valid KELLER payload  
-        //todo
-    </RadzenCard>
+    JsonToBusinessObjects.DataContainers.BusinessObjectRoot businessObject = Converter.LoRaJsonMessageToBusinessObject(exampleLoRaTransmissionTTNText);
+    Console.WriteLine($<span class="hljs-string">"There are </span>{businessObject.LoRaData.Measurements.Count}<span class="hljs-string"> measurements stored from the device with the EUI </span>{businessObject.LoRaData.EUI}<span class="hljs-string">."</span>);</code></pre>
+<span class="hljs-comment">
+//or from DTO to a valid KELLER payload
+//todo
+</span>
+</RadzenCard>
     <RadzenCard>
         <h2 id="todos">Todos</h2>
         <ul>
