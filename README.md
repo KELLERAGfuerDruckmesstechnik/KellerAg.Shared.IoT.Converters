@@ -62,8 +62,19 @@ string exampleLoRaTransmissionTTNText = @"{""app_id"":""ldtapplication"",""dev_i
 JsonToBusinessObjects.DataContainers.BusinessObjectRoot businessObject = Converter.LoRaJsonMessageToBusinessObject(exampleLoRaTransmissionTTNText);
 Console.WriteLine($"There are {businessObject.LoRaData.Measurements.Count} measurements stored from the device with the EUI {businessObject.LoRaData.EUI}.")
 
-//or from DTO to a valid KELLER payload
-//todo
+//or from DTO to a valid KELLER payload whereas there can be multiple payloads
+List<string> payloads = Converter.DeviceConfigurationToLoRaPayloads(DeviceSettings deviceConfigurationDifference); // Properties that are not null/empty will be used for generating the payloads
+
+  //alternative:  
+List<string> payloads = Converter.DeviceConfigurationToLoRaPayloads(string deviceConfigurationDifference); // JSON string with properties to change (not listed properties shall not be changed)
+
+// or directly from a PayloadInfo object to a list of KELLER LoRa-Payload strings  
+var payloadInfo = JsonConvert.DeserializeObject<PayloadInformation>(payloadInfoJson);  
+List<string> payloads = PayloadConverter.ConvertToTheThingsNetwork(payloadInfo);  
+  // alternative
+List<string> payloads = PayloadConverter.ConvertToActility(payloadInfo);  
+  // alternative
+List<string> payloads = PayloadConverter.ConvertToLoriot(payloadInfo); 
 ```
 
 ## Live-Demonstration with Blazor Web App
