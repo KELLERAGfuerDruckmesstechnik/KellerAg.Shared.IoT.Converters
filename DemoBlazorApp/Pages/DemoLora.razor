@@ -13,11 +13,11 @@
             <div class="form-group">
                 <RadzenCard>
                     <label for="LABEL LoRa 1">Decrypt KELLER LoRa-Payload to DTO</label>
-                    <pre><code>    string gsmCommunicationText = await ...</code></pre>
+                    <pre><code>    PayloadInformation payLoadInfo = Converter.LoRaPayloadToLoRaMessage(payloadText, port); //The port number is stored in PayloadInformation but has no logic attached.</code></pre>
                     <div class="btn-group" style="margin: 10px">
-                        <RadzenButton Click="@(args => ChooseLoRaPayloadButtonClick(args, ExampleLoRaPayloadMeasurementText, 1))" Text="Load Example <br>Payload (Measurements)" Style="margin-left: 10px;" />
-                        <RadzenButton Click="@(args => ChooseLoRaPayloadButtonClick(args, ExampleLoRaPayloadInformationText, 4))" Text="Load Example <br/>Payload (Device Information)" Style="margin-left: 10px;" />
-                        <RadzenButton Click="@(args => ChooseLoRaPayloadButtonClick(args, ExampleLoRaPayloadConfigurationText, 5))" Text="Load Example Payload (Configuration)" Style="margin-left: 10px;" />
+                        <RadzenButton Click="@(args => ChooseLoRaPayloadButtonClick(args, ExampleLoRaPayloadMeasurementText, 1))" Text="Load Payload (Measurements)" Style="margin-left: 10px;" />
+                        <RadzenButton Click="@(args => ChooseLoRaPayloadButtonClick(args, ExampleLoRaPayloadInformationText, 4))" Text="Load Payload (DeviceInformation)" Style="margin-left: 10px;" />
+                        <RadzenButton Click="@(args => ChooseLoRaPayloadButtonClick(args, ExampleLoRaPayloadConfigurationText, 5))" Text="Load Payload (Configuration)" Style="margin-left: 10px;" />
                     </div>
                     <RadzenTextArea @bind-Value="ExampleLoRaPayloadText" Rows="1" Change="@(args => DecryptPayload(args))" Style="margin-bottom: 20px"></RadzenTextArea>
                     <RadzenTextArea @bind-Value="_decryptedPayloadInfoText" Rows="30" ReadOnly Style="margin-bottom: 20px"></RadzenTextArea>
@@ -27,11 +27,11 @@
             <div class="form-group">
                 <RadzenCard>
                     <label for="LABEL LoRa 2">Decrypt LoRaWAN transmission JSON text to a more readable DTO using the KELLER LoRa-Payload decryption.</label>
-                    <pre><code>    string gsmCommunicationText = await ...</code></pre>
+                    <pre><code>    BusinessObjectRoot businessObjectRoot = Converter.LoRaJsonMessageToBusinessObject(value);</code></pre>
                     <div class="btn-group" style="margin: 10px">
-                        <RadzenButton Click="@(args => ChooseLoRaJsonMessageTextContentButtonClick(args, ExampleLoRaTransmissionTTNText))" Text="Load Example Transmission from TTN" Style="margin-left: 10px;" />
-                        <RadzenButton Click="@(args => ChooseLoRaJsonMessageTextContentButtonClick(args, ExampleLoRaTransmissionActilityText))" Text="Load Example Transmission from Actility" Style="margin-left: 10px;" />
-                        <RadzenButton Click="@(args => ChooseLoRaJsonMessageTextContentButtonClick(args, ExampleLoRaTransmissionLoriotText))" Text="Load Example Transmission from Loriot.io" Style="margin-left: 10px;" />
+                        <RadzenButton Click="@(args => ChooseLoRaJsonMessageTextContentButtonClick(args, ExampleLoRaTransmissionTTNText))" Text="Load Transmission from TTN" Style="margin-left: 10px;" />
+                        <RadzenButton Click="@(args => ChooseLoRaJsonMessageTextContentButtonClick(args, ExampleLoRaTransmissionActilityText))" Text="Load Transmission from Actility" Style="margin-left: 10px;" />
+                        <RadzenButton Click="@(args => ChooseLoRaJsonMessageTextContentButtonClick(args, ExampleLoRaTransmissionLoriotText))" Text="Load Transmission from Loriot.io" Style="margin-left: 10px;" />
                     </div>
 
                     <RadzenTextArea @bind-Value="ExampleLoRaTransmissionText" Rows="6" Change="@(args => DecryptLoRaJsonMessage(args))" Style="margin-bottom: 20px"></RadzenTextArea>
@@ -43,15 +43,27 @@
         <RadzenTabsItem Text="LoRa data TO devices (downlink)">
             <RadzenCard>
                 <label for="LABEL LoRa 3">From a readable DTO (DeviceSettings) to a list of KELLER LoRa-Payload strings</label>
-                <pre><code>    string gsmCommunicationText = await ...</code></pre>
-
+                <pre><code>
+    // Properties that are not null/empty will be used for generating the payloads
+    List&lt;string&gt; payloads = Converter.DeviceConfigurationToLoRaPayloads(DeviceSettings deviceConfigurationDifference);
+      //alternative:
+    // JSON string with properties to change (not listed properties shall not be changed)
+    List&lt;string&gt; payloads = Converter.DeviceConfigurationToLoRaPayloads(string deviceConfigurationDifference);
+</code></pre>
                 <RadzenTextArea @bind-Value="ExampleDeviceSettingsJson" Rows="6" Change="@(args => ConvertDeviceSettingsToLoRaPayloads(args))" Style="margin-bottom: 20px"></RadzenTextArea>
                 <RadzenTextArea @bind-Value="CombinedConvertedPayloads" Rows="6" Style="margin-bottom: 20px" ReadOnly></RadzenTextArea>
             </RadzenCard>
 
             <RadzenCard>
                 <label for="LABEL LoRa 4">From a readable DTO (PayloadInfo) to a list of KELLER LoRa-Payload strings</label>
-                <pre><code>    string gsmCommunicationText = await ...</code></pre>
+                <pre><code>
+    var payloadInfo = JsonConvert.DeserializeObject&lt;PayloadInformation&gt;(payloadInfoJson);
+    List&lt;string&gt; payloads = PayloadConverter.ConvertToTheThingsNetwork(payloadInfo);
+      // alternative
+    List&lt;string&gt; payloads = PayloadConverter.ConvertToActility(payloadInfo);
+      // alternative
+    List&lt;string&gt; payloads = PayloadConverter.ConvertToLoriot(payloadInfo);
+</code></pre>
                 <RadzenTextArea @bind-Value="ExamplePayloadInfoJson" Rows="20" Change="@(args => ConvertPayloadInfoToLoRaPayloads(args))" Style="margin-bottom: 20px"></RadzenTextArea>
                 <RadzenTextArea @bind-Value="CombinedConvertedPayloads" Rows="4" Style="margin-bottom: 20px" ReadOnly></RadzenTextArea>
             </RadzenCard>
@@ -90,6 +102,11 @@
     private string ExamplePayloadInfoJson { get; set; }
     void ConvertDeviceSettingsToLoRaPayloads(string value)
     {
+    /*
+        List<string> payloads = Converter.DeviceConfigurationToLoRaPayloads(DeviceSettings deviceConfigurationDifference); // Properties that are not null/empty will be used for generating the payloads
+         // alternative:
+        List<string> payloads = Converter.DeviceConfigurationToLoRaPayloads(string deviceConfigurationDifference); // JSON string with properties to change (not listed properties shall not be changed)
+    */
         ConvertedPayloads = new List<string>();
         ConvertedPayloads.Add("TODO  ( " + value + " )");
         CombinedConvertedPayloads = string.Join($"{Environment.NewLine}", ConvertedPayloads);

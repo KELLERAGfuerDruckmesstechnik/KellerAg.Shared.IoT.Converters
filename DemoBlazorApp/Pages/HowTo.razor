@@ -12,7 +12,7 @@
         </ul>
         <p>
             The <em>KellerAg.Shared.IoT.Converters</em> are an example implementation of said communication protocols and used by KELLER&#39;s <a href="www.kolibricloud.ch">KOLIBRI Cloud</a>.
-
+            <br/>
             <img width="1200" src="https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters/blob/master/Readme.Overview.png?raw=true" alt="overview">
         </p>
     </RadzenCard>
@@ -21,10 +21,9 @@
         <p>Nuget URL : <a href="https://www.nuget.org/packages/KellerAg.Shared.IoT.Converters/">https://www.nuget.org/packages/KellerAg.Shared.IoT.Converters/</a></p>
 
         <pre><code class="lang-powershell">    PM&gt; Install-Package KellerAg.Shared.IoT.Converters</code></pre>
-        <p>Use these following namespaces</p>
+        <p>Use these following namespaces:</p><br/>
         <pre>
 <code class="lang-csharp">    
-
     <span class="hljs-keyword">using</span> KellerAg.Shared.IoT.Converters; <span class="hljs-comment">//for the converters</span>
     <span class="hljs-keyword">using</span> Entities.Data; <span class="hljs-comment">//for the DeviceSettings-DTO</span>
     <span class="hljs-keyword">using</span> JsonToBusinessObjects.Conversion; <span class="hljs-comment">//for some used entities/DTOs</span>
@@ -42,7 +41,13 @@
     JsonToBusinessObjects.DataContainers.BusinessObject <span class="hljs-attr">businessObject</span> = conversionResult.BusinessObjectRoot;
     Console.WriteLine($<span class="hljs-string">"The battery's capacity is {BusinessObject.DeviceInformation.BatteryCapacity} %"</span>)
     <span class="hljs-comment">//or from DTO to a valid text file</span>
-    var <span class="hljs-attr">deviceConfiguration</span> = new Entites.Data.DeviceSettings{ <span class="hljs-attr">GeneralNetworkName</span> = <span class="hljs-string">"My Network Name"</span>, <span class="hljs-attr">GeneralLocationName</span> = <span class="hljs-string">"My Device Name"</span>, <span class="hljs-attr">GeneralAltitudeText</span> = <span class="hljs-string">"555"</span>, <span class="hljs-attr">HardwareConnectionType</span> = (byte?)<span class="hljs-number">5</span>, <span class="hljs-attr">MeasurementInterval</span> = <span class="hljs-number">48000</span>};
+    var <span class="hljs-attr">deviceConfiguration</span> = new Entites.Data.DeviceSettings {
+        <span class="hljs-attr">GeneralNetworkName</span> = <span class="hljs-string">"My Network Name"</span>,
+        <span class="hljs-attr">GeneralLocationName</span> = <span class="hljs-string">"My Device Name"</span>,
+        <span class="hljs-attr">GeneralAltitudeText</span> = <span class="hljs-string">"555"</span>,
+        <span class="hljs-attr">HardwareConnectionType</span> = (byte?)<span class="hljs-number">5</span>,
+        <span class="hljs-attr">MeasurementInterval</span> = <span class="hljs-number">48000</span>
+    };
     <span class="hljs-attr">gsmCommunicationJsonText</span> = converter.DeviceConfigurationToGsmCommunication(deviceConfiguration);
 </code></pre>
         <h4 id="conversion-with-lora-data">Conversion with LoRa data</h4>
