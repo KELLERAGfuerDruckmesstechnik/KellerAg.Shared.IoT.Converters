@@ -48,7 +48,7 @@ var deviceConfiguration = new Entites.Data.DeviceSettings{ GeneralNetworkName = 
 gsmCommunicationJsonText = converter.DeviceConfigurationToGsmCommunication(deviceConfiguration);
 ```
 
-![FTP overview](./Readme.FTP.overview.svg)<img src="./Readme.FTP.overview.svg">
+![FTP overview](./Readme.FTP.overview.png)
 
 
 #### Conversion with LoRa data
@@ -81,7 +81,7 @@ List<string> payloads = PayloadConverter.ConvertToActility(payloadInfo);
 List<string> payloads = PayloadConverter.ConvertToLoriot(payloadInfo); 
 ```
 
-![LoRa overview](./Readme.LoRa.overview.svg)<img src="./Readme.LoRa.overview.svg">
+![LoRa overview](./Readme.LoRa.overview.png)
 
 ## Live-Editor with Blazor Web App
 See: https://iotconverter.kolibricloud.ch
