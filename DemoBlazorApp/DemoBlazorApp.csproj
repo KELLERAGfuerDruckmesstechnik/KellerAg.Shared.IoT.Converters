@@ -5,7 +5,7 @@
     <RazorLangVersion>3.0</RazorLangVersion>
     <Authors>Sebastian Mojado</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Company>KELLER AG für Druckmesstechnik</Company>
+    <Company>KELLER Druckmesstechnik AG</Company>
   </PropertyGroup>
 
   <ItemGroup>
