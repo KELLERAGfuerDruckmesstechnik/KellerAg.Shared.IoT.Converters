@@ -14,17 +14,13 @@
 Also converts LoRa-JSON from TheThingsNetwork, Actility/Thingspark, Loriot.io messages with KELLER payload to readable DTOs.</Description>
     <Copyright></Copyright>
     <AssemblyVersion>1.5.259.0</AssemblyVersion>
-    <FileVersion>1.4.259.0</FileVersion>
+    <FileVersion>1.5.259.0</FileVersion>
     <Company>KELLER Druckmesstechnik AG</Company>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
     <DocumentationFile></DocumentationFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="KellerAg.Shared.Entities" Version="3.2.22245.1" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DeviceConfigurationToGsmCommunication\DeviceConfigurationToGsmCommunication.csproj" />

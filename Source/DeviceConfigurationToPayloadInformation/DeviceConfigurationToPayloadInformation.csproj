@@ -10,10 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="KellerAg.Shared.Entities" Version="3.2.20261.1" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\KellerAg.Shared.Entities\KellerAg.Shared.Entities.csproj" />
     <ProjectReference Include="..\KellerAg.Shared.LoRaPayloadConverter\KellerAg.Shared.LoRaPayloadConverter.csproj" />
   </ItemGroup>
 

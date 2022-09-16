@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1;netstandard2.0</TargetFrameworks>
+    <Company>KELLER Druckmesstechnik AG</Company>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://docs.kolibricloud.ch/sending-technology/converter-library</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters</RepositoryUrl>
+    <PackageTags>KELLER, KELLER Pressure, Druckmesstechnik, Pressure, pressure sensors, KOLIBRI cloud, LoRaWAN, LoRa, Loriot.io, Actility, TTN</PackageTags>
+    <Authors>Sebastian Mojado</Authors>
+    <Copyright>2022</Copyright>
+    <Description>KELLER AG Entities for various purposes.</Description>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NodaTime" Version="2.4.7" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+    <PackageReference Include="System.Runtime.Serialization.Primitives" Version="4.3.0" />
+    <PackageReference Include="TimeZoneConverter" Version="3.2.0" />
+  </ItemGroup>
+
+</Project>

@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="KellerAg.Shared.Entities" Version="3.2.22059.1" />
+    <ProjectReference Include="..\KellerAg.Shared.Entities\KellerAg.Shared.Entities.csproj" />
   </ItemGroup>
 
 </Project>
