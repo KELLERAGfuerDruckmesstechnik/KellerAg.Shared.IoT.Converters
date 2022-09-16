@@ -20,9 +20,24 @@
         /// <inheritdoc />
         public string GsmCommunicationToJson(string gsmCommunicationText)
         {
+            JObject json = GsmCommunicationToJsonObject(gsmCommunicationText);
+            return json.ToString();
+        }
+
+        /// <inheritdoc />
+        public JObject GsmCommunicationToJsonObject(string gsmCommunicationText)
+        {
             var converter = new GsmCommunicationToJsonConverter();
             JObject json = converter.Convert(gsmCommunicationText);
-            return json.ToString();
+            return json;
+        }
+
+        /// <inheritdoc />
+        public ConversionResult GsmCommunicationJsonToBusinessObject(JObject gsmCommunicationJson)
+        {
+            var converter = new JsonToBusinessObjectsConverterForGsm();
+            ConversionResult result = converter.Convert(gsmCommunicationJson);
+            return result;
         }
 
         /// <inheritdoc />
