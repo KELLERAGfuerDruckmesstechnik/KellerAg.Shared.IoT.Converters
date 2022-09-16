@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Globalization;
     using DataContainers;
     using Infrastructure;
     using Infrastructure.Logging;
@@ -53,7 +54,7 @@
         private float[] ParseCurrentValuesOfSelectedChannels(string value)
         {
             string[] floatValues = value.Replace("+", "|+").Replace("-", "|-").Split(new[] {"|"}, StringSplitOptions.RemoveEmptyEntries);
-            float[] floats = floatValues.Select(s => s.Equals("+OFL", StringComparison.OrdinalIgnoreCase) ? float.NaN : float.Parse(s)).ToArray();
+            float[] floats = floatValues.Select(s => s.Equals("+OFL", StringComparison.OrdinalIgnoreCase) ? float.NaN : float.Parse(s, CultureInfo.InvariantCulture)).ToArray();
 
             return floats;
         }

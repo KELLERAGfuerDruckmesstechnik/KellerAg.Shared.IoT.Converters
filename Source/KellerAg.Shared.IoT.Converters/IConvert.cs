@@ -5,15 +5,31 @@
     using JsonToBusinessObjects.DataContainers;
     using KellerAg.Shared.Entities.Database;
     using KellerAg.Shared.LoRaPayloadConverter;
+    using Newtonsoft.Json.Linq;
 
     public interface IConvert
     {
         /// <summary>
-        /// Mobile Communication: From Device-Transmission to DTO: Step 1 (txt to json)
+        /// Mobile Communication: From Device-Transmission to DTO: Step 1 (txt to json text)
         /// </summary>
         /// <param name="gsmCommunicationText"></param>
-        /// <returns></returns>
+        /// <returns>JSON text</returns>
         string GsmCommunicationToJson(string gsmCommunicationText);
+
+
+        /// <summary>
+        /// Mobile Communication: From Device-Transmission to DTO: Step 1 (txt to jObject)
+        /// </summary>
+        /// <param name="gsmCommunicationText"></param>
+        /// <returns>Json as JObject</returns>
+        JObject GsmCommunicationToJsonObject(string gsmCommunicationText);
+
+        /// <summary>
+        /// Mobile Communication: From Device-Transmission to DTO: Step 2 (JObject to ConversionResult)
+        /// </summary>
+        /// <param name="gsmCommunicationJson"></param>
+        /// <returns></returns>
+        ConversionResult GsmCommunicationJsonToBusinessObject(JObject gsmCommunicationJson);
 
         /// <summary>
         /// Mobile Communication: From Device-Transmission to DTO: Step 2 (json to ConversionResult)

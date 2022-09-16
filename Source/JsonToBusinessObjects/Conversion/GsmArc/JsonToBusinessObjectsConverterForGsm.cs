@@ -47,7 +47,7 @@ namespace JsonToBusinessObjects.Conversion.GsmArc
             return Convert(JObject.Parse(jsonString));
         }
 
-        private ConversionResult Convert(JObject rootObject)
+        public ConversionResult Convert(JObject rootObject)
         {
             BusinessObjectRoot businessObjectRoot = new BusinessObjectRoot();
 
