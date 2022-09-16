@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32804.467
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KellerAg.Shared.IoT.Converters", "KellerAg.Shared.IoT.Converters\KellerAg.Shared.IoT.Converters.csproj", "{033C59F3-DD5B-42A4-99EF-45C3D3D3F59C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeviceConfigurationToGsmCommunication", "DeviceConfigurationToGsmCommunication\DeviceConfigurationToGsmCommunication.csproj", "{347C56C2-A822-40F4-B256-CF49C7F9CCB1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeviceConfigurationToGsmCommunication.Tests", "DeviceConfigurationToGsmCommunication.Tests\DeviceConfigurationToGsmCommunication.Tests.csproj", "{6BC42450-4BF3-41F4-97C6-FC1ED1439C64}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeviceConfigurationToPayloadInformation", "DeviceConfigurationToPayloadInformation\DeviceConfigurationToPayloadInformation.csproj", "{6B9195CE-DDEE-4AB9-B0A4-EB03D229D1CE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GsmCommunicationToJson", "GsmCommunicationToJson\GsmCommunicationToJson.csproj", "{3F754F4C-2E66-4548-8EBA-3EE19723D0D6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GsmCommunicationToJson.Tests", "GsmCommunicationToJson.Tests\GsmCommunicationToJson.Tests.csproj", "{A7FFF1ED-FABF-4AAF-88AA-811782FEE66E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonToBusinessObjects", "JsonToBusinessObjects\JsonToBusinessObjects.csproj", "{A750A9E3-8A96-4845-B1B9-78EFBF9863B7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonToBusinessObjects.Tests", "JsonToBusinessObjects.Tests\JsonToBusinessObjects.Tests.csproj", "{A2BED7ED-7269-4D82-8C7B-08C992C858D2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KellerAg.Shared.LoRaPayloadConverter", "KellerAg.Shared.LoRaPayloadConverter\KellerAg.Shared.LoRaPayloadConverter.csproj", "{DB75B771-517B-43EF-8C13-E3ABB86A751B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KellerAG.Shared.LoRaPayloadConverter.Tests", "KellerAG.Shared.LoRaPayloadConverter.Tests\KellerAG.Shared.LoRaPayloadConverter.Tests.csproj", "{B5E87E96-7C5A-4A7D-A613-F3BA6A51DAF3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{033C59F3-DD5B-42A4-99EF-45C3D3D3F59C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{033C59F3-DD5B-42A4-99EF-45C3D3D3F59C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{033C59F3-DD5B-42A4-99EF-45C3D3D3F59C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{033C59F3-DD5B-42A4-99EF-45C3D3D3F59C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{347C56C2-A822-40F4-B256-CF49C7F9CCB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{347C56C2-A822-40F4-B256-CF49C7F9CCB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{347C56C2-A822-40F4-B256-CF49C7F9CCB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{347C56C2-A822-40F4-B256-CF49C7F9CCB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BC42450-4BF3-41F4-97C6-FC1ED1439C64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BC42450-4BF3-41F4-97C6-FC1ED1439C64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BC42450-4BF3-41F4-97C6-FC1ED1439C64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BC42450-4BF3-41F4-97C6-FC1ED1439C64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B9195CE-DDEE-4AB9-B0A4-EB03D229D1CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B9195CE-DDEE-4AB9-B0A4-EB03D229D1CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B9195CE-DDEE-4AB9-B0A4-EB03D229D1CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B9195CE-DDEE-4AB9-B0A4-EB03D229D1CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F754F4C-2E66-4548-8EBA-3EE19723D0D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F754F4C-2E66-4548-8EBA-3EE19723D0D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F754F4C-2E66-4548-8EBA-3EE19723D0D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F754F4C-2E66-4548-8EBA-3EE19723D0D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7FFF1ED-FABF-4AAF-88AA-811782FEE66E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7FFF1ED-FABF-4AAF-88AA-811782FEE66E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7FFF1ED-FABF-4AAF-88AA-811782FEE66E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7FFF1ED-FABF-4AAF-88AA-811782FEE66E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A750A9E3-8A96-4845-B1B9-78EFBF9863B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A750A9E3-8A96-4845-B1B9-78EFBF9863B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A750A9E3-8A96-4845-B1B9-78EFBF9863B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A750A9E3-8A96-4845-B1B9-78EFBF9863B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2BED7ED-7269-4D82-8C7B-08C992C858D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2BED7ED-7269-4D82-8C7B-08C992C858D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2BED7ED-7269-4D82-8C7B-08C992C858D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2BED7ED-7269-4D82-8C7B-08C992C858D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB75B771-517B-43EF-8C13-E3ABB86A751B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB75B771-517B-43EF-8C13-E3ABB86A751B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB75B771-517B-43EF-8C13-E3ABB86A751B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB75B771-517B-43EF-8C13-E3ABB86A751B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5E87E96-7C5A-4A7D-A613-F3BA6A51DAF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5E87E96-7C5A-4A7D-A613-F3BA6A51DAF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5E87E96-7C5A-4A7D-A613-F3BA6A51DAF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5E87E96-7C5A-4A7D-A613-F3BA6A51DAF3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AC2A361E-8BB4-431C-8CE3-C1C8F46E90AA}
+	EndGlobalSection
+EndGlobal

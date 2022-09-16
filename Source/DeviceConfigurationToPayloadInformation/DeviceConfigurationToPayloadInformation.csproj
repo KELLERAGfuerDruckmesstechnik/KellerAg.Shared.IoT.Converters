@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+    <Version>1.0.272-alpha</Version>
+    <Company>KELLER Druckmesstechnik AG</Company>
+    <Authors>Sebastian Mojado</Authors>
+    <Copyright>Copyright 2022 (c) KELLER Pressure AG. All rights reserved.</Copyright>
+    <Description>Used by KellerAg.Shared.IoT.Converters</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="KellerAg.Shared.Entities" Version="3.2.20261.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KellerAg.Shared.LoRaPayloadConverter\KellerAg.Shared.LoRaPayloadConverter.csproj" />
+  </ItemGroup>
+
+</Project>

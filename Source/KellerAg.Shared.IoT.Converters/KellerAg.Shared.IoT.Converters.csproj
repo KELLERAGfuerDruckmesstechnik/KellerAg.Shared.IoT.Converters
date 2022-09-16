@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+    <Authors>Sebastian Mojado</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.5.259</Version>
+    <PackageProjectUrl>https://docs.kolibricloud.ch/sending-technology/converter-library</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters</RepositoryUrl>
+    <PackageReleaseNotes>2022-09-16 -  Version with open-sourced and slightly updated files</PackageReleaseNotes>
+    <PackageTags>KELLER, KELLER für Druckmesstechnik, Druckmesstechnik, Pressure, pressure sensors, KOLIBRI cloud, LoRaWAN, LoRa, Loriot.io, Actility, TTN</PackageTags>
+    <Description>Converter library with many helpful methods to convert proprietary KELLER protocol format data to readable DTOs and reverse.
+Also converts LoRa-JSON from TheThingsNetwork, Actility/Thingspark, Loriot.io messages with KELLER payload to readable DTOs.</Description>
+    <Copyright></Copyright>
+    <AssemblyVersion>1.5.259.0</AssemblyVersion>
+    <FileVersion>1.4.259.0</FileVersion>
+    <Company>KELLER Druckmesstechnik AG</Company>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
+    <DocumentationFile></DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="KellerAg.Shared.Entities" Version="3.2.22245.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DeviceConfigurationToGsmCommunication\DeviceConfigurationToGsmCommunication.csproj" />
+    <ProjectReference Include="..\DeviceConfigurationToPayloadInformation\DeviceConfigurationToPayloadInformation.csproj" />
+    <ProjectReference Include="..\GsmCommunicationToJson\GsmCommunicationToJson.csproj" />
+    <ProjectReference Include="..\JsonToBusinessObjects\JsonToBusinessObjects.csproj" />
+  </ItemGroup>
+
+</Project>

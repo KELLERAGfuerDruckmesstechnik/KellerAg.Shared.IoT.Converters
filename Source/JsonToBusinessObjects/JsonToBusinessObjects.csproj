@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+ 
+    <!-- The identifier that must be unique within the hosting gallery -->
+    <PackageId>KellerAg.Cloud.JsonToBusinessObjects</PackageId>
+    <!-- The package version number that is used when resolving dependencies -->
+    <PackageVersion>2.0.9.23</PackageVersion>
+    <!-- Authors contain text that appears directly on the gallery -->
+    <authors>KELLER Druckmesstechnik AG</authors>
+    <!-- The description can be used in package manager UI. Note that the nuget.org gallery uses information you add in the portal. -->
+    <Description>This library is used to convert KELLER messages from JSON to an Object with improved data handling.</Description>
+    <!-- If true, this value prompts the user to accept the license when installing the package. -->
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <Copyright>Copyright 2022 (c) KELLER Pressure AG. All rights reserved.</Copyright>
+    <PackageTags>converter json object</PackageTags>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <!-- this hack (which generates warnings) is required for the variable $(TargetDir) to work in the post build event -->
+  <!-- see https://github.com/dotnet/project-system/issues/1569 -->
+  <Import Sdk="Microsoft.NET.Sdk" Project="Sdk.targets" />
+
+  <PropertyGroup>
+    <Product>KellerAg.Cloud.JsonToBusinessObjects</Product>
+    <Company>KELLER AG</Company>
+    <Version>2.0.272-alpha</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath />
+  </PropertyGroup>
+
+ 
+  <ItemGroup>
+    <PackageReference Include="KellerAg.Shared.LoRaPayloadConverter" Version="1.3.310.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+</Project>

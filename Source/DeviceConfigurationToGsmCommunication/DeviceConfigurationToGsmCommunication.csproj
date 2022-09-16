@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+    <Version>1.0.272-alpha</Version>
+    <Company>KELLER Druckmesstechnik AG</Company>
+    <Authors>KELLER Druckmesstechnik AG</Authors>
+    <Copyright>Copyright 2022 (c) KELLER Pressure AG. All rights reserved.</Copyright>
+    <RepositoryUrl>https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters</RepositoryUrl>
+    <PackageProjectUrl>https://docs.kolibricloud.ch/sending-technology/converter-library</PackageProjectUrl>
+    <Description>Used by KellerAg.Shared.IoT.Converters</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="KellerAg.Shared.Entities" Version="3.2.22059.1" />
+  </ItemGroup>
+
+</Project>
