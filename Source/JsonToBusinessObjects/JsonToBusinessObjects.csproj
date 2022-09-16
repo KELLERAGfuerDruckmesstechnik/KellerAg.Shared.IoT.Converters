@@ -35,8 +35,12 @@
 
  
   <ItemGroup>
-    <PackageReference Include="KellerAg.Shared.LoRaPayloadConverter" Version="1.3.310.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+ 
+  <ItemGroup>
+    <ProjectReference Include="..\KellerAg.Shared.LoRaPayloadConverter\KellerAg.Shared.LoRaPayloadConverter.csproj" />
   </ItemGroup>
 
 </Project>
