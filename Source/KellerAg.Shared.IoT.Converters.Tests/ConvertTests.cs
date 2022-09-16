@@ -77,7 +77,7 @@ namespace KellerAg.Shared.IoT.Converters.Tests
             System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("de-AT");  // We do this for the unit test thread
             Console.WriteLine(CultureInfo.CurrentUICulture);
             Console.WriteLine(CultureInfo.CurrentCulture);
-            GsmCommunicationJsonToBusinessObject_GivenAValidCommunicationTextWithMeasurements_TheConvertedBusinessObjectContainsMeasurements(); // This throws because of not respecting other cultures
+            GsmCommunicationJsonToBusinessObject_GivenAValidCommunicationTextWithMeasurements_TheConvertedBusinessObjectContainsMeasurements(); // This throws when not set to invariant culture
         }
 
 
