@@ -1,16 +1,13 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentAssertions;
-using Newtonsoft.Json;
-
-using KellerAg.Shared.IoT.Converters;
-using Entities.Data;
-using JsonToBusinessObjects.DataContainers;
-using JsonToBusinessObjects.DataContainers.Configuration;
-
-
+using KellerAg.Shared.Entities.Database;
 
 namespace KellerAg.Shared.IoT.Converters.Tests
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using FluentAssertions;
+    using Newtonsoft.Json;
+    using JsonToBusinessObjects.DataContainers;
+    using JsonToBusinessObjects.DataContainers.Configuration;
+
     [TestClass]
     public class ConvertTests
     {
@@ -22,7 +19,6 @@ namespace KellerAg.Shared.IoT.Converters.Tests
         [TestMethod]
         public void GsmCommunicationToJson_GivenAValidFtpText_TheContentCanBeConvertedToAProperJsonText()
         {
-            var c = new KellerAg.Shared.IoT.Converters.IoTConvert();
             // Arrange
             var convert = new KellerAg.Shared.IoT.Converters.IoTConvert();
             string gsmCommunicationText = ExampleGsmCommunicationWithConfigurationText;
@@ -75,8 +71,6 @@ namespace KellerAg.Shared.IoT.Converters.Tests
         {
             // Arrange
             var convert = new KellerAg.Shared.IoT.Converters.IoTConvert();
-
-            //var bo = convert.GsmCommunicationJsonToBusinessObject(convert.GsmCommunicationToJson(ExampleGsmCommunicationWithNewConfigurationForDeviceText));
 
             BusinessObjectRoot businessObject = new BusinessObjectRoot
             {
@@ -152,13 +146,11 @@ namespace KellerAg.Shared.IoT.Converters.Tests
             var convert = new KellerAg.Shared.IoT.Converters.IoTConvert();
             string deviceConfigurationDifferenceJson = "{\"generalLongitudeText\":\"lond1234\",\"hardwareConnectionType\":3,\"hardwarePowerExternalDevice\":12,\"hardwareMeasureSaveChannel0\":false,\"hardwareMeasureSaveChannel1\":true,\"hardwareDataConnectionCallNumber\":\"string\",\"measurementTimer\":12345,\"measurementInterval\":987,\"waterLevelCalculationLength\":42}";
 
-            DeviceSettings def = new DeviceSettings();
-
             // Act
             var result = convert.DeviceConfigurationToGsmCommunication(deviceConfigurationDifferenceJson);
 
             // Assert
-            result.Should().Contain("#b/k=string/0=lond1234#c/g=987/m=2/4=12/6=3#d/n=+42");
+            result.Should().Contain("#b/k=string/0=lond1234#c/a=12345/g=987/m=2/4=12/6=3#d/n=+42");
         }
 
         [TestMethod]
@@ -173,7 +165,7 @@ namespace KellerAg.Shared.IoT.Converters.Tests
             var result = convert.DeviceConfigurationToGsmCommunication(deviceSettings);
 
             // Assert
-            result.Should().Contain("#b/k=string/0=lond1234#c/g=987/m=2/4=12/6=3#d/n=+42");
+            result.Should().Contain("#b/k=string/0=lond1234#c/a=12345/g=987/m=2/4=12/6=3#d/n=+42");
         }
 
         [TestMethod]
