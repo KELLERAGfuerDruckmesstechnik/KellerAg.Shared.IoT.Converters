@@ -1,6 +1,4 @@
-﻿using Entities.Data;
-
-namespace KellerAg.Shared.IoT.Converters
+﻿namespace KellerAg.Shared.IoT.Converters
 {
     using System;
     using System.Collections.Generic;
@@ -12,6 +10,7 @@ namespace KellerAg.Shared.IoT.Converters
     using JsonToBusinessObjects.Conversion.GsmArc;
     using JsonToBusinessObjects.Conversion.LoRa;
     using JsonToBusinessObjects.DataContainers;
+    using KellerAg.Shared.Entities.Database;
     using KellerAg.Shared.LoRaPayloadConverter;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;

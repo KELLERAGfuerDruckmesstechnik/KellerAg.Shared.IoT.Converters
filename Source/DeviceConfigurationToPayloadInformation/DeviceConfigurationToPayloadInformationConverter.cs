@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Entities.Data;
+using KellerAg.Shared.Entities.Database;
 using KellerAg.Shared.LoRaPayloadConverter;
 
 namespace DeviceConfigurationToPayloadInformation

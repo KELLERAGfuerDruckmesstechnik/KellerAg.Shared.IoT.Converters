@@ -1,4 +1,4 @@
-﻿namespace Entities.Data
+﻿namespace KellerAg.Shared.Entities.Database
 {
     using System;
     using System.ComponentModel.DataAnnotations;

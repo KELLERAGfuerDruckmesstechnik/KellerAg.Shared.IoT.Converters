@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Text;
-using Entities.Data;
 using System.Text.RegularExpressions;
 using DeviceConfigurationToGsmCommunication.Exceptions;
+using KellerAg.Shared.Entities.Database;
 
 namespace DeviceConfigurationToGsmCommunication
 {

@@ -1,7 +1,7 @@
 ﻿using System;
-using Entities.Data;
 using JsonToBusinessObjects.DataContainers;
 using JsonToBusinessObjects.DataContainers.Configuration;
+using KellerAg.Shared.Entities.Database;
 
 namespace KellerAg.Shared.IoT.Converters
 {

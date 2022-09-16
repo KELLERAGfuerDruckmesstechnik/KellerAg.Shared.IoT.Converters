@@ -1,10 +1,9 @@
-﻿using Entities.Data;
-
-namespace KellerAg.Shared.IoT.Converters
+﻿namespace KellerAg.Shared.IoT.Converters
 {
     using System.Collections.Generic;
     using JsonToBusinessObjects.Conversion;
     using JsonToBusinessObjects.DataContainers;
+    using KellerAg.Shared.Entities.Database;
     using KellerAg.Shared.LoRaPayloadConverter;
 
     public interface IConvert
