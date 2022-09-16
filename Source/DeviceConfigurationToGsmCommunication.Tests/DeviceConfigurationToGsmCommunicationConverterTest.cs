@@ -1,9 +1,9 @@
+using KellerAg.Shared.Entities.Database;
 using Newtonsoft.Json;
 
 namespace DeviceConfigurationToGsmCommunication.Tests
 {
     using System;
-    using Entities.Data;
     using Xunit;
     using FluentAssertions;
     using DeviceConfigurationToGsmCommunication.Exceptions;
