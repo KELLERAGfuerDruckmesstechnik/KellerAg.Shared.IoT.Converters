@@ -35,9 +35,11 @@
                     <label for="LABEL 2">GsmCommunication to Json</label>
                     <pre><code>
     var converter = new KellerAg.Shared.IoT.Converters.Convert();
-    string json = converter.GsmCommunicationToJson(gsmCommunicationText);</code></pre>
+    string jsonText = converter.GsmCommunicationToJsonText(gsmCommunicationText);
+    // or
+    JObject json = converter.GsmCommunicationToJson(gsmCommunicationText);</code></pre>
                     <h6><i>JSON content:</i></h6>
-                    <textarea class="form-control" readonly id="area2" rows="10" @bind="@FtpConversion.GsmCommunicationToJson"></textarea>
+                    <textarea class="form-control" readonly id="area2" rows="10" @bind="@FtpConversion.GsmCommunicationToJsonText"></textarea>
                 </RadzenCard>
             </div>
 
@@ -67,15 +69,15 @@
             {
                 <div class="form-group">
                     <RadzenCard>
-                        <label for="LABEL 5">BusinessObject to Chart</label>
+                        <label for="LABEL 5">BusinessObject to time series</label>  
                         See Measurement Data in<pre><code>  businessObjectResult.Measurements;</code></pre>
 
-                        <RadzenGrid AllowFiltering="true" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" AllowPaging="false"
+                        <RadzenGrid AllowFiltering="false" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" AllowPaging="false"
                                     AllowSorting="true" Data="@_measurements" TItem="BlazorMeasurement">
                             <Columns>
                                 <RadzenGridColumn TItem="BlazorMeasurement" Property="Time" Title="Time">
                                     <Template Context="data">
-                                        @string.Format("{0:u}", data.Time)
+                                        @($"{data.Time:u}")
                                     </Template>
                                 </RadzenGridColumn>
 

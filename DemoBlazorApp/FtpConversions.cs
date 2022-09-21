@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Entities.Data;
 using JsonToBusinessObjects.Conversion;
 using JsonToBusinessObjects.DataContainers;
+using KellerAg.Shared.Entities.Database;
 using KellerAg.Shared.IoT.Converters;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace DemoBlazorApp
 {
@@ -14,7 +15,8 @@ namespace DemoBlazorApp
         private readonly IConvert _converter = new IoTConvert();
 
         public string GsmCommunicationText { get; set; }
-        public string GsmCommunicationToJson { get; set; }
+        public JObject GsmCommunicationToJson { get; set; }
+        public string GsmCommunicationToJsonText { get; set; }
         public ConversionResult BusinessObjectResult { get; set; }
         public BusinessObjectRoot BusinessObject { get; set; }
         public string BusinessObjectJson { get; set; }
@@ -32,11 +34,12 @@ namespace DemoBlazorApp
             try
             {
                 GsmCommunicationText = text;
-                GsmCommunicationToJson = _converter.GsmCommunicationToJson(text);
+                GsmCommunicationToJson = _converter.GsmCommunicationToJsonObject(text);
+                GsmCommunicationToJsonText = GsmCommunicationToJson.ToString();
             }
             catch (Exception e)
             {
-                GsmCommunicationToJson = $"GsmCommunicationToJson Conversion didn't work: {e}/{e.InnerException}";
+                GsmCommunicationToJsonText = $"GsmCommunicationToJson Conversion didn't work: {e}/{e.InnerException}";
                 hasExceptionHappened = true;
             }
 
