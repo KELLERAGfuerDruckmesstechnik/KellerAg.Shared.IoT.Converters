@@ -43,7 +43,6 @@
                 </RadzenCard>
             </div>
 
-
             <div class="form-group">
                 <RadzenCard>
                     <label for="LABEL 3">GsmCommunicationJson To BusinessObject</label>
@@ -104,7 +103,7 @@
                         <RadzenButton Click="@(args => ChooseDeviceConfigButtonClick(args, ExampleDeviceConfigText3))" Text="Load Example Config 3" Style="margin-left: 10px;" />
                     </div>
 
-                    <RadzenTextArea @bind-Value="ExampleDeviceConfigText" Rows="20" Change="@(args => ConvertToGsmMessage(args))" Style="margin-bottom: 20px"></RadzenTextArea>
+                    <RadzenTextArea @bind-Value="ExampleDeviceConfigText" Rows="20" Change="@(ConvertToGsmMessage)" Style="margin-bottom: 20px"></RadzenTextArea>
                     <RadzenTextArea @bind-Value="_convertedGsmMessageText" Rows="6" ReadOnly Style="margin-bottom: 20px"></RadzenTextArea>
                 </RadzenCard>
             </div>
