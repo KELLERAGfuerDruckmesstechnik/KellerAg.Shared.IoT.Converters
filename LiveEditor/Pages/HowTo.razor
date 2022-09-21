@@ -1,0 +1,94 @@
+@page "/"
+    <RadzenCard>
+        <p>The <em>KellerAg.Shared.IoT.Converters</em> are a set of <strong>.NET</strong> DLLs to handle proprietary communication data from <a href="https://keller-druck.com/en/products/wireless-solutions">IoT devices</a> of the company <a href="https://keller-druck.com">KELLER Druckmesstechnik AG</a>.</p>
+
+        <p>The main purpose is to demonstrate one possible way to implement the text data stored on FTP folders (via 2G/3G/4G/NB-IoT/LTE-M) or JSON text from/to LoRaWAN network server (TheThingsNetwork / ThingsPark (Actility) / Loriot.io).  </p>
+
+        <p>The communication protocol are public:  </p>
+        <ul>
+            <li><a href="https://keller-druck.com/en/downloads?id=i95uBmiSyeNVqggKhodRsG#results">Communication protocol ADT1 LoRaWAN</a></li>
+            <li><a href="https://keller-druck.com/en/downloads?id=84kw6u2pCAozgisVdHLVgK#results">Communication protocol for ARC1 cellular interface</a></li>
+            <li><a href="https://keller-druck.com/en/downloads?id=X35LDeWEgkPdjekTAzEn6b#results">Communication protocol for ARC1 LoRaWAN</a></li>
+        </ul>
+        <p>
+            The <em>KellerAg.Shared.IoT.Converters</em> are an example implementation of said communication protocols and used by KELLER&#39;s <a href="www.kolibricloud.ch">KOLIBRI Cloud</a>.
+            <br/>
+            <img width="1200" src="https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters/blob/master/Readme.Overview.png?raw=true" alt="overview">
+        </p>
+    </RadzenCard>
+    <RadzenCard>
+        <h2 id="usage">Usage</h2>
+        <p>Nuget URL : <a href="https://www.nuget.org/packages/KellerAg.Shared.IoT.Converters/">https://www.nuget.org/packages/KellerAg.Shared.IoT.Converters/</a></p>
+
+        <pre><code class="lang-powershell">    PM&gt; Install-Package KellerAg.Shared.IoT.Converters</code></pre>
+        <p>Use these following namespaces:</p><br/>
+        <pre>
+<code class="lang-csharp">    
+    <span class="hljs-keyword">using</span> KellerAg.Shared.IoT.Converters; <span class="hljs-comment">//for the converters</span>
+    <span class="hljs-keyword">using</span> Entities.Data; <span class="hljs-comment">//for the DeviceSettings-DTO</span>
+    <span class="hljs-keyword">using</span> JsonToBusinessObjects.Conversion; <span class="hljs-comment">//for some used entities/DTOs</span>
+    <span class="hljs-keyword">using</span> JsonToBusinessObjects.DataContainers; <span class="hljs-comment">//for some used entities/DTOs</span>
+</code>
+</pre>
+        <h4 id="conversion-with-ftp-text-file">Conversion with FTP text file</h4>
+        Have a look at the examples in <a href="https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters/blob/master/DemoBlazorApp/FtpConversions.cs">https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters/blob/master/DemoBlazorApp/FtpConversions.cs</a>
+
+<pre><code class="lang-csharp">
+    IConvert <span class="hljs-attr">converter</span> = new KellerAg.Shared.IoT.Converters.IoTConvert();
+
+    string <span class="hljs-attr">gsmCommunicationJsonText</span> = converter.GsmCommunicationToJson(text_content); <span class="hljs-comment">// Gets the text content in Json format</span>
+    ConversionResult <span class="hljs-attr">conversionResult</span> = converter.GsmCommunicationJsonToBusinessObject(gsmCommunicationJsonText);
+    JsonToBusinessObjects.DataContainers.BusinessObject <span class="hljs-attr">businessObject</span> = conversionResult.BusinessObjectRoot;
+    Console.WriteLine($<span class="hljs-string">"The battery's capacity is {BusinessObject.DeviceInformation.BatteryCapacity} %"</span>)
+    <span class="hljs-comment">//or from DTO to a valid text file</span>
+    var <span class="hljs-attr">deviceConfiguration</span> = new Entites.Data.DeviceSettings {
+        <span class="hljs-attr">GeneralNetworkName</span> = <span class="hljs-string">"My Network Name"</span>,
+        <span class="hljs-attr">GeneralLocationName</span> = <span class="hljs-string">"My Device Name"</span>,
+        <span class="hljs-attr">GeneralAltitudeText</span> = <span class="hljs-string">"555"</span>,
+        <span class="hljs-attr">HardwareConnectionType</span> = (byte?)<span class="hljs-number">5</span>,
+        <span class="hljs-attr">MeasurementInterval</span> = <span class="hljs-number">48000</span>
+    };
+    <span class="hljs-attr">gsmCommunicationJsonText</span> = converter.DeviceConfigurationToGsmCommunication(deviceConfiguration);
+</code></pre>
+        <h4 id="conversion-with-lora-data">Conversion with LoRa data</h4>
+        <pre><code class="lang-csharp"><span class="hljs-comment">// Have a look at the examples in https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters/blob/master/DemoBlazorApp/Pages/DemoLora.razor </span> 
+    IConvert converter=new KellerAg.Shared.IoT.Converters.IoTConvert();
+    KellerAg.Shared.LoRaPayloadConverter.PayloadInformation extractedInformation=converter.LoRaPayloadToLoRaMessage(<span class="hljs-string">"1F011302000313042F0DFF0E000F00100115051603"</span>,<span class="hljs-number">4</span>);
+    Console.WriteLine(<span class="hljs-string">"There are </span>{extractedInformation.Measurements.Count}<span class="hljs-string"> measurements stored."</span>)
+</code></pre>
+        or directly the whole JSON from the network server<br/>
+        Example with a JSON from TheThingsNetwork:
+        <pre><code>
+    string exampleLoRaTransmissionTTNText = @@"{""app_id"":""ldtapplication"",""dev_id"":""ldtdevice1"",""hardware_serial"":""0004A30B001EC250"",""port"":1,""counter""
+:0,""payload_raw"":""AQUB03/AAAB/wAAAf8AAAD94px5BxdcKAAAAAA=="",""payload_fields"":{""Channel_1"":5.104235503814077e+38,""Channel_2"":5.104235503814077
+e+38,""Channel_3"":5.104235503814077e+38,""Channel_4"":0.9713000059127808,""channel"":""0000000111010011"",""ct"":
+5,""func"":1,""payload"":""AQswAD93JxNBu1wp""},""metadata"":{""time"":""2017-10-30T11:
+18:25.511380476Z"",""frequency"":867.1,""modulation"":""LORA"",""data_rate"":""SF12BW125"",""coding_rate"":
+""4/5"",""gateways"":[{""gtw_id"":""eui-c0ee40ffff29356b"",""timestamp"":300640588,""time"":"""",
+""channel"":3,""rssi"":-42,""snr"":9,""latitude"":47.49873,""longitude"":8.746949},{""gtw_id""
+:""kellergw2"",""gtw_trusted"":true,""timestamp"":509643924,""time"":""2017-10-30T11:17:44Z""
+,""channel"":3,""rssi"":-61,""snr"":9.5,""latitude"":47.498688,""longitude"":8.747711}]},""downlink_url""
+:""https://integrations.thethingsnetwork.org/ttn-eu/api/v2/down/ldtapplication/httpldttest?key=ttn-account-v2.4vThJdZ2ISzcdwppUzCaLWsBmF1_GszPXEOglkR3AfA""}";
+    
+    JsonToBusinessObjects.DataContainers.BusinessObjectRoot businessObject = Converter.LoRaJsonMessageToBusinessObject(exampleLoRaTransmissionTTNText);
+    Console.WriteLine($<span class="hljs-string">"There are </span>{businessObject.LoRaData.Measurements.Count}<span class="hljs-string"> measurements stored from the device with the EUI </span>{businessObject.LoRaData.EUI}<span class="hljs-string">."</span>);</code></pre>
+<span class="hljs-comment">
+//or from DTO to a valid KELLER payload
+//todo
+</span>
+</RadzenCard>
+    <RadzenCard>
+        <h2 id="todos">Todos</h2>
+        <ul>
+            <li>.NET 6 support for libraries</li>
+            <li>Extend DeviceSettings.cs and add conversion from DTO to LoRaWAN Json</li>
+        </ul>
+    </RadzenCard>
+    <RadzenCard>
+        <h2 id="faq">FAQ</h2>
+        <p>Question: <em>This is C#/.NET library. Do you also have another language such as Java or Python?</em><br>Answer: No. Only C#/.NET so far.</p>
+    </RadzenCard>
+    <RadzenCard>
+        <h2 id="contributing">Contributing</h2>
+        <p>Feel free to dive in! <a href="https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters/issues/new">Open an issue</a> or submit PRs.</p>
+    </RadzenCard>

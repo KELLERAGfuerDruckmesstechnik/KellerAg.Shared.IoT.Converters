@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30516.212
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoBlazorApp", "DemoBlazorApp.csproj", "{D3C05011-3326-4838-A4F2-C888655CB3E5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveEditor", "..\LiveEditor\LiveEditor.csproj", "{BFC3527E-C5A5-4526-AB12-68E706E0A18A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D3C05011-3326-4838-A4F2-C888655CB3E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D3C05011-3326-4838-A4F2-C888655CB3E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D3C05011-3326-4838-A4F2-C888655CB3E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D3C05011-3326-4838-A4F2-C888655CB3E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFC3527E-C5A5-4526-AB12-68E706E0A18A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFC3527E-C5A5-4526-AB12-68E706E0A18A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFC3527E-C5A5-4526-AB12-68E706E0A18A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFC3527E-C5A5-4526-AB12-68E706E0A18A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
