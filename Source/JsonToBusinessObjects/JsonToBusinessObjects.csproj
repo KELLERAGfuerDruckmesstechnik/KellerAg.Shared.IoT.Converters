@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
- 
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0</TargetFrameworks>
     <!-- The identifier that must be unique within the hosting gallery -->
     <PackageId>KellerAg.Cloud.JsonToBusinessObjects</PackageId>
     <!-- The package version number that is used when resolving dependencies -->

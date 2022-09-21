@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0</TargetFrameworks>
     <Version>1.0.272-alpha</Version>
     <Company>KELLER Druckmesstechnik AG</Company>
     <Authors>KELLER Druckmesstechnik AG</Authors>
