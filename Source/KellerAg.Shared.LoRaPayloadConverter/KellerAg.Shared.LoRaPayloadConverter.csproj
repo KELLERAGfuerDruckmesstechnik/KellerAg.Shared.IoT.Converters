@@ -1,21 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1;net8.0</TargetFrameworks>
     <LangVersion>8.0</LangVersion>
-    <Version>1.0.272-alpha</Version>
-    <AssemblyVersion>1.0.272.0</AssemblyVersion>
+    <Version>3.24.0</Version>
+    <AssemblyVersion>3.24.0.0</AssemblyVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>KELLER Druckmesstechnik AG</Authors>
     <Company>KELLER Druckmesstechnik AG</Company>
     <Product>KellerAg.Shared.LoRaPayloadConverter</Product>
     <Description>Used by KellerAg.Shared.IoT.Converters
-- Converts the LoRa Payload from TTN, Actility or Loriot to a understandable format</Description>
-    <Copyright>Copyright 2022 (c) KELLER AG. All rights reserved.</Copyright>
+- Converts the LoRa Payload from TTN, Actility or Loriot to a understandable format</Description> 
     <PackageTags>LoRa converter json object</PackageTags>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Remove="documentation\**" />
     <Compile Remove="Dto\**" />
@@ -24,9 +21,7 @@
     <None Remove="documentation\**" />
     <None Remove="Dto\**" />
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
-
 </Project>

@@ -1,45 +1,36 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1;net8.0</TargetFrameworks>
     <!-- The identifier that must be unique within the hosting gallery -->
     <PackageId>KellerAg.Cloud.JsonToBusinessObjects</PackageId>
     <!-- The package version number that is used when resolving dependencies -->
-    <PackageVersion>2.0.9.23</PackageVersion>
+    <PackageVersion>3.24.0.0</PackageVersion>
     <!-- Authors contain text that appears directly on the gallery -->
     <authors>KELLER Druckmesstechnik AG</authors>
     <!-- The description can be used in package manager UI. Note that the nuget.org gallery uses information you add in the portal. -->
     <Description>This library is used to convert KELLER messages from JSON to an Object with improved data handling.</Description>
     <!-- If true, this value prompts the user to accept the license when installing the package. -->
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes></PackageReleaseNotes>
-    <Copyright>Copyright 2022 (c) KELLER Pressure AG. All rights reserved.</Copyright>
+    <PackageReleaseNotes>
+    </PackageReleaseNotes>
     <PackageTags>converter json object</PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
-
   <!-- this hack (which generates warnings) is required for the variable $(TargetDir) to work in the post build event -->
   <!-- see https://github.com/dotnet/project-system/issues/1569 -->
   <Import Sdk="Microsoft.NET.Sdk" Project="Sdk.targets" />
-
   <PropertyGroup>
     <Product>KellerAg.Cloud.JsonToBusinessObjects</Product>
     <Company>KELLER AG</Company>
-    <Version>2.0.272-alpha</Version>
+    <Version>3.24.0</Version>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath />
   </PropertyGroup>
-
- 
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-  </ItemGroup>
-
- 
   <ItemGroup>
     <ProjectReference Include="..\KellerAg.Shared.LoRaPayloadConverter\KellerAg.Shared.LoRaPayloadConverter.csproj" />
   </ItemGroup>
-
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
 </Project>
