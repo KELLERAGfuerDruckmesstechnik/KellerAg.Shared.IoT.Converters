@@ -5,22 +5,22 @@ The *KellerAg.Shared.IoT.Converters* are a set of **.NET** DLLs to handle propri
 
 The main purpose is to demonstrate one possible way to implement the text data stored on FTP folders (via 2G/3G/4G/NB-IoT/LTE-M) or JSON text from/to LoRaWAN network server (TheThingsNetwork / ThingsPark (Actility) / Loriot.io).  
 
-The communication protocol are public:  
+The communication protocols are public:  
 - [Communication protocol ADT1 LoRaWAN](https://keller-druck.com/en/downloads?id=i95uBmiSyeNVqggKhodRsG#results)
 - [Communication protocol for ARC1 cellular interface](https://keller-druck.com/en/downloads?id=84kw6u2pCAozgisVdHLVgK#results)
 - [Communication protocol for ARC1 LoRaWAN](https://keller-druck.com/en/downloads?id=X35LDeWEgkPdjekTAzEn6b#results)
 
-The *KellerAg.Shared.IoT.Converters* are an example implementation of said communication protocols and used by KELLER's [KOLIBRI Cloud](www.kolibricloud.ch).
+The *KellerAg.Shared.IoT.Converters* are an example of the implementation of the communication protocols used by KELLER's [PressureSuite Cloud](www.pressuresuite.com).
 ![overview](https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters/blob/master/Readme.Overview.png?raw=true)
 
 
 ## Usage
-Nuget URL : https://www.nuget.org/packages/KellerAg.Shared.IoT.Converters/
+Nuget URL: https://www.nuget.org/packages/KellerAg.Shared.IoT.Converters/
 ```powershell
 PM> Install-Package KellerAg.Shared.IoT.Converters
 ```
 
-Use these following namespaces
+Use the following namespaces
 ```csharp
 using KellerAg.Shared.IoT.Converters; //for the converters
 
@@ -84,7 +84,7 @@ List<string> payloads = PayloadConverter.ConvertToLoriot(payloadInfo);
 ![LoRa overview](./Readme.LoRa.overview.png)
 
 ## Live-Editor with Blazor Web App
-See: https://iotconverter.kolibricloud.ch
+See: https://iotconverter.pressuresuite.com
 
 <p float="left" align="middle">
   <img src="./Readme.LiveEditor.FromFtp.png" width="400" />
