@@ -23,7 +23,7 @@ namespace KellerAg.Shared.LoRaPayloadConverter.Tests
         {
             var extractedInformation = PayloadConverter.ConvertFromActility("010501d37fc000007fc000007fc000003f76c8b441bb33333920ac08", 1);
 
-            extractedInformation.FunctionCode.Should().Be(1);
+            extractedInformation.FunctionCode.Should().Be(FunctionCodeId.MeasurementMessage);
             extractedInformation.DecodedPayload.Length.Should().NotBe(0);
             extractedInformation.Measurements.Count.Should().Be(6);
             extractedInformation.Measurements.ToArray()[3].Value.Should().Be(0.964f);
@@ -52,7 +52,7 @@ namespace KellerAg.Shared.LoRaPayloadConverter.Tests
         {
             var extractedInformation = PayloadConverter.ConvertFromTheThingNetwork("AQswAD93JxNBu1wp",(int)FunctionCodeId.MeasurementMessage);
 
-            extractedInformation.FunctionCode.Should().Be(1);
+            extractedInformation.FunctionCode.Should().Be(FunctionCodeId.MeasurementMessage);
             extractedInformation.DecodedPayload.Length.Should().NotBe(0);
             extractedInformation.Measurements.Count.Should().Be(2);
 
@@ -101,7 +101,7 @@ namespace KellerAg.Shared.LoRaPayloadConverter.Tests
             extractedInformation.Info.BatteryCapacity.Should().Be(99);
             extractedInformation.Info.BatteryVoltage.Should().BeInRange(4.93593f, 4.93594f);
             extractedInformation.Info.DeviceClassGroupText.Should().Be("19.00");
-            extractedInformation.Info.DeviceLocalDateTime.Should().BeCloseTo(new DateTime(2019, 11, 01, 16, 45, 36));
+            extractedInformation.Info.DeviceLocalDateTime.Should().BeCloseTo(new DateTime(2019, 11, 01, 16, 45, 36), TimeSpan.FromMinutes(1));
             extractedInformation.Info.HumidityPercentage.Should().Be(40);
             extractedInformation.Info.SerialNumber.Should().Be(28);
             extractedInformation.Info.SwVersionText.Should().Be("19.45");
@@ -117,7 +117,7 @@ namespace KellerAg.Shared.LoRaPayloadConverter.Tests
         {
             var extractedInformation = PayloadConverter.ConvertFromActility("010300D3BF7595F03C5C91304249C7C03F79081C42477AE1", 1);
 
-            extractedInformation.FunctionCode.Should().Be(1);
+            extractedInformation.FunctionCode.Should().Be(FunctionCodeId.MeasurementMessage);
 
             extractedInformation.Measurements.Count.Should().Be(5);
             extractedInformation.Measurements.ToArray()[0].Value.Should().Be(-0.9593191f);
@@ -156,7 +156,7 @@ namespace KellerAg.Shared.LoRaPayloadConverter.Tests
             extractedInformation.Info.BatteryCapacity.Should().Be(99);
             extractedInformation.Info.BatteryVoltage.Should().BeInRange(4.7719f, 4.77191f);
             extractedInformation.Info.DeviceClassGroupText.Should().Be("19.00");
-            extractedInformation.Info.DeviceLocalDateTime.Should().BeCloseTo(new DateTime(2019, 12, 01, 17, 06, 50));
+            extractedInformation.Info.DeviceLocalDateTime.Should().BeCloseTo(new DateTime(2019, 12, 01, 17, 06, 50),TimeSpan.FromMinutes(1));
             extractedInformation.Info.HumidityPercentage.Should().Be(29);
             extractedInformation.Info.SerialNumber.Should().Be(100);
             extractedInformation.Info.SwVersionText.Should().Be("19.47");

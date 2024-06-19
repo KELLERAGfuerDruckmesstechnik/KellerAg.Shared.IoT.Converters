@@ -24,7 +24,7 @@ namespace KellerAg.Shared.IoT.Converters
                 UniqueSerialNumber = string.IsNullOrEmpty(deviceSerialNumber) ? "unknown": deviceSerialNumber,
                 //DESCRIPTION -> See Device.Note
 
-                //LockTimerOnlyCheck / Bit 3 -> This is for write. WHICH MUST BE ALWAYS TRUE IN KOLIBRI
+                //LockTimerOnlyCheck / Bit 3 -> This is for write. WHICH MUST BE ALWAYS TRUE IN PressureSuite
                 //Val110Fu3031Index20?  (Reserve)
                 //Val109Fu3031Index19?  (Reserve)
 
@@ -88,7 +88,7 @@ namespace KellerAg.Shared.IoT.Converters
                 MeasurementSmsText = textEmailSmsLocSettings?.SmsText1Measure,
                 MeasurementSendMailAfterX = measurementSettings?.SendMailAfterXMeasurements,
                 MeasurementSendSmsAfterX = measurementSettings?.SendSmsAfterXMeasurements,
-                MeasurementSendFtpAfterX = measurementSettings2?.SendToFtpAfterXCollectedMeasurements, //Let's not do this anymore in KOLIBRI
+                MeasurementSendFtpAfterX = measurementSettings2?.SendToFtpAfterXCollectedMeasurements, //Let's not do this anymore in PressureSuite
 
                 GprsAPN                        = gprsSettings?.GprsAPN,
                 GprsID                         = gprsSettings?.GprsID,

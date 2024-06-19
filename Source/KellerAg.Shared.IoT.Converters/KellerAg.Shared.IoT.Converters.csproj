@@ -1,20 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0</TargetFrameworks> 
+    <TargetFrameworks>net6.0;net8.0</TargetFrameworks> 
     <Authors>Sebastian Mojado</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.5.264</Version>
-    <PackageProjectUrl>https://docs.kolibricloud.ch/sending-technology/converter-library</PackageProjectUrl>
+    <Version>3.24.0</Version>
+    <PackageProjectUrl>https://docs.pressuresuite.com/sending-technology/converter-library</PackageProjectUrl>
     <RepositoryUrl>https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters</RepositoryUrl>
     <PackageReleaseNotes>2022-09-16 -  Version with open-sourced and slightly updated files</PackageReleaseNotes>
-    <PackageTags>KELLER, KELLER für Druckmesstechnik, Druckmesstechnik, Pressure, pressure sensors, KOLIBRI cloud, LoRaWAN, LoRa, Loriot.io, Actility, TTN</PackageTags>
+    <PackageTags>KELLER, KELLER Pressure, Druckmesstechnik, Pressure, pressure sensors, PressureSuite, LoRaWAN, LoRa, Loriot.io, Actility, TTN</PackageTags>
     <Description>Converter library with many helpful methods to convert proprietary KELLER protocol format data to readable DTOs and reverse.
 Also converts LoRa-JSON from TheThingsNetwork, Actility/Thingspark, Loriot.io messages with KELLER payload to readable DTOs.</Description>
     <Copyright></Copyright>
-    <AssemblyVersion>1.5.264.0</AssemblyVersion>
-    <FileVersion>1.5.264.0</FileVersion>
+    <AssemblyVersion>3.24.0.0</AssemblyVersion>
+    <FileVersion>3.24.0.0</FileVersion>
     <Company>KELLER Druckmesstechnik AG</Company>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>

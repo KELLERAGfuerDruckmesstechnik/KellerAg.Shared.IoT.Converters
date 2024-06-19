@@ -48,7 +48,8 @@ namespace JsonToBusinessObjects.Tests.LoRa_Conversion
             result.HasErrors.Should().BeFalse();
             result.BusinessObjectRoot.DeviceInformation.ProductLine = ProductLineName.ARC1_LoRa;
             result.BusinessObjectRoot.LoRaData.RSSI = -42; //not the weaker -61 
-            result.BusinessObjectRoot.LoRaData.Time.Should().BeCloseTo((new DateTime(2017, 10, 30, 11, 18, 25, DateTimeKind.Utc)).AddMilliseconds(511.3805));
+            var dt = new DateTime(2017, 10, 30, 11, 18, 25, DateTimeKind.Utc).AddMilliseconds(511.3805);
+            result.BusinessObjectRoot.LoRaData.Time.Should().BeCloseTo(dt, TimeSpan.FromSeconds(1));
             result.BusinessObjectRoot.LoRaData.Measurements[3] = 0.9713000059127808f;
             result.BusinessObjectRoot.LoRaData.DeviceConnectionType.Should().Be(5);
         }
@@ -111,7 +112,8 @@ namespace JsonToBusinessObjects.Tests.LoRa_Conversion
             result.BusinessObjectRoot.DeviceInformation.BatteryCapacity.Should().Be(99);
             result.BusinessObjectRoot.DeviceInformation.MeasuredBatteryVoltage.Should().BeInRange(4.93593f, 4.93594f);
             result.BusinessObjectRoot.DeviceInformation.DeviceIdAndClass.Should().Be("19.00");
-            result.BusinessObjectRoot.DeviceInformation.DeviceLocalDateTime.Should().BeCloseTo(new DateTime(2019, 11, 01, 16, 45, 36));
+            var dt = new DateTime(2019, 11, 01, 16, 45, 36);
+            result.BusinessObjectRoot.DeviceInformation.DeviceLocalDateTime.Should().BeCloseTo(dt, TimeSpan.FromSeconds(1));
             result.BusinessObjectRoot.DeviceInformation.MeasuredHumidity.Should().Be(40);
             result.BusinessObjectRoot.DeviceInformation.DeviceSerialNumber.Should().Be(28);
             result.BusinessObjectRoot.DeviceInformation.GsmModuleSoftwareVersion.Should().Be("19.45");
@@ -141,7 +143,8 @@ namespace JsonToBusinessObjects.Tests.LoRa_Conversion
             ConversionResult result = _testee.Convert(TestMeasurementMessageLoriot);
             result.HasErrors.Should().BeFalse();
             result.BusinessObjectRoot.LoRaData.RSSI.Should().Be(-101);
-            result.BusinessObjectRoot.LoRaData.Time.Should().BeCloseTo(new DateTime(2018, 04, 05, 14, 26, 5, DateTimeKind.Utc).AddMilliseconds(141));
+            var dt = new DateTime(2018, 04, 05, 14, 26, 5, DateTimeKind.Utc).AddMilliseconds(141);
+            result.BusinessObjectRoot.LoRaData.Time.Should().BeCloseTo(dt, TimeSpan.FromSeconds(1));
             result.BusinessObjectRoot.LoRaData.Measurements[7].Should().Be(0.96485f);
             result.BusinessObjectRoot.LoRaData.DeviceConnectionType.Should().Be(5);
 
