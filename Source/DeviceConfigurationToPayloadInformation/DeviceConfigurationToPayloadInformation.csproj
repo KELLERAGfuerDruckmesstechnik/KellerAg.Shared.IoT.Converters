@@ -5,6 +5,7 @@
     <Company>KELLER Druckmesstechnik AG</Company>
     <Authors>Sebastian Mojado</Authors>
     <Description>Used by KellerAg.Shared.IoT.Converters</Description>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\KellerAg.Shared.Entities\KellerAg.Shared.Entities.csproj" />

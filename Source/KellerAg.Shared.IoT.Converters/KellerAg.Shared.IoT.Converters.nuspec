@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>KellerAg.Shared.IoT.Converters</id>
+    <version>3.24.1</version>
+    <authors>Sebastian Mojado</authors>
+    <owners>KELLER Druckmesstechnik AG</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://docs.pressuresuite.com/cloud-interfaces/iot-converter</projectUrl>
+    <description>Converter library with many helpful methods to convert proprietary KELLER protocol format data to readable DTOs and reverse. Also converts LoRa-JSON from TheThingsNetwork, Actility/Thingspark, Loriot.io messages with KELLER payload to readable DTOs.</description>
+    <releaseNotes>Updated internal naming and versioning</releaseNotes>
+    <tags>KELLER, KELLER Pressure, Druckmesstechnik, Pressure, pressure sensors, PressureSuite, LoRaWAN, LoRa, Loriot.io, Actility, TTN</tags>
+    <repository type="git" url="https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters"/>
+  </metadata>
+  <files>
+    <!-- Include the DLLs for net6.0 -->
+    <file src="..\DeviceConfigurationToGsmCommunication\bin\Release\net6.0\DeviceConfigurationToGsmCommunication.dll" target="lib\net6.0" />
+    <file src="..\DeviceConfigurationToPayloadInformation\bin\Release\net6.0\DeviceConfigurationToPayloadInformation.dll" target="lib\net6.0" />
+    <file src="..\GsmCommunicationToJson\bin\Release\net6.0\GsmCommunicationToJson.dll" target="lib\net6.0" />
+    <file src="..\JsonToBusinessObjects\bin\Release\net6.0\JsonToBusinessObjects.dll" target="lib\net6.0" />
+    <file src="..\KellerAg.Shared.Entities\bin\Release\net6.0\KellerAg.Shared.Entities.dll" target="lib\net6.0" />
+    <file src="..\KellerAg.Shared.LoRaPayloadConverter\bin\Release\net6.0\KellerAg.Shared.LoRaPayloadConverter.dll" target="lib\net6.0" />
+    <file src="bin\Release\net6.0\KellerAg.Shared.IoT.Converters.dll" target="lib\net6.0" />
+	
+	
+    <!-- Include the DLLs for net8.0 -->
+    <file src="..\DeviceConfigurationToGsmCommunication\bin\Release\net8.0\DeviceConfigurationToGsmCommunication.dll" target="lib\net8.0" />
+    <file src="..\DeviceConfigurationToPayloadInformation\bin\Release\net8.0\DeviceConfigurationToPayloadInformation.dll" target="lib\net8.0" />
+    <file src="..\GsmCommunicationToJson\bin\Release\net8.0\GsmCommunicationToJson.dll" target="lib\net8.0" />
+    <file src="..\JsonToBusinessObjects\bin\Release\net8.0\JsonToBusinessObjects.dll" target="lib\net8.0" />
+	<file src="..\KellerAg.Shared.Entities\bin\Release\net8.0\KellerAg.Shared.Entities.dll" target="lib\net8.0" />
+    <file src="..\KellerAg.Shared.LoRaPayloadConverter\bin\Release\net8.0\KellerAg.Shared.LoRaPayloadConverter.dll" target="lib\net8.0" />
+    <file src="bin\Release\net8.0\KellerAg.Shared.IoT.Converters.dll" target="lib\net8.0" />
+
+    <!-- Include any other necessary files like XML documentation for both frameworks -->
+    <file src="bin\Release\net6.0\KellerAg.Shared.IoT.Converters.xml" target="lib\net6.0" />
+    <file src="bin\Release\net8.0\KellerAg.Shared.IoT.Converters.xml" target="lib\net8.0" />
+  </files>
+</package>

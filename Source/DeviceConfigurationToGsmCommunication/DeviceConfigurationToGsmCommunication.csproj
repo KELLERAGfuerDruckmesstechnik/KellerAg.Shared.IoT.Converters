@@ -5,8 +5,15 @@
     <Company>KELLER Druckmesstechnik AG</Company>
     <Authors>KELLER Druckmesstechnik AG</Authors>
     <RepositoryUrl>https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters</RepositoryUrl>
-    <PackageProjectUrl>https://docs.pressuresuite.com/sending-technology/converter-library</PackageProjectUrl>
+    <PackageProjectUrl>https://docs.pressuresuite.com/cloud-interfaces/iot-converter</PackageProjectUrl>
     <Description>Used by KellerAg.Shared.IoT.Converters</Description>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0|AnyCPU'">
+    <WarningLevel>6</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0|AnyCPU'">
+    <WarningLevel>6</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\KellerAg.Shared.Entities\KellerAg.Shared.Entities.csproj" />

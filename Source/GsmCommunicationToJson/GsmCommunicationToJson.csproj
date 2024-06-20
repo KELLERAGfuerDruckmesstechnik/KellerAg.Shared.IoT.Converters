@@ -15,7 +15,7 @@
     </PackageReleaseNotes>
     <PackageTags>
     </PackageTags>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
   <!-- this hack (which generates warnings) is required for the variable $(TargetDir) to work in the post build event -->
   <!-- see https://github.com/dotnet/project-system/issues/1569 -->
