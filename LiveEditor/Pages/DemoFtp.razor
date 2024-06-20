@@ -93,8 +93,8 @@
 
         </RadzenTabsItem>
         <RadzenTabsItem Text="To FTP">
-            <div class="form-group">
-                <RadzenCard>
+            <RadzenCard>
+                <div class="form-group">
                     <label for="LABEL 6">Readable DeviceConfiguration-DTO to GsmCommunication-format.</label>
                     <pre><code>    convertedGsmMessageText = Converter.DeviceConfigurationToGsmCommunication(deviceConfigJson);</code></pre>
                     <div class="btn-group" style="margin: 10px">
@@ -102,11 +102,12 @@
                         <RadzenButton Click="@(args => ChooseDeviceConfigButtonClick(args, ExampleDeviceConfigText2))" Text="Load Example Config 2" Style="margin-left: 10px;" />
                         <RadzenButton Click="@(args => ChooseDeviceConfigButtonClick(args, ExampleDeviceConfigText3))" Text="Load Example Config 3" Style="margin-left: 10px;" />
                     </div>
-
+                </div>
+                <div class="form-group">
                     <RadzenTextArea @bind-Value="ExampleDeviceConfigText" Rows="20" Change="@(ConvertToGsmMessage)" Style="margin-bottom: 20px;width: 500px;"></RadzenTextArea>
                     <RadzenTextArea @bind-Value="_convertedGsmMessageText" Rows="6" ReadOnly Style="margin-bottom: 20px; width: 500px;"></RadzenTextArea>
-                </RadzenCard>
-            </div>
+                </div>
+            </RadzenCard>
         </RadzenTabsItem>
     </Tabs>
 </RadzenTabs>
