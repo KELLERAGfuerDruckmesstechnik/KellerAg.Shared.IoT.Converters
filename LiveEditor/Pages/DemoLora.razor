@@ -52,8 +52,8 @@
     // JSON string with properties to change (not listed properties shall not be changed)
     List&lt;string&gt; payloads = Converter.DeviceConfigurationToLoRaPayloads(string deviceConfigurationDifference);
 </code></pre>
-                <RadzenTextArea @bind-Value="ExampleDeviceSettingsJson" Rows="6" Change="@(args => ConvertDeviceSettingsToLoRaPayloads(args))" Style="margin-bottom: 20px"></RadzenTextArea>
-                <RadzenTextArea @bind-Value="CombinedConvertedPayloads" Rows="6" Style="margin-bottom: 20px" ReadOnly></RadzenTextArea>
+                <RadzenTextArea @bind-Value="ExampleDeviceSettingsJson" Rows="6" Change="@(args => ConvertDeviceSettingsToLoRaPayloads(args))" Style="margin-bottom: 20px; width: 500px;"></RadzenTextArea>
+                <RadzenTextArea @bind-Value="CombinedConvertedPayloads" Rows="6" Style="margin-bottom: 20px; width: 200px;" ReadOnly></RadzenTextArea>
             </RadzenCard>
 
             <RadzenCard>
@@ -66,8 +66,8 @@
       // alternative
     List&lt;string&gt; payloads = PayloadConverter.ConvertToLoriot(payloadInfo);
 </code></pre>
-                <RadzenTextArea @bind-Value="ExamplePayloadInfoJson" Rows="20" Change="@(args => ConvertPayloadInfoToLoRaPayloads(args))" Style="margin-bottom: 20px"></RadzenTextArea>
-                <RadzenTextArea @bind-Value="CombinedConvertedPayloads" Rows="4" Style="margin-bottom: 20px" ReadOnly></RadzenTextArea>
+                <RadzenTextArea @bind-Value="ExamplePayloadInfoJson" Rows="20" Change="@(args => ConvertPayloadInfoToLoRaPayloads(args))" Style="margin-bottom: 20px; width: 500px;"></RadzenTextArea>
+                <RadzenTextArea @bind-Value="CombinedConvertedPayloads" Rows="4" Style="margin-bottom: 20px; width: 200px;" ReadOnly></RadzenTextArea>
             </RadzenCard>
 
         </RadzenTabsItem>
