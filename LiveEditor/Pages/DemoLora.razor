@@ -8,10 +8,9 @@
 
 <RadzenTabs>
     <Tabs>
-
         <RadzenTabsItem Text="LoRa data FROM devices (uplink)">
-            <div class="form-group">
-                <RadzenCard>
+            <RadzenCard>
+               <div class="form-group">
                     <label for="LABEL LoRa 1">Decrypt KELLER LoRa-Payload to DTO</label>
                     <pre><code>    PayloadInformation payLoadInfo = Converter.LoRaPayloadToLoRaMessage(payloadText, port);
       //The port number is stored in PayloadInformation but has no logic attached.</code></pre>
@@ -20,13 +19,14 @@
                         <RadzenButton Click="@(args => ChooseLoRaPayloadButtonClick(args, ExampleLoRaPayloadInformationText, 4))" Text="Load Payload (DeviceInformation)" Style="margin-left: 10px;" />
                         <RadzenButton Click="@(args => ChooseLoRaPayloadButtonClick(args, ExampleLoRaPayloadConfigurationText, 5))" Text="Load Payload (Configuration)" Style="margin-left: 10px;" />
                     </div>
-                    <RadzenTextArea @bind-Value="ExampleLoRaPayloadText" Rows="1" Change="@(args => DecryptPayload(args))" Style="margin-bottom: 20px"></RadzenTextArea>
-                    <RadzenTextArea @bind-Value="_decryptedPayloadInfoText" Rows="30" ReadOnly Style="margin-bottom: 20px"></RadzenTextArea>
-
-                </RadzenCard>
-            </div>
-            <div class="form-group">
-                <RadzenCard>
+                </div>
+                <div class="form-group">
+                    <RadzenTextArea @bind-Value="ExampleLoRaPayloadText" Rows="1" Change="@(args => DecryptPayload(args))" Style="margin-bottom: 20px; width: 500px;"></RadzenTextArea>
+                    <RadzenTextArea @bind-Value="_decryptedPayloadInfoText" Rows="30" ReadOnly Style="margin-bottom: 20px; width: 500px;"></RadzenTextArea>
+                </div>
+            </RadzenCard>
+            <RadzenCard>
+                <div class="form-group">
                     <label for="LABEL LoRa 2">Decrypt LoRaWAN transmission JSON text to a more readable DTO using the KELLER LoRa-Payload decryption.</label>
                     <pre><code>    BusinessObjectRoot businessObjectRoot = Converter.LoRaJsonMessageToBusinessObject(value);</code></pre>
                     <div class="btn-group" style="margin: 10px">
@@ -34,13 +34,14 @@
                         <RadzenButton Click="@(args => ChooseLoRaJsonMessageTextContentButtonClick(args, ExampleLoRaTransmissionActilityText))" Text="Load Transmission from Actility" Style="margin-left: 10px;" />
                         <RadzenButton Click="@(args => ChooseLoRaJsonMessageTextContentButtonClick(args, ExampleLoRaTransmissionLoriotText))" Text="Load Transmission from Loriot.io" Style="margin-left: 10px;" />
                     </div>
-
-                    <RadzenTextArea @bind-Value="ExampleLoRaTransmissionText" Rows="6" Change="@(args => DecryptLoRaJsonMessage(args))" Style="margin-bottom: 20px"></RadzenTextArea>
-                    <RadzenTextArea @bind-Value="_decryptedLoRaJsonMessageText" Rows="30" ReadOnly Style="margin-bottom: 20px"></RadzenTextArea>
-                </RadzenCard>
+                </div>
+                <div class="form-group">
+                    <RadzenTextArea @bind-Value="ExampleLoRaTransmissionText" Rows="6" Change="@(args => DecryptLoRaJsonMessage(args))" Style="margin-bottom: 20px; width: 500px;"></RadzenTextArea>
+                    <RadzenTextArea @bind-Value="_decryptedLoRaJsonMessageText" Rows="30" ReadOnly Style="margin-bottom: 20px; width: 500px;"></RadzenTextArea>
+                </div>
+            </RadzenCard>
             </div>
         </RadzenTabsItem>
-
         <RadzenTabsItem Text="LoRa data TO devices (downlink)">
             <RadzenCard>
                 <label for="LABEL LoRa 3">From a readable DTO (DeviceSettings) to a list of KELLER LoRa-Payload strings</label>
