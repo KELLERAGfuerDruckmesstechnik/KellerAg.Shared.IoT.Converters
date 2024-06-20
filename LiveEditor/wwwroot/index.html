@@ -13,8 +13,7 @@
     <link rel="stylesheet" href="css/app.css" />
     <link rel="stylesheet" href="assets/css/software.css" />
 
-    <link rel="stylesheet" href="_content/Radzen.Blazor/css/default-base.css">
-    <link rel="stylesheet" href="_content/Radzen.Blazor/css/default.css">
+    <link rel="stylesheet" href="_content/Radzen.Blazor/css/material-base.css">
 
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
 
@@ -28,14 +27,12 @@
         <a href="" class="reload">Reload</a>
         <a class="dismiss">🗙</a>
     </div>
-
     <script src="_framework/blazor.webassembly.js"></script>
+    <script src="_content/Radzen.Blazor/Radzen.Blazor.js?v=@(typeof(Radzen.Colors).Assembly.GetName().Version)"></script>
     
-    <script src="_content/Radzen.Blazor/Radzen.Blazor.js"></script>
-
     <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-
+    
 </body>
 
 </html>
