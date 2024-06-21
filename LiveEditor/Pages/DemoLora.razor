@@ -10,7 +10,7 @@
     <Tabs>
         <RadzenTabsItem Text="LoRa data FROM devices (uplink)">
             <RadzenCard>
-               <div class="form-group">
+                <div class="form-group">
                     <label for="LABEL LoRa 1">Decrypt KELLER LoRa-Payload to DTO</label>
                     <pre><code>    PayloadInformation payLoadInfo = Converter.LoRaPayloadToLoRaMessage(payloadText, port);
       //The port number is stored in PayloadInformation but has no logic attached.</code></pre>
@@ -40,7 +40,6 @@
                     <RadzenTextArea @bind-Value="_decryptedLoRaJsonMessageText" Rows="30" ReadOnly Style="margin-bottom: 20px; width: 500px;"></RadzenTextArea>
                 </div>
             </RadzenCard>
-            </div>
         </RadzenTabsItem>
         <RadzenTabsItem Text="LoRa data TO devices (downlink)">
             <RadzenCard>
@@ -104,11 +103,11 @@
     private string ExamplePayloadInfoJson { get; set; }
     void ConvertDeviceSettingsToLoRaPayloads(string value)
     {
-    /*
-        List<string> payloads = Converter.DeviceConfigurationToLoRaPayloads(DeviceSettings deviceConfigurationDifference); // Properties that are not null/empty will be used for generating the payloads
-         // alternative:
-        List<string> payloads = Converter.DeviceConfigurationToLoRaPayloads(string deviceConfigurationDifference); // JSON string with properties to change (not listed properties shall not be changed)
-    */
+        /*
+            List<string> payloads = Converter.DeviceConfigurationToLoRaPayloads(DeviceSettings deviceConfigurationDifference); // Properties that are not null/empty will be used for generating the payloads
+             // alternative:
+            List<string> payloads = Converter.DeviceConfigurationToLoRaPayloads(string deviceConfigurationDifference); // JSON string with properties to change (not listed properties shall not be changed)
+        */
         ConvertedPayloads = new List<string>();
         ConvertedPayloads.Add("TODO  ( " + value + " )");
         CombinedConvertedPayloads = string.Join($"{Environment.NewLine}", ConvertedPayloads);

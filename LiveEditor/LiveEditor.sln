@@ -5,8 +5,6 @@ VisualStudioVersion = 17.10.34825.169
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveEditor", "LiveEditor.csproj", "{E021DF21-424E-4EAB-9A16-46E8E8427835}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KellerAg.Shared.IoT.Converters", "..\Source\KellerAg.Shared.IoT.Converters\KellerAg.Shared.IoT.Converters.csproj", "{CC6C14E1-D554-4683-AD50-12FBE9298B37}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{E021DF21-424E-4EAB-9A16-46E8E8427835}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E021DF21-424E-4EAB-9A16-46E8E8427835}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E021DF21-424E-4EAB-9A16-46E8E8427835}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CC6C14E1-D554-4683-AD50-12FBE9298B37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC6C14E1-D554-4683-AD50-12FBE9298B37}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC6C14E1-D554-4683-AD50-12FBE9298B37}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC6C14E1-D554-4683-AD50-12FBE9298B37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
