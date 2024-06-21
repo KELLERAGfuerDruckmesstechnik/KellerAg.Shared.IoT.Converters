@@ -31,7 +31,7 @@
 </code>
 </pre>
         <h4 id="conversion-with-ftp-text-file">Conversion with FTP text file</h4>
-        Have a look at the examples in <a href="https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters/blob/master/DemoBlazorApp/FtpConversions.cs">https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters/blob/master/DemoBlazorApp/FtpConversions.cs</a>
+        Have a look at the examples in <a href="https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters/blob/master/LiveEditor/FtpConversions.cs">https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters/blob/master/LiveEditor/FtpConversions.cs</a>
 
 <pre><code class="lang-csharp">
     IConvert <span class="hljs-attr">converter</span> = new KellerAg.Shared.IoT.Converters.IoTConvert();
@@ -51,7 +51,7 @@
     <span class="hljs-attr">gsmCommunicationJsonText</span> = converter.DeviceConfigurationToGsmCommunication(deviceConfiguration);
 </code></pre>
         <h4 id="conversion-with-lora-data">Conversion with LoRa data</h4>
-        <pre><code class="lang-csharp"><span class="hljs-comment">// Have a look at the examples in https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters/blob/master/DemoBlazorApp/Pages/DemoLora.razor </span> 
+        <pre><code class="lang-csharp"><span class="hljs-comment">// Have a look at the examples in https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters/blob/master/LiveEditor/Pages/DemoLora.razor </span> 
     IConvert converter=new KellerAg.Shared.IoT.Converters.IoTConvert();
     KellerAg.Shared.LoRaPayloadConverter.PayloadInformation extractedInformation=converter.LoRaPayloadToLoRaMessage(<span class="hljs-string">"1F011302000313042F0DFF0E000F00100115051603"</span>,<span class="hljs-number">4</span>);
     Console.WriteLine(<span class="hljs-string">"There are </span>{extractedInformation.Measurements.Count}<span class="hljs-string"> measurements stored."</span>)
