@@ -2,6 +2,7 @@
 ![Azure Static Web Apps CI/CD](https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters/workflows/Azure%20Static%20Web%20Apps%20CI/CD/badge.svg)
 
 The *KellerAg.Shared.IoT.Converters* are a set of **.NET** DLLs to handle proprietary communication data from [IoT devices](https://keller-druck.com/en/products/wireless-solutions) of the company [KELLER Druckmesstechnik AG](https://keller-druck.com).
+If you rather prefer to use **Python** then please have a look at https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters/releases/tag/Tool
 
 The main purpose is to demonstrate one possible way to implement the text data stored on FTP folders (via 2G/3G/4G/NB-IoT/LTE-M) or JSON text from/to LoRaWAN network server (TheThingsNetwork / ThingsPark (Actility) / Loriot.io).  
 
