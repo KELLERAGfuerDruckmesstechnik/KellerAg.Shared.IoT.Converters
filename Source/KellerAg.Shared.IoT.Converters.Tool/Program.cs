@@ -80,9 +80,13 @@ namespace KellerAg.Shared.IoT.Converters.Tool
                     Console.WriteLine($"Warnings: {warnings.Message}");
                 }
             }
+            var options = new JsonSerializerOptions
+            {
+                NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowNamedFloatingPointLiterals
+            };
 
             BusinessObjectRoot businessObject = conversionResult.BusinessObjectRoot;
-            string json_content = JsonSerializer.Serialize(businessObject);
+            string json_content = JsonSerializer.Serialize(businessObject, options);
 
             //write to file
             File.WriteAllText(outputFilePath, json_content);
