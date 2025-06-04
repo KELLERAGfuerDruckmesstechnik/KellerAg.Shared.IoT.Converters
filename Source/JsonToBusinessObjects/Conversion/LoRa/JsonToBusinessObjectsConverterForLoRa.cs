@@ -31,7 +31,7 @@ namespace JsonToBusinessObjects.Conversion.LoRa
                     EUI = message.DevEUIUplink.DevEUI,
                     Port = port,
                     CounterUp = message.DevEUIUplink.FCntUp.ToInt(_logger),
-                    CounterDown = message.DevEUIUplink.FCntDn.ToInt(_logger),
+                    CounterDown = message.DevEUIUplink.FCntDn?.ToInt(_logger),
                     DataCodingRate = $"{message.DevEUIUplink.SpFact};{message.DevEUIUplink.SubBand};{message.DevEUIUplink.Channel}",
                     StrongestSourceId = message.DevEUIUplink.Lrrid,
                     SourceIdCount = message.DevEUIUplink.Lrrs.Lrr.Count,
@@ -114,6 +114,96 @@ namespace JsonToBusinessObjects.Conversion.LoRa
             catch (Exception ex)
             {
                 _logger.Error($"Unsupported JSON format with Payload: {message.DevEUIUplink.PayloadHex} from {message.DevEUIUplink.DevEUI} - {ex}");
+
+                var businessObjectRoot =
+                    new BusinessObjectRoot
+                    {
+                        DeviceInformation = new DeviceInformation
+                        {
+                            ProductLine = ProductLineName.ARC1_LoRa
+                        }
+                    };
+                return new ConversionResult(businessObjectRoot, (_logger as InternalLogger)?.ConversionMessages);
+            }
+        }
+
+        private ConversionResult ConvertLoraMessageNetmore(LoraMessageNetmore message)
+        {
+            try
+            {
+                int port = (int)message.FPort;
+                PayloadInformation payloadInfo = PayloadConverter.ConvertFromNetmore(message.Payload, port);
+
+                var loraMessage = new LoRaMessage
+                {
+                    Payload = message.Payload,
+                    Time = message.Timestamp.UtcDateTime,
+                    EUI = message.DevEui,
+                    Port = port,
+                    CounterUp = (int)message.FCntUp,
+                    CounterDown = 0, //there is no down counter?
+                    DataCodingRate = $"{message.Dr};{message.Snr};{message.Freq};{message.Toa}",
+                    StrongestSourceId = message.GatewayIdentifier.ToString(),
+                    SourceIdCount = message.Gateways.Length,
+                    RSSI = message.Rssi,
+                    SNR = message.Snr.ToFloat(_logger),
+                    Measurements = new Dictionary<int, float>(),
+
+                    //DeviceTypeId = -1,
+                    DeviceConnectionType = -1,
+                    Latitude = (float)message.Latitude,
+                    Longitude = (float)message.Longitude,
+                    AdditionalNetworkInfo = null //no info available
+                };
+
+                if (payloadInfo.Measurements != null && payloadInfo.Measurements.Count > 0)
+                {
+                    foreach (Measurement measurement in payloadInfo.Measurements)
+                    {
+                        loraMessage.Measurements[measurement.ChannelNumber] = measurement.Value;
+                    }
+                    loraMessage.DeviceConnectionType = payloadInfo.Measurements[0].ConnectionDeviceType;
+                }
+
+                var businessObjectRoot =
+                    new BusinessObjectRoot
+                    {
+                        DeviceInformation = new DeviceInformation
+                        {
+                            ProductLine = ProductLineName.ARC1_LoRa,
+                            SignalQuality = (int?)((loraMessage.RSSI + 113f) / 2f), //The SPA translates this back again to DBM
+
+                            DeviceSerialNumber = payloadInfo.Info?.SerialNumber,
+                            BatteryCapacity = payloadInfo.Info?.BatteryCapacity,
+                            GsmModuleSoftwareVersion = payloadInfo.Info?.SwVersionText,
+                            MeasuredBatteryVoltage = payloadInfo.Info?.BatteryVoltage,
+                            DeviceIdAndClass = payloadInfo.Info?.DeviceClassGroupText,
+                            DeviceLocalDateTime = payloadInfo.Info?.DeviceLocalDateTime,
+                            MeasuredHumidity = payloadInfo.Info?.HumidityPercentage
+                        },
+                        LoRaData = loraMessage.ShallowCopy()
+                    };
+
+                if (!payloadInfo.IsSupportedDevice)
+                {
+                    _logger.Error($"Unsupported Payload: {message.Payload} from {message.DevEui}");
+                    return new ConversionResult(businessObjectRoot, (_logger as InternalLogger)?.ConversionMessages);
+                }
+
+                businessObjectRoot.Measurements = new ChannelDataStorage();
+                foreach (KeyValuePair<int, float> measurement in loraMessage.Measurements)
+                {
+                    businessObjectRoot.Measurements.StoreInChannel(measurement.Key,
+                        new DataPoint(loraMessage.Time, measurement.Value));
+                }
+
+                businessObjectRoot.MessageType = GetMessageTypeFromPortNumber(loraMessage);
+
+                return new ConversionResult(businessObjectRoot, (_logger as InternalLogger)?.ConversionMessages);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"Unsupported JSON format with Payload: {message.Payload} from {message.DevEui} - {ex}");
 
                 var businessObjectRoot =
                     new BusinessObjectRoot
@@ -576,6 +666,17 @@ namespace JsonToBusinessObjects.Conversion.LoRa
                 return ConvertLoraMessageActility(message);
             }
 
+            if (IsJsonFromNetmore(jsonString))
+            {
+                LoraMessageNetmore message = LoraMessageNetmore.FromJson(jsonString);
+                if (message.Payload == null)
+                {
+                    _logger.Warn("Can not use this message. Payload is null: " + jsonString);
+                    return new ConversionResult(new BusinessObjectRoot { LoRaData = new LoRaMessage { Payload = null } }, (_logger as InternalLogger)?.ConversionMessages);
+                }
+                return ConvertLoraMessageNetmore(message);
+            }
+
             //must be Loriot
             {
                 LoraMessageLoriot message = LoraMessageLoriot.FromJson(jsonString);
@@ -602,6 +703,11 @@ namespace JsonToBusinessObjects.Conversion.LoRa
         private static bool IsJsonFromActility(string jsonString)
         {
             return JObject.Parse(jsonString).Properties().ToList().Exists(i => i.Name.ToLower() == "DevEUI_uplink".ToLower());
+        }
+
+        private static bool IsJsonFromNetmore(string jsonString)
+        {
+            return JObject.Parse(jsonString).Properties().ToList().Exists(i => i.Name.ToLower() == "gatewayIdentifier".ToLower());
         }
     }
 }

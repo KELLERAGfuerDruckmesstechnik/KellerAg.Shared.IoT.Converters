@@ -34,6 +34,11 @@ namespace KellerAg.Shared.LoRaPayloadConverter
             byte[] payloadInBytes = ConvertHexStringToByteArray(payloadFromDevice);
             return ExtractInfo(payloadInBytes, port, OriginLoRaNetwork.Actility);
         }
+        public static PayloadInformation ConvertFromNetmore(string payloadFromDevice, int port)
+        {
+            byte[] payloadInBytes = ConvertHexStringToByteArray(payloadFromDevice);
+            return ExtractInfo(payloadInBytes, port, OriginLoRaNetwork.Netmore);
+        }
 
         public static PayloadInformation ConvertFromLoriot(string payloadFromDevice, int port)
         {

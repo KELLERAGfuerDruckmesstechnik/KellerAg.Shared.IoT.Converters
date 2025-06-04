@@ -449,6 +449,7 @@ namespace KellerAg.Shared.LoRaPayloadConverter
         Unknown = 0,
         TheThingsNetwork,
         Actility,
-        Loriot
+        Loriot,
+        Netmore
     }
 }
