@@ -7,7 +7,7 @@
 
     public class GsmCommunicationToJsonConverter
     {
-        private static readonly string CommandPatternExpression = @"((#(?<command>B+)(?<parameters>/[a-z0-9]+\=?[/\+\=A-Za-z0-9@]*))|#(?<command>[AC-Za-z]+)(?<parameters>\/[A-Za-z0-9]+\=?[_\s\!\?\s\:\,\-\+\.A-Za-z0-9@\\%<>\*$\[\]^_{}()~]*)*)";
+        private static readonly string CommandPatternExpression = @"((#(?<command>B+)(?<parameters>/[a-z0-9]+\=?[/\+\=A-Za-z0-9@&]*))|#(?<command>[AC-Za-z]+)(?<parameters>\/[A-Za-z0-9]+\=?[_\s\!\?\s\:\,\-\+\.A-Za-z0-9@\\%<>\*$\[\]^_{}()~]*)*)";
 
         /// <summary>
         /// This regex is used for validation of the incoming GSM message. This string was copied from GSM2Parser.pas of 
@@ -17,7 +17,7 @@
 
         private const string CrcPattern = @"(?<restOfString>.*?)#X/a=(?<crcValue>[0-9]+)";
 
-        private const string ParameterMatchingPattern = @"(?<parameterName>[A-Za-z0-9]+)\=?(?<parameterValue>[_\s\!\?\s\:\,\-\+\.A-Za-z0-9@\\%<>\*$\[\]^_{}()~]*)";
+        private const string ParameterMatchingPattern = @"(?<parameterName>[A-Za-z0-9]+)\=?(?<parameterValue>[_\s\!\?\s\:\,\-\+\.A-Za-z0-9@&\\%<>\*$\[\]^_{}()~]*)";
         private const string ParameterMatchingPatternForBase64 = @"(?<parameterName>[A-Za-z0-9]+)\=?(?<parameterValue>[/\+\=A-Za-z0-9@]*)";
         private const string Base64EncodingCommand = "B";
 

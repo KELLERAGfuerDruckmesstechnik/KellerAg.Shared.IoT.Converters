@@ -4,18 +4,19 @@
     <TargetFrameworks>net6.0;net8.0;net9.0</TargetFrameworks> 
     <Authors>Sebastian Mojado</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>3.24.1</Version>
+    <Version>3.25.1</Version>
     <PackageProjectUrl>https://docs.pressuresuite.com/cloud-interfaces/iot-converter</PackageProjectUrl>
     <RepositoryUrl>https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters</RepositoryUrl>
     <PackageReleaseNotes>2022-09-16  Version with open-sourced and slightly updated files
-2024-06-19  Updated internal naming and versioning</PackageReleaseNotes>
+2024-06-19  Updated internal naming and versioning
+2025-06-04 Added Netmore Lora format</PackageReleaseNotes>
     <PackageTags>KELLER, KELLER Pressure, Druckmesstechnik, Pressure, pressure sensors, PressureSuite, LoRaWAN, LoRa, Loriot.io, Actility, TTN</PackageTags>
     <Description>Converter library with many helpful methods to convert proprietary KELLER protocol format data to readable DTOs and reverse.
 Also converts LoRa-JSON from TheThingsNetwork, Actility/Thingspark, Loriot.io messages with KELLER payload to readable DTOs.</Description>
     <Copyright></Copyright>
-    <AssemblyVersion>3.24.1.0</AssemblyVersion>
-    <FileVersion>3.24.1.0</FileVersion>
-    <Company>KELLER Druckmesstechnik AG</Company>
+    <AssemblyVersion>3.25.1.0</AssemblyVersion>
+    <FileVersion>3.25.1.0</FileVersion>
+    <Company>KELLER Pressure</Company>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
@@ -33,7 +34,7 @@ Also converts LoRa-JSON from TheThingsNetwork, Actility/Thingspark, Loriot.io me
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DeviceConfigurationToGsmCommunication\DeviceConfigurationToGsmCommunication.csproj"/>
+    <ProjectReference Include="..\DeviceConfigurationToGsmCommunication\DeviceConfigurationToGsmCommunication.csproj" />
     <ProjectReference Include="..\DeviceConfigurationToPayloadInformation\DeviceConfigurationToPayloadInformation.csproj" />
     <ProjectReference Include="..\GsmCommunicationToJson\GsmCommunicationToJson.csproj" />
     <ProjectReference Include="..\JsonToBusinessObjects\JsonToBusinessObjects.csproj" />
