@@ -2,11 +2,11 @@
   <PropertyGroup>
     <TargetFrameworks>net6.0;net8.0;net9.0</TargetFrameworks>
     <LangVersion>8.0</LangVersion>
-    <Version>3.24.0</Version>
-    <AssemblyVersion>3.24.0.0</AssemblyVersion>
+    <Version>3.25.0</Version>
+    <AssemblyVersion>3.25.0.0</AssemblyVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>KELLER Druckmesstechnik AG</Authors>
-    <Company>KELLER Druckmesstechnik AG</Company>
+    <Authors>KELLER Pressure</Authors>
+    <Company>KELLER Pressure</Company>
     <Product>KellerAg.Shared.LoRaPayloadConverter</Product>
     <Description>Used by KellerAg.Shared.IoT.Converters
 - Converts the LoRa Payload from TTN, Actility or Loriot to a understandable format</Description> 

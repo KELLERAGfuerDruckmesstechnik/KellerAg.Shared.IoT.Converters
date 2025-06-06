@@ -11,13 +11,13 @@ namespace DeviceConfigurationToGsmCommunication
         private readonly Regex _unsupportedCharacterRegex = new Regex(@"[^\x20-\x7A]");
         private const int MaxAckNumber = 65000;
 
-        public string Convert(DeviceSettings config)
+        public string Convert(DeviceSettings config, bool isMeasurementStartTimerSet = false)
         {
             var builder = new StringBuilder();
 
             ExtractGprsSettings(config, ref builder);
             ExtractTextNumberAndAddresses(config, ref builder);
-            ExtractMeasurementSettings(config, ref builder);
+            ExtractMeasurementSettings(config, ref builder, isMeasurementStartTimerSet);
             ExtractFloatingPointValueSettings(config, ref builder);
             ExtractMeasurementSettings2(config, ref builder);
             //ExtractFtpSettings(config, ref builder); These fields will be read-only. They should never go down to the device.
@@ -110,13 +110,16 @@ namespace DeviceConfigurationToGsmCommunication
             }
         }
 
-        private void ExtractMeasurementSettings(DeviceSettings config, ref StringBuilder sb)
+        private void ExtractMeasurementSettings(DeviceSettings config, ref StringBuilder sb, bool isMeasurementStartTimerSet)
         {
             const string accountSettingsIdFieldName = "#c";
 
             var newSbParts = new StringBuilder();
-            
-            ExtractField("/a=", config.MeasurementTimer, 0, 1100000000, ref newSbParts);
+
+            if (isMeasurementStartTimerSet)
+            {
+                ExtractField("/a=", config.MeasurementTimer, 0, 1100000000, ref newSbParts);
+            }
 
             // These fields will be read-only. They should never go down to the device.
             //ExtractField("/b=", config.AlarmTimer, 0, 1100000000, ref newSbParts);

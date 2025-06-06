@@ -4,9 +4,9 @@
     <!-- The identifier that must be unique within the hosting gallery -->
     <PackageId>KellerAg.Cloud.JsonToBusinessObjects</PackageId>
     <!-- The package version number that is used when resolving dependencies -->
-    <PackageVersion>3.24.0.0</PackageVersion>
+    <PackageVersion>3.25.1.0</PackageVersion>
     <!-- Authors contain text that appears directly on the gallery -->
-    <authors>KELLER Druckmesstechnik AG</authors>
+    <authors>KELLER Pressure</authors>
     <!-- The description can be used in package manager UI. Note that the nuget.org gallery uses information you add in the portal. -->
     <Description>This library is used to convert KELLER messages from JSON to an Object with improved data handling.</Description>
     <!-- If true, this value prompts the user to accept the license when installing the package. -->
@@ -21,8 +21,8 @@
   <Import Sdk="Microsoft.NET.Sdk" Project="Sdk.targets" />
   <PropertyGroup>
     <Product>KellerAg.Cloud.JsonToBusinessObjects</Product>
-    <Company>KELLER AG</Company>
-    <Version>3.24.0</Version>
+    <Company>KELLER Pressure</Company>
+    <Version>3.25.1</Version>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath />

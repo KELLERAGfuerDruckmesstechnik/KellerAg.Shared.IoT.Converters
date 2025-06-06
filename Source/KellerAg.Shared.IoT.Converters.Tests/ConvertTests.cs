@@ -165,7 +165,7 @@ namespace KellerAg.Shared.IoT.Converters.Tests
             var result = convert.DeviceConfigurationToGsmCommunication(deviceConfigurationDifferenceJson);
 
             // Assert
-            result.Should().Contain("#b/k=string/0=lond1234#c/a=12345/g=987/m=2/4=12/6=3#d/n=+42");
+            result.Should().Contain("#b/k=string/0=lond1234#c/g=987/m=2/4=12/6=3#d/n=+42");
         }
 
         [TestMethod]
@@ -180,7 +180,7 @@ namespace KellerAg.Shared.IoT.Converters.Tests
             var result = convert.DeviceConfigurationToGsmCommunication(deviceSettings);
 
             // Assert
-            result.Should().Contain("#b/k=string/0=lond1234#c/a=12345/g=987/m=2/4=12/6=3#d/n=+42");
+            result.Should().Contain("#b/k=string/0=lond1234#c/g=987/m=2/4=12/6=3#d/n=+42");
         }
 
         [TestMethod]

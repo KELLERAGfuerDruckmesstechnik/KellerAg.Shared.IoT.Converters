@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFrameworks>net6.0;net8.0;net9.0</TargetFrameworks>
     <Version>3.24.0</Version>
-    <Company>KELLER Druckmesstechnik AG</Company>
-    <Authors>KELLER Druckmesstechnik AG</Authors>
+    <Company>KELLER Pressure</Company>
+    <Authors>KELLER Pressure</Authors>
     <RepositoryUrl>https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters</RepositoryUrl>
     <PackageProjectUrl>https://docs.pressuresuite.com/cloud-interfaces/iot-converter</PackageProjectUrl>
     <Description>Used by KellerAg.Shared.IoT.Converters</Description>

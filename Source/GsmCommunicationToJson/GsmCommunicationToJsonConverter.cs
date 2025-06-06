@@ -7,7 +7,7 @@
 
     public class GsmCommunicationToJsonConverter
     {
-        private static readonly string CommandPatternExpression = @"((#(?<command>B+)(?<parameters>/[a-z0-9]+\=?[/\+\=A-Za-z0-9@&]*))|#(?<command>[AC-Za-z]+)(?<parameters>\/[A-Za-z0-9]+\=?[_\s\!\?\s\:\,\-\+\.A-Za-z0-9@\\%<>\*$\[\]^_{}()~]*)*)";
+        private static readonly string CommandPatternExpression = @"((#(?<command>B+)(?<parameters>/[a-z0-9]+\=?[/\+\=A-Za-z0-9@&]*))|#(?<command>[AC-Za-z]+)(?<parameters>\/[A-Za-z0-9]+\=?[_\s\!\?\s\:\,\-\+\.A-Za-z0-9@\\%<>\*$\[\]^_{}()~&]*)*)";
 
         /// <summary>
         /// This regex is used for validation of the incoming GSM message. This string was copied from GSM2Parser.pas of 
@@ -25,13 +25,18 @@
 
         public JObject Convert(string message)
         {
-            // Due to SMTP restrictions a line can only have a certain max size (~1000bytes or 2000bytes depending on SMTP service extensions or whatever green.ch does) so sometimes the message is truncated with <CRLF>
-            message = message.Replace("\n", "").Replace("\r", "");
-
             if (string.IsNullOrEmpty(message))
             {
                 throw new EmptyGsmMessageException("Message was null or empty.");
             }
+
+            // Pattern explanation:
+            // - (\w+)=5F(\d+) matches things like ftpdata=5F42
+            // - (?=@) makes sure it’s just before the @
+            message = Regex.Replace(message, @"(\w+)=5F(\d+)(?=@)", "$1_$2");
+
+            // Due to SMTP restrictions a line can only have a certain max size (~1000bytes or 2000bytes depending on SMTP service extensions or whatever green.ch does) so sometimes the message is truncated with <CRLF>
+            message = message.Replace("\n", "").Replace("\r", "");
 
             if (Regex.IsMatch(message, ValidationExpression) == false)
             {
