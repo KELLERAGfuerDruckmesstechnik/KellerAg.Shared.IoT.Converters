@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace KellerAg.Shared.Entities.Communication.DemoDevices
 {
@@ -30,6 +31,7 @@ namespace KellerAg.Shared.Entities.Communication.DemoDevices
 
         public int Speed => 9600;
         public object Interface { get; set; }
+        public event EventHandler<NewBytesArgument> ReadContinuousOnByte;
 
         internal DeviceMemory Memory;
 
@@ -101,7 +103,10 @@ namespace KellerAg.Shared.Entities.Communication.DemoDevices
                     break;
                 case 65: // special case because index is larger than byte
                     var indexInt = (command[2] << 8) + command[3];
-                    buffer = Configuration.Get(command[1], indexInt) ?? new byte[] { 0 };
+                    buffer = Configuration.Get(command[1], indexInt, command[4]) ?? new byte[] { 0 };
+                    break;
+                case 96: //IOT commands
+                    buffer = new byte[] { 0 };
                     break;
                 default:
                     buffer = Configuration.Get(command[1], command[2]) ?? new byte[] { 0 };
@@ -113,6 +118,11 @@ namespace KellerAg.Shared.Entities.Communication.DemoDevices
 
         }
 
+
+        public void ReadContinuous(CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
 
         public byte[] Send(byte[] dataSend, int readByteCount)
         {

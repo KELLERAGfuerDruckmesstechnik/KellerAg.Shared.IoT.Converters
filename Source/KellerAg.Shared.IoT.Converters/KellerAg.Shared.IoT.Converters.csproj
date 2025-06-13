@@ -4,18 +4,21 @@
     <TargetFrameworks>net6.0;net8.0;net9.0</TargetFrameworks> 
     <Authors>Sebastian Mojado</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>3.25.3</Version>
+    <Version>3.25.4</Version>
     <PackageProjectUrl>https://docs.pressuresuite.com/cloud-interfaces/iot-converter</PackageProjectUrl>
     <RepositoryUrl>https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters</RepositoryUrl>
-    <PackageReleaseNotes>2022-09-16  Version with open-sourced and slightly updated files
-2024-06-19  Updated internal naming and versioning
-2025-06-04 Added Netmore Lora format</PackageReleaseNotes>
+    <PackageReleaseNotes>
+      2022-09-16  Version with open-sourced and slightly updated files
+      2024-06-19  Updated internal naming and versioning
+      2025-06-04 Added Netmore Lora format
+      2025-06-13 To avoid confusion we changed DeviceSettings to DatabaseDeviceSettings
+    </PackageReleaseNotes>
     <PackageTags>KELLER, KELLER Pressure, Druckmesstechnik, Pressure, pressure sensors, PressureSuite, LoRaWAN, LoRa, Loriot.io, Actility, TTN</PackageTags>
     <Description>Converter library with many helpful methods to convert proprietary KELLER protocol format data to readable DTOs and reverse.
 Also converts LoRa-JSON from TheThingsNetwork, Actility/Thingspark, Loriot.io messages with KELLER payload to readable DTOs.</Description>
     <Copyright></Copyright>
-    <AssemblyVersion>3.25.3.0</AssemblyVersion>
-    <FileVersion>3.25.3.0</FileVersion>
+    <AssemblyVersion>3.25.4.4</AssemblyVersion>
+    <FileVersion>3.25.4.4</FileVersion>
     <Company>KELLER Pressure</Company>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>

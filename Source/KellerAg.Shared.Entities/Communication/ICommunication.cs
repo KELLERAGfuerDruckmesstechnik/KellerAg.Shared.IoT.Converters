@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
 
 namespace KellerAg.Shared.Entities.Communication
 {
@@ -27,6 +29,18 @@ namespace KellerAg.Shared.Entities.Communication
 
         /// <summary>Schnittstelle</summary>
         object Interface { get; set; }
+
+        /// <summary>
+        /// Notifies on new byte during active ReadContinuous
+        /// </summary>
+        event EventHandler<NewBytesArgument> ReadContinuousOnByte;
+
+        /// <summary>
+        /// Starts to read continuous and locks port until cancellationToken is cancelled
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+
+        void ReadContinuous(CancellationToken cancellationToken);
 
         /// <summary>
         /// Data send and receive over interface with expected receive byte count as "end sign"

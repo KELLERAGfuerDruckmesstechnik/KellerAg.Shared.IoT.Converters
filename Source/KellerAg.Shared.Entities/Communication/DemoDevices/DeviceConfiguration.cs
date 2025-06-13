@@ -15,10 +15,11 @@ namespace KellerAg.Shared.Entities.Communication.DemoDevices
         }
 
         private byte[][][] _config;
+        private byte[] _configF65;
 
         private readonly List<int> _functionsWithoutIndex;
 
-        public byte[] Get(int function, int index)
+        public byte[] Get(int function, int index, int bytes = 6)
         {
             index = _functionsWithoutIndex.Contains(function) ? 0 : index;
             if (function == 73)
@@ -52,7 +53,17 @@ namespace KellerAg.Shared.Entities.Communication.DemoDevices
                 return new[] { values[0], values[1], values[2], values[3], (byte)0 };
             }
 
+            if (function == 65)
+            {
+                return _configF65.Skip(index).Take(bytes).ToArray();
+            }
+
+            if (function >= _config.Length || _config[function] == null || index >= _config[function].Length || _config[function][index] == null)
+            {
+                return new[] { (byte)0 };
+            }
             return _config[function][index];
+
         }
 
         private void ParseConfig(string[] fileContent)
@@ -83,6 +94,18 @@ namespace KellerAg.Shared.Entities.Communication.DemoDevices
                 }
                 _config[function][index] = valuesArray;
 
+            }
+
+            if (_config[65] != null)
+            {
+                _configF65 = new byte[_config[65].Length + _config[65].LastOrDefault(x => x != null)?.Length ?? 0];
+                for (var i = 0; i < _config[65].Length; i++)
+                {
+                    if (_config[65][i] != null)
+                    {
+                        Array.Copy(_config[65][i], 0, _configF65, i, _config[65][i].Length);
+                    }
+                }
             }
         }
 

@@ -71,14 +71,14 @@ namespace KellerAg.Shared.Entities.Units
                     unitInfos = new[]
                     {
                         //Be aware that the first unit is the default unit
-                        new UnitInfo("kilogram/meter^3", "kg/m^3", UnitType.Density, 1, 0),
+                        new UnitInfo("kilogram/meter³", "kg/m³", UnitType.Density, 1, 0),
                     };
                     break;
                 case UnitType.Acceleration:
                     unitInfos = new[]
                     {
                         //Be aware that the first unit is the default unit
-                        new UnitInfo("meter/second^2", "m/s^2", UnitType.Acceleration, 1, 0),
+                        new UnitInfo("meter/second²", "m/s²", UnitType.Acceleration, 1, 0),
                     };
                     break;
                 case UnitType.Angle:
@@ -92,7 +92,7 @@ namespace KellerAg.Shared.Entities.Units
                     unitInfos = new[]
                     {
                         //Be aware that the first unit is the default unit
-                        new UnitInfo("meter^3/second", "m^3/s", UnitType.Flow, 1, 0),
+                        new UnitInfo("meter³/second", "m³/s", UnitType.Flow, 1, 0),
                         new UnitInfo("liters/second", "l/s", UnitType.Flow, 1000, 0),
                     };
                     break;
@@ -100,7 +100,7 @@ namespace KellerAg.Shared.Entities.Units
                     unitInfos = new[]
                     {
                         //Be aware that the first unit is the default unit
-                        new UnitInfo("meter^3", "m^3", UnitType.Volume, 1, 0),
+                        new UnitInfo("meter³", "m³", UnitType.Volume, 1, 0),
                         new UnitInfo("liter", "l", UnitType.Volume, 1000, 0),
                     };
                     break;
@@ -116,10 +116,17 @@ namespace KellerAg.Shared.Entities.Units
                     unitInfos = new[]
                     {                        
                         //Be aware that the first unit is the default unit
-                        new UnitInfo("meter^2", "m^2", UnitType.Area, 1, 0),
-                        new UnitInfo("centimeter^2", "cm^2", UnitType.Area, 10000, 0),
-                        new UnitInfo("inch^2", "inch^2", UnitType.Area, 1550, 0),
-                        new UnitInfo("feet^2", "ft^2", UnitType.Area, 10.7639, 0)
+                        new UnitInfo("meter²", "m²", UnitType.Area, 1, 0),
+                        new UnitInfo("centimeter²", "cm²", UnitType.Area, 10000, 0),
+                        new UnitInfo("inch²", "inch²", UnitType.Area, 1550, 0),
+                        new UnitInfo("feet²", "ft²", UnitType.Area, 10.7639, 0)
+                    };
+                    break;
+                case UnitType.Unitless:
+                    unitInfos = new[]
+                    {                        
+                        //Be aware that the first unit is the default unit
+                        new UnitInfo("", "", UnitType.Unitless, 1, 0),
                     };
                     break;
                 case UnitType.Unknown:
@@ -153,11 +160,16 @@ namespace KellerAg.Shared.Entities.Units
             var i = 0;
             foreach (var unit in unitTypes)
             {
-                unitInfos[i] = GetUnits(unit).FirstOrDefault();
+                unitInfos[i] = BaseUnit(unit);
                 i++;
             }
 
             return unitInfos;
+        }
+
+        public static UnitInfo BaseUnit(UnitType unitType)
+        {
+            return GetUnits(unitType).FirstOrDefault();
         }
 
         public static UnitInfo CurrentUnit(UnitType unitType)
@@ -200,6 +212,9 @@ namespace KellerAg.Shared.Entities.Units
                     break;
                 case UnitType.Area:
                     unit = CurrentAreaUnit ?? GetUnits(UnitType.Area).FirstOrDefault();
+                    break;
+                case UnitType.Unitless:
+                    unit = CurrentUnitlessUnit ?? GetUnits(UnitType.Unitless).FirstOrDefault();
                     break;
                 case UnitType.Unknown:
                     unit = new UnitInfo();
@@ -250,6 +265,9 @@ namespace KellerAg.Shared.Entities.Units
                     break;
                 case UnitType.Area:
                     CurrentAreaUnit = unit;
+                    break;
+                case UnitType.Unitless:
+                    CurrentUnitlessUnit = unit;
                     break;
                 case UnitType.Unknown:
                     break;
@@ -305,6 +323,7 @@ namespace KellerAg.Shared.Entities.Units
         private static UnitInfo CurrentFlowUnit { get; set; }
         private static UnitInfo CurrentForceUnit { get; set; }
         private static UnitInfo CurrentAreaUnit { get; set; }
+        private static UnitInfo CurrentUnitlessUnit { get; set; }
 
         public UnitInfo()
         {

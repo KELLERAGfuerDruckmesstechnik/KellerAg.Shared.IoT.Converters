@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using KellerAg.Shared.Entities.Channel;
 
 namespace KellerAg.Shared.Entities.Device
 {
@@ -46,7 +48,7 @@ namespace KellerAg.Shared.Entities.Device
             { DeviceType.GSM2            , "ARC1.jpg"},
             { DeviceType.GSM3            , "ARC1.jpg"},
             //TODO: BtTransmitter
-            { DeviceType.Bt_Transmitter       , "LEO_Record.jpg"},
+            { DeviceType.Bt_Transmitter       , "BT_Transmitter.jpg"},
         };
 
 
@@ -279,13 +281,15 @@ namespace KellerAg.Shared.Entities.Device
                                                            type == DeviceType.ConverterK114_BT ||
                                                            type == DeviceType.ConverterK114_M;
 
-        public static bool IsIotDevice(DeviceType type) => type == DeviceType.GSM1 ||
-                                                           type == DeviceType.GSM2 ||
-                                                           type == DeviceType.GSM3 ||
-                                                           type == DeviceType.ARC1 ||
-                                                           type == DeviceType.ARC1_lora ||
-                                                           type == DeviceType.ADT1 ||
-                                                           type == DeviceType.ADT1_cellular;
+        public static bool IsIotDevice(DeviceType type) => IsLoRaDevice(type) ||
+                                                           IsCellularDevice(type);
+        public static bool IsLoggerDevice(DeviceType type) => type == DeviceType.LeoRecord ||
+                                                           type == DeviceType.Leo5 ||
+                                                           type == DeviceType.DCX18ECO ||
+                                                           type == DeviceType.DCX22 ||
+                                                           type == DeviceType.DCX22AA ||
+                                                           type == DeviceType.DCX_CTD ||
+                                                           IsIotDevice(type);
 
         public static bool IsLoRaDevice(DeviceType type) => type == DeviceType.ARC1_lora ||
                                                             type == DeviceType.ADT1;
@@ -296,9 +300,31 @@ namespace KellerAg.Shared.Entities.Device
                                                             type == DeviceType.ARC1 ||
                                                             type == DeviceType.ADT1_cellular;
 
+        public static bool IsCDTDevice(IDevice device)
+        {
+            bool? cdtChannelsEnabled = device?.DeviceInfo?.ChannelTypes?.Any(
+                                                            channel => channel == ChannelType.ConductivityRaw ||
+                                                            channel == ChannelType.ConductivityTc ||
+                                                            channel == ChannelType.ConductivityTc_2 ||
+                                                            channel == ChannelType.ConductivityTc_3 ||
+                                                            channel == ChannelType.T_Conductivity ||
+                                                            channel == ChannelType.T_Conductivity_2 ||
+                                                            channel == ChannelType.T_Conductivity_3);
+                                                            // ABB AquaMaster would probably also need a long delay
+
+            return cdtChannelsEnabled.HasValue && cdtChannelsEnabled.Value;
+        }
+
         // Zero is only available for Manometers
         public static bool HasZeroFunction(DeviceType type) => type == DeviceType.LeoRecord ||
-                                                               type == DeviceType.Leo5;
+                                                               type == DeviceType.Leo5 ||
+                                                               type == DeviceType.LEO1_2 ||
+                                                               type == DeviceType.LEO1x ||
+                                                               type == DeviceType.LEO3 ||
+                                                               type == DeviceType.LeoIsler ||
+                                                               type == DeviceType.LeoGuehring ||
+                                                               type == DeviceType.LeoVolvo ||
+                                                               type == DeviceType.Lex1;
 
         //TODO: check with marcel if this could be read from the device instead of hardcode
         public static int DevicePageSize(DeviceType type) => type == DeviceType.Bt_Transmitter ? 256 : 64;

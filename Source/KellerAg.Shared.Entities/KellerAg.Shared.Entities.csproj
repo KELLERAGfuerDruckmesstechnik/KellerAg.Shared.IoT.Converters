@@ -1,24 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net6.0;net8.0;net9.0</TargetFrameworks>
-    <Company>KELLER Druckmesstechnik AG</Company>
+    <Company>KELLER Pressure</Company>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://docs.pressuresuite.com/cloud-interfaces/iot-converter</PackageProjectUrl>
     <RepositoryUrl>https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters</RepositoryUrl>
-    <PackageTags>KELLER, KELLER Pressure, Druckmesstechnik, Pressure, pressure sensors, PressureSuite Cloud, LoRaWAN, LoRa, Loriot.io, Actility, TTN</PackageTags>
-    <Authors>Sebastian Mojado</Authors>
-    <Description>KELLER AG Entities for various purposes</Description>
+    <PackageTags>KELLER, KELLER Pressure, Druckmesstechnik, Pressure, pressure sensors, PressureSuite, PressureSuite cloud, LoRaWAN, LoRa, Loriot.io, Actility, TTN</PackageTags>
+    <Description>KELLER Pressure Entities for various purposes</Description>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <AssemblyVersion>3.24.0.1</AssemblyVersion>
-    <FileVersion>3.24.0.1</FileVersion>
-    <Version>3.24.0.1</Version>
+    <AssemblyVersion>3.25.4.4</AssemblyVersion>
+    <FileVersion>3.25.4.4</FileVersion>
+    <Version>3.25.4.4</Version>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NodaTime" Version="2.4.18" />
-    <PackageReference Include="TimeZoneConverter" Version="3.2.0" />
+    <PackageReference Include="NodaTime" Version="3.1.4" />
+    <PackageReference Include="TimeZoneConverter" Version="6.0.1" />
   </ItemGroup>
 </Project>

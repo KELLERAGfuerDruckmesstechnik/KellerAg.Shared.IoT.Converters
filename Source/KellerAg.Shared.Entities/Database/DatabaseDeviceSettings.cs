@@ -23,7 +23,7 @@
         PendingForProgramming = 10,
 
         /// <summary>
-        /// It has been programmed into the device. The message with the ACK is on the way to the KOLIBRI server to be stored into the DB
+        /// It has been programmed into the device. The message with the ACK is on the way to the PressureSuite server to be stored into the DB
         /// </summary>
         PendingForServerAcknowledge = 20,
 
@@ -42,7 +42,7 @@
     /// The Configuration entity.
     /// Important: for the properties, do not use the same name as for Device, otherwise the ordering won't work.
     /// </summary>
-    public class DeviceSettings
+    public class DatabaseDeviceSettings
     {
         [Key]
         public int Id { get; set; }

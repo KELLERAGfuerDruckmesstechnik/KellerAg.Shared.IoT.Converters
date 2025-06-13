@@ -318,15 +318,15 @@ namespace KellerAg.Shared.Entities.FileFormat
     /// </summary>
     public enum Origin
     {
-        Kolibri,  //generic term. Better than "unknown"
+        PressureSuite,  //generic term. Better than "unknown"
         Script,
         Logger4,
         Logger5,
-        KolibriDesktop,
-        KolibriMobile,
-        KolibriCloud,
-        KolibriDesktopLiveMeasurement,
-        KolibriMobileLiveMeasurement
+        PressureSuiteDesktop,
+        PressureSuiteMobile,
+        PressureSuiteCloud,
+        PressureSuiteDesktopLiveMeasurement,
+        PressureSuiteMobileLiveMeasurement
     }
 
 }

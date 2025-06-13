@@ -26,8 +26,8 @@
                     return ".json";
                 case Filetype.Pdf:
                     return ".pdf";
-                case Filetype.KolibriConfigurationFormat:
-                    return ".kolcon";
+                case Filetype.PressureSuiteConfigurationFormat:
+                    return ".psuitec";
                 default:
                     return ".txt";
             }
@@ -53,11 +53,11 @@
                 case Filetype.Jpeg:
                     return "JPEG (*.jpeg)";
                 case Filetype.KellerMeasurementFileFormat:
-                    return "KOLIBRI File Format (*.json)";
+                    return "PressureSuite File Format (*.json)";
                 case Filetype.Pdf:
                     return "PDF (*.pdf)";
-                case Filetype.KolibriConfigurationFormat:
-                    return "KOLIBRI device configuration (*.kolcon)";
+                case Filetype.PressureSuiteConfigurationFormat:
+                    return "PressureSuite device configuration (*.psuitec)";
                 default:
                     return "Textfile (*.txt)";
             }

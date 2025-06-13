@@ -76,14 +76,25 @@ namespace KellerAg.Shared.Entities.Localization
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="datetime">localized datetime</param>
+        /// <returns></returns>
+        public TimeSpan GetTimezoneOffsetAt(DateTime datetime)
+        {
+            var offset = _zone.GetUtcOffset(Instant.FromDateTimeUtc(DeLocalizeDateTime(datetime)));
+            return offset.ToTimeSpan();
+        }
+
+        /// <summary>
         /// Transform a DateTime string (from json) and transform it into a DateTime-string of the stored zone
         /// </summary>
         /// <param name="utcDateTimeText"></param>
         /// <returns></returns>
-        public System.DateTime LocalizeDateTime(string utcDateTimeText)
+        public DateTime LocalizeDateTime(string utcDateTimeText)
         {
             //DateTime someDateTime = DateTime.ParseExact(utcDateTimeText, "s", CultureInfo.InvariantCulture);
-            System.DateTime someDateTime = System.DateTime.Parse(utcDateTimeText);
+            DateTime someDateTime = DateTime.Parse(utcDateTimeText);
             return LocalizeDateTime(someDateTime);
         }
 
@@ -92,12 +103,23 @@ namespace KellerAg.Shared.Entities.Localization
         /// </summary>
         /// <param name="utcDateTime"></param>
         /// <returns></returns>
-        public System.DateTime LocalizeDateTime(System.DateTime utcDateTime)
+        public DateTime LocalizeDateTime(DateTime utcDateTime)
         {
-            var specifiedUtcDateTime = System.DateTime.SpecifyKind(utcDateTime, DateTimeKind.Utc);
-            var instant = Instant.FromDateTimeUtc(specifiedUtcDateTime);
-            var specifiedLocalDateTime = instant.InZone(_zone).ToDateTimeUnspecified();
-            return specifiedLocalDateTime;
+            try
+            {
+                var specifiedUtcDateTime = DateTime.SpecifyKind(utcDateTime, DateTimeKind.Utc);
+                var instant = Instant.FromDateTimeUtc(specifiedUtcDateTime);
+                var specifiedLocalDateTime = instant.InZone(_zone).ToDateTimeUnspecified();
+                return specifiedLocalDateTime;
+            }
+            catch (InvalidOperationException) // DateTime out of range
+            {
+                return utcDateTime;
+            }
+            catch (ArgumentOutOfRangeException) // DateTime out of range
+            {
+                return utcDateTime;
+            }
         }
 
         /// <summary>
@@ -105,11 +127,22 @@ namespace KellerAg.Shared.Entities.Localization
         /// </summary>
         /// <param name="localDateTime"></param>
         /// <returns></returns>
-        public System.DateTime DeLocalizeDateTime(System.DateTime localDateTime)
+        public DateTime DeLocalizeDateTime(DateTime localDateTime)
         {
-            var localTime = LocalDateTime.FromDateTime(localDateTime).InZoneLeniently(_zone);
-            var utcTime = localTime.ToDateTimeUtc();
-            return utcTime;
+            try
+            {
+                var localTime = LocalDateTime.FromDateTime(localDateTime).InZoneLeniently(_zone);
+                var utcTime = localTime.ToDateTimeUtc();
+                return utcTime;
+            }
+            catch (InvalidOperationException) // DateTime out of range
+            {
+                return localDateTime;
+            }
+            catch (ArgumentOutOfRangeException) // DateTime out of range
+            {
+                return localDateTime;
+            }
         }
 
         /// <summary>
@@ -171,7 +204,7 @@ namespace KellerAg.Shared.Entities.Localization
         /// </summary>
         /// <param name="dt"></param>
         /// <returns></returns>
-        public static string GetDateText(System.DateTime dt)
+        public static string GetDateText(DateTime dt)
         {
             return $"{dt:dd.MM.yyyy}";
         }
@@ -182,7 +215,7 @@ namespace KellerAg.Shared.Entities.Localization
         /// </summary>
         /// <param name="dt"></param>
         /// <returns></returns>
-        public static string GetTimeText(System.DateTime dt)
+        public static string GetTimeText(DateTime dt)
         {
             return $"{dt:HH:mm:ss}";
         }

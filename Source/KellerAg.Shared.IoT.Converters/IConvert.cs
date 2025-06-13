@@ -44,7 +44,7 @@
         /// </summary>
         /// <param name="businessObject"></param>
         /// <returns></returns>
-        DeviceSettings BusinessObjectToDeviceConfiguration(BusinessObjectRoot businessObject);
+        DatabaseDeviceSettings BusinessObjectToDeviceConfiguration(BusinessObjectRoot businessObject);
 
         /// <summary>
         /// Mobile Communication: From DTO to DeviceConfiguration-Transmission
@@ -52,7 +52,7 @@
         /// </summary>
         /// <param name="deviceSettings"></param>
         /// <returns>Text content that can be used in a text file to store in a FTP folder to be read by a device. The device will update itself with this configuration parameters.</returns>
-        string DeviceConfigurationToGsmCommunication(DeviceSettings deviceSettings);
+        string DeviceConfigurationToGsmCommunication(DatabaseDeviceSettings deviceSettings);
 
         /// <summary>
         /// Mobile Communication: From serialized DTO to DeviceConfiguration-Transmission
@@ -97,7 +97,7 @@
         /// </summary>
         /// <param name="deviceConfigurationDifference"></param>
         /// <returns></returns>
-        List<string> DeviceConfigurationToLoRaPayloads(DeviceSettings deviceConfigurationDifference);
+        List<string> DeviceConfigurationToLoRaPayloads(DatabaseDeviceSettings deviceConfigurationDifference);
 
         /// <summary>
         /// LoRa Communication: From DTO to LoRaPayloads

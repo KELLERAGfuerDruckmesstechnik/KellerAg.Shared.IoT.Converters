@@ -4,12 +4,14 @@ namespace KellerAg.Shared.Entities.Device
 {
     public class Device : IDevice
     {
-        public Device(string id, DeviceInfo deviceInfo, ICommunication communication, bool isSupported = true)
+        public Device(string id, DeviceInfo deviceInfo, ICommunication communication, bool isSupported = true, bool isKellerbusSupported = true, bool isModbusSupported = false)
         {
             Id = id;
             DeviceInfo = deviceInfo;
             Communication = communication;
             IsSupported = isSupported;
+            IsKellerbusSupported = isKellerbusSupported;
+            IsModbusSupported = isModbusSupported;
         }
 
         public Device()
@@ -31,6 +33,7 @@ namespace KellerAg.Shared.Entities.Device
         public string Id { get; }
 
         public bool IsSupported { get; }
-
+        public bool IsModbusSupported { get; }
+        public bool IsKellerbusSupported { get; }
     }
 }

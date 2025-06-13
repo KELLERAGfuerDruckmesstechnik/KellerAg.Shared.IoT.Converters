@@ -3,14 +3,16 @@ using KellerAg.Shared.Entities.Channel;
 using KellerAg.Shared.Entities.FileFormat;
 using KellerAg.Shared.Entities.Units;
 using System;
+using System.Linq;
 
 namespace KellerAg.Shared.Entities.Calculations
 {
     public static class CalculationsHelper
     {
-        public static MeasurementFileFormatChannelCalculation GenerateCalculation(MeasurementFileFormatWaterCalculationStoredInDevice deviceCalculation)
+        public static MeasurementFileFormatChannelCalculation GenerateCalculation(MeasurementFileFormatWaterCalculationStoredInDevice deviceCalculation, ChannelInfo[] channelInfos)
         {
             MeasurementFileFormatChannelCalculation calculation = null;
+            
 
             if (deviceCalculation?.WaterLevelCalculation != null)
             {
@@ -22,7 +24,7 @@ namespace KellerAg.Shared.Entities.Calculations
                         {
                             HydrostaticPressureChannel = ChannelInfo.GetChannelInfo(waterLevelConf.HydrostaticPressureChannelId),
                             BarometricPressureChannel = waterLevelConf.BarometricPressureChannelId.HasValue ? ChannelInfo.GetChannelInfo((int)waterLevelConf.BarometricPressureChannelId) : null,
-                            ChannelInfo = ChannelInfo.GetCalculationChannelInfoInstance(ChannelType.mH20_E),
+                            ChannelInfo = channelInfos.SingleOrDefault(_ => _.ChannelType == ChannelType.mH20_E),
                             Density = waterLevelConf.Density,
                             Offset = waterLevelConf.Offset,
                             Gravity = waterLevelConf.Gravity,
@@ -35,7 +37,7 @@ namespace KellerAg.Shared.Entities.Calculations
                         {
                             HydrostaticPressureChannel = ChannelInfo.GetChannelInfo(waterLevelConf.HydrostaticPressureChannelId),
                             BarometricPressureChannel = waterLevelConf.BarometricPressureChannelId.HasValue ? ChannelInfo.GetChannelInfo((int)waterLevelConf.BarometricPressureChannelId) : null,
-                            ChannelInfo = ChannelInfo.GetCalculationChannelInfoInstance(ChannelType.mH20_F),
+                            ChannelInfo = channelInfos.SingleOrDefault(_ => _.ChannelType == ChannelType.mH20_F),
                             Density = waterLevelConf.Density,
                             Offset = waterLevelConf.Offset,
                             Gravity = waterLevelConf.Gravity,
@@ -49,7 +51,7 @@ namespace KellerAg.Shared.Entities.Calculations
                         {
                             HydrostaticPressureChannel = ChannelInfo.GetChannelInfo(waterLevelConf.HydrostaticPressureChannelId),
                             BarometricPressureChannel = waterLevelConf.BarometricPressureChannelId.HasValue ? ChannelInfo.GetChannelInfo((int)waterLevelConf.BarometricPressureChannelId) : null,
-                            ChannelInfo = ChannelInfo.GetCalculationChannelInfoInstance(ChannelType.mH20_G),
+                            ChannelInfo = channelInfos.SingleOrDefault(_ => _.ChannelType == ChannelType.mH20_G),
                             Density = waterLevelConf.Density,
                             Offset = waterLevelConf.Offset,
                             Gravity = waterLevelConf.Gravity,
@@ -130,12 +132,19 @@ namespace KellerAg.Shared.Entities.Calculations
         }
 
 
-        private static bool IsOverflowCalculation(int calculationId)
+        public static bool IsOverflowCalculation(int calculationId)
         {
             return
                 calculationId == (int) CalculationType.OverflowPoleni ||
                 calculationId == (int) CalculationType.OverflowThomson ||
                 calculationId == (int) CalculationType.OverflowVenturi;
+        }
+        public static bool IsWaterLevelCalculation(int calculationId)
+        {
+            return
+                calculationId == (int)CalculationType.HeightOfWater ||
+                calculationId == (int)CalculationType.DepthToWater ||
+                calculationId == (int)CalculationType.HeightOfWaterAboveSea;
         }
     }
 }

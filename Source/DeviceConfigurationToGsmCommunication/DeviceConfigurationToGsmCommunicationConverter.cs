@@ -11,7 +11,7 @@ namespace DeviceConfigurationToGsmCommunication
         private readonly Regex _unsupportedCharacterRegex = new Regex(@"[^\x20-\x7A]");
         private const int MaxAckNumber = 65000;
 
-        public string Convert(DeviceSettings config, bool isMeasurementStartTimerSet = false)
+        public string Convert(DatabaseDeviceSettings config, bool isMeasurementStartTimerSet = false)
         {
             var builder = new StringBuilder();
 
@@ -34,7 +34,7 @@ namespace DeviceConfigurationToGsmCommunication
             return builder.ToString();
         }
 
-        private void ExtractGprsSettings(DeviceSettings config, ref StringBuilder sb)
+        private void ExtractGprsSettings(DatabaseDeviceSettings config, ref StringBuilder sb)
         {
             const string accountSettingsIdFieldName = "#a";
 
@@ -75,7 +75,7 @@ namespace DeviceConfigurationToGsmCommunication
             }
         }
 
-        private void ExtractTextNumberAndAddresses(DeviceSettings config, ref StringBuilder sb)
+        private void ExtractTextNumberAndAddresses(DatabaseDeviceSettings config, ref StringBuilder sb)
         {
             const string accountSettingsIdFieldName = "#b";
 
@@ -110,7 +110,7 @@ namespace DeviceConfigurationToGsmCommunication
             }
         }
 
-        private void ExtractMeasurementSettings(DeviceSettings config, ref StringBuilder sb, bool isMeasurementStartTimerSet)
+        private void ExtractMeasurementSettings(DatabaseDeviceSettings config, ref StringBuilder sb, bool isMeasurementStartTimerSet)
         {
             const string accountSettingsIdFieldName = "#c";
 
@@ -206,7 +206,7 @@ namespace DeviceConfigurationToGsmCommunication
             }
         }
 
-        private void ExtractFloatingPointValueSettings(DeviceSettings config, ref StringBuilder sb)
+        private void ExtractFloatingPointValueSettings(DatabaseDeviceSettings config, ref StringBuilder sb)
         {
             const string accountSettingsIdFieldName = "#d";
 
@@ -243,7 +243,7 @@ namespace DeviceConfigurationToGsmCommunication
             }
         }
 
-        private void ExtractMeasurementSettings2(DeviceSettings config, ref StringBuilder sb)
+        private void ExtractMeasurementSettings2(DatabaseDeviceSettings config, ref StringBuilder sb)
         {
             const string accountSettingsIdFieldName = "#f";
 
@@ -277,7 +277,7 @@ namespace DeviceConfigurationToGsmCommunication
         /// </summary>
         /// <param name="config"></param>
         /// <param name="sb"></param>
-        private void ExtractFtpSettings(DeviceSettings config, ref StringBuilder sb)
+        private void ExtractFtpSettings(DatabaseDeviceSettings config, ref StringBuilder sb)
         {
             const string ftpSettingsIdFieldName = "#k";
 

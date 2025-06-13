@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\JsonToBusinessObjects\JsonToBusinessObjects.csproj" />
     <ProjectReference Include="..\KellerAg.Shared.IoT.Converters\KellerAg.Shared.IoT.Converters.csproj" />
   </ItemGroup>
 

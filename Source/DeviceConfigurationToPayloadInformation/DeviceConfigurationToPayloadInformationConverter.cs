@@ -6,7 +6,7 @@ namespace DeviceConfigurationToPayloadInformation
 {
     public class DeviceConfigurationToPayloadInformationConverter
     {
-        public List<PayloadInformation> Convert(DeviceSettings differences)
+        public List<PayloadInformation> Convert(DatabaseDeviceSettings differences)
         {
             //todo
 

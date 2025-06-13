@@ -57,7 +57,7 @@ namespace KellerAg.Shared.Entities.DeviceConfiguration
         public bool MeasureFunctionEnabled { get; set; }
         public bool AlarmFunctionEnabled { get; set; }
         public bool InfoFunctionEnabled { get; set; }
-        public LocationInfoConfigurationModel LocationInfo { get; set; }
+        public bool WaterLevelEnabled { get; set; }
         public WaterCalculationConfigurationModel WaterCalculation { get; set; }
         public IoTHardwareConfigurationModel HardwareConfiguration { get; set; }
     }
@@ -77,6 +77,7 @@ namespace KellerAg.Shared.Entities.DeviceConfiguration
         public bool RejoinFunctionEnabled { get; set; }
         
         public LoRaConnectionConfigurationModel LoRaSettings { get; set; }
+        public LocationInfoConfigurationModel LocationInfo { get; set; }
     }
 
     public class CellularDeviceConfigurationModel : IoTDeviceConfigurationModel
@@ -89,11 +90,15 @@ namespace KellerAg.Shared.Entities.DeviceConfiguration
         public CellularInfoFunctionConfigurationModel Info { get; set; }
 
         public DataConnectionFunctionConfigurationModel DataConnection { get; set; }
+        public CellularCheckFunctionConfigurationModel CellularCheck { get; set; }
         public bool DataConnectionEnabled { get; set; }
 
-        public CellularCheckFunctionConfigurationModel CellularCheck { get; set; }
         public bool CellularCheckFunctionEnabled { get; set; }
 
+        /// <summary>
+        /// This should never be disabled. If disabled data will be sent in plaintext and will not be able to be processed by other services
+        /// This property is only read from the device, never written. The value is basically a duplicate from the EventType in Event (0 = false, 1-4 = true)
+        /// </summary>
         public bool RecordDataTransferEnabled { get; set; }
 
         /// <summary>
@@ -109,6 +114,7 @@ namespace KellerAg.Shared.Entities.DeviceConfiguration
         /// <summary>
         /// Only works with <see cref="RecordDataTransferEnabled"/> enabled
         /// </summary>
+        /// </summary>
         public bool EventFunctionEnabled { get; set; }
 
         public FtpConnectionConfigurationModel FtpConnection { get; set; }
@@ -116,6 +122,8 @@ namespace KellerAg.Shared.Entities.DeviceConfiguration
         public MailConnectionConfigurationModel MailConnection { get; set; }
 
         public InternetConnectionConfigurationModel InternetConnection { get; set; }
+
+        public CellularIdentificationConfigurationModel LocationInfo { get; set; }
 
     }
 
@@ -145,11 +153,24 @@ namespace KellerAg.Shared.Entities.DeviceConfiguration
         public DateTime NextDetection{ get; set; }
         public TimeSpan EventDetectionInterval { get; set; }
         public TimeSpan OnActiveInterval { get; set; }
+
+        /// <summary>
+        /// 0 = Inactive -> This should never be the case. If 0, the data will be sent in plaintext and will not be able to be processed by other services
+        /// 1 = Active
+        /// 2 = On/Off
+        /// 3 = Delta/Save
+        /// 4 = Delta/Send
+        /// </summary>
         public int EventType  { get; set; }
         public int EventChannel  { get; set; }
         public double TriggerOnValue  { get; set; }
         public double TriggerOffValue  { get; set; }
         public double DeltaValue  { get; set; }
+
+        /// <summary>
+        /// Record data is sent at the latest after this amount of files are reached
+        /// </summary>
+        public int MaxFileBatchSize { get; set; }
 
     }
 
@@ -185,6 +206,11 @@ namespace KellerAg.Shared.Entities.DeviceConfiguration
         public string LocationName { get; set; }
     }
 
+    public class CellularIdentificationConfigurationModel : LocationInfoConfigurationModel
+    { 
+        public string Id { get; set; }
+    }
+
     public class CellularCheckFunctionConfigurationModel : IntervalConfigurationModel
     {
         public bool CheckMail { get; set; }
@@ -200,6 +226,8 @@ namespace KellerAg.Shared.Entities.DeviceConfiguration
         public string UserName { get; set; }
         public string Password { get; set; }
         public string DnsServer { get; set; }
+        public string SmsServiceCenterNumber { get; set; }
+        public string SimPin { get; set; }
     }
 
     public class MailConnectionConfigurationModel
@@ -214,14 +242,14 @@ namespace KellerAg.Shared.Entities.DeviceConfiguration
         public string ReturnMailAddress { get; set; }
 
         public string PopServerAddress { get; set; }
-        public int PopServerPort { get; set; }
+        public int? PopServerPort { get; set; }
         public string PopServerUserId { get; set; }
         public string PopServerPassword { get; set; }
         public bool PopServerUseSsl { get; set; }
 
         public bool UseAlternateSmtpLogin { get; set; }
         public string SmtpServerAddress { get; set; }
-        public int SmtpServerPort { get; set; }
+        public int? SmtpServerPort { get; set; }
         public string SmtpServerUserId { get; set; }
         public string SmtpServerPassword { get; set; }
         public bool SmtpServerUseSsl { get; set; }
@@ -245,13 +273,17 @@ namespace KellerAg.Shared.Entities.DeviceConfiguration
         /// <summary>
         /// Default 21
         /// </summary>
-        public int SourceControlPort { get; set; }
+        public int? SourceControlPort { get; set; }
         /// <summary>
         /// Default 21
         /// </summary>
-        public int DestinationControlPort { get; set; }
+        public int? DestinationControlPort { get; set; }
         public string FtpDirectory { get; set; }
         public bool ActiveMode { get; set; }
+        /// <summary>
+        /// Use SSL/TLS
+        /// </summary>
+        public bool UseSecureProtocol { get; set; }
     }
 
     public class LoRaConnectionConfigurationModel
@@ -327,6 +359,11 @@ namespace KellerAg.Shared.Entities.DeviceConfiguration
         /// 3 = Switch input 2 (nc)
         /// </summary>
         public int AlarmType { get; set; }
+
+        /// <summary>
+        /// While alarm is active, Alarm is sent this amount of times
+        /// </summary>
+        public int SendAlarmAmountOfTimes { get; set; }
     }
 
     public class DataConnectionFunctionConfigurationModel : IntervalConfigurationModel

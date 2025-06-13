@@ -13,5 +13,9 @@ namespace KellerAg.Shared.Entities.Device
         byte Address { get; }
 
         bool IsSupported { get; }
+
+        bool IsModbusSupported { get; }
+
+        bool IsKellerbusSupported { get; }
     }
 }

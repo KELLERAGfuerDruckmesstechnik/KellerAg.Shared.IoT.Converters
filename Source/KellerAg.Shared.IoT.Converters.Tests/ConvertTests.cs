@@ -119,11 +119,11 @@ namespace KellerAg.Shared.IoT.Converters.Tests
             var s = Newtonsoft.Json.JsonConvert.SerializeObject(businessObject);
 
             // Act
-            DeviceSettings result = convert.BusinessObjectToDeviceConfiguration(businessObject);
+            DatabaseDeviceSettings result = convert.BusinessObjectToDeviceConfiguration(businessObject);
 
             // Assert
 
-            Assert.AreEqual("Sales Demo", result.GeneralNetworkName);
+            Assert.AreEqual("Sales Demo",(string)result.GeneralNetworkName);
             Assert.AreEqual("ARC-1 SN 5 - Demo", result.GeneralLocationName);
             Assert.AreEqual("8.7397621", result.GeneralLongitudeText);
             Assert.AreEqual("47.4997252", result.GeneralLatitudeText);
@@ -174,7 +174,7 @@ namespace KellerAg.Shared.IoT.Converters.Tests
             // Arrange
             var convert = new KellerAg.Shared.IoT.Converters.IoTConvert();
             string deviceConfigurationDifferenceJson = "{\"generalLongitudeText\":\"lond1234\",\"hardwareConnectionType\":3,\"hardwarePowerExternalDevice\":12,\"hardwareMeasureSaveChannel0\":false,\"hardwareMeasureSaveChannel1\":true,\"hardwareDataConnectionCallNumber\":\"string\",\"measurementTimer\":12345,\"measurementInterval\":987,\"waterLevelCalculationLength\":42}";
-            DeviceSettings deviceSettings = JsonConvert.DeserializeObject<DeviceSettings>(deviceConfigurationDifferenceJson);
+            DatabaseDeviceSettings deviceSettings = JsonConvert.DeserializeObject<DatabaseDeviceSettings>(deviceConfigurationDifferenceJson);
 
             // Act
             var result = convert.DeviceConfigurationToGsmCommunication(deviceSettings);
@@ -188,7 +188,7 @@ namespace KellerAg.Shared.IoT.Converters.Tests
         {
             // Arrange
             var convert = new KellerAg.Shared.IoT.Converters.IoTConvert();
-            DeviceSettings deviceConfigurations = new DeviceSettings
+            DatabaseDeviceSettings deviceConfigurations = new DatabaseDeviceSettings
             {
                 AlarmChannelNumber = 55,
                 CheckTimer = 12345,

@@ -11,6 +11,8 @@
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JsonToBusinessObjects\JsonToBusinessObjects.csproj" />
+    <ProjectReference Include="..\KellerAg.Shared.Entities\KellerAg.Shared.Entities.csproj" />
     <ProjectReference Include="..\KellerAg.Shared.IoT.Converters\KellerAg.Shared.IoT.Converters.csproj" />
   </ItemGroup>
 </Project>

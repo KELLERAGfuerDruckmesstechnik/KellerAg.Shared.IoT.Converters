@@ -12,6 +12,7 @@ namespace KellerAg.Shared.Entities.Device
         private static string _prefixEUI = "EUI";
         private static string _prefixADT = "ADT";
         private static string _prefixConverter = "Converter";
+        private static string _prefixLeo = "LEO";
         private static string _prefixUnknown = "unknown";
 
         /// <summary>
@@ -106,16 +107,17 @@ namespace KellerAg.Shared.Entities.Device
                 case DeviceType.LeoIsler:
                 case DeviceType.LeoVolvo:
                 case DeviceType.LeoGuehring:
+                case DeviceType.LEO1x:
+                case DeviceType.LEO3:
+                case DeviceType.ECO1:
+                case DeviceType.Lex1:
+                    return $"{_prefixLeo}-{deviceType}-{serialNumber}";
                 case DeviceType.Castello:
                 case DeviceType.dV_2:
                 case DeviceType.dV_2Cool:
                 case DeviceType.dV_2PP:
                 case DeviceType.dV_2PS:
                 case DeviceType.dV_2_Radtke:
-                case DeviceType.LEO1x:
-                case DeviceType.LEO3:
-                case DeviceType.ECO1:
-                case DeviceType.Lex1:
                 case DeviceType.S30X:
                 case DeviceType.S30X2:
                 case DeviceType.S30X2_Cond:
@@ -190,16 +192,17 @@ namespace KellerAg.Shared.Entities.Device
                 case DeviceType.LeoIsler:
                 case DeviceType.LeoVolvo:
                 case DeviceType.LeoGuehring:
+                case DeviceType.LEO1x:
+                case DeviceType.LEO3:
+                case DeviceType.ECO1:
+                case DeviceType.Lex1:
+                    return _prefixLeo;
                 case DeviceType.Castello:
                 case DeviceType.dV_2:
                 case DeviceType.dV_2Cool:
                 case DeviceType.dV_2PP:
                 case DeviceType.dV_2PS:
                 case DeviceType.dV_2_Radtke:
-                case DeviceType.LEO1x:
-                case DeviceType.LEO3:
-                case DeviceType.ECO1:
-                case DeviceType.Lex1:
                 case DeviceType.S30X:
                 case DeviceType.S30X2:
                 case DeviceType.S30X2_Cond:

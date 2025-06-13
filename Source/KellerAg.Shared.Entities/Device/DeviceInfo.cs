@@ -52,6 +52,9 @@ namespace KellerAg.Shared.Entities.Device
                 new DeviceInfo("LEX", "", 10, 8, DeviceType.Lex1),
                 new DeviceInfo("LEX", "", 10, 10, DeviceType.Lex1),
                 new DeviceInfo("LEO 1 / LEO 2", "", 10, 50, DeviceType.LEO1_2),
+                new DeviceInfo("LEO 1", "ST Mano", 31, 1, DeviceType.LEO1_2),
+                // provisorisch PzMano:
+                // new DeviceInfo("LEO 1", "ST Mano", 31, 1, DeviceType.LEO1_2),
                 
                 // GSM / ARC / ADT
                 new DeviceInfo("GSM-1", "", 9, 0, DeviceType.GSM1),
@@ -170,5 +173,7 @@ namespace KellerAg.Shared.Entities.Device
         public double[] ChannelMinValues { get; set; }
 
         public bool IsCTD => Class == 5 && Group == 10;
+
+        public bool HasLeakMode => DeviceType == DeviceType.Lex1; // Are there others?
     }
 }
