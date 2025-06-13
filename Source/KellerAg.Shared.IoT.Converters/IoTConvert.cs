@@ -49,11 +49,11 @@
         }
 
         /// <inheritdoc />
-        public DatabaseDeviceSettings BusinessObjectToDeviceConfiguration(BusinessObjectRoot businessObject)
+        public DeviceSettings BusinessObjectToDeviceConfiguration(BusinessObjectRoot businessObject)
         {
             var uniqueSerialNumber = Converters.BusinessObjectToDeviceConfiguration.SetExtractedUniqueSerialNumber(businessObject);
 
-            DatabaseDeviceSettings receivedSettings = Converters.BusinessObjectToDeviceConfiguration.CreateConfiguration(
+            DeviceSettings receivedSettings = Converters.BusinessObjectToDeviceConfiguration.CreateConfiguration(
                 uniqueSerialNumber,
                 businessObject.Configuration.GprsSettings,
                 businessObject.Configuration.TextEmailSmsLocSettings,
@@ -68,14 +68,14 @@
         /// <inheritdoc />
         public List<string> DeviceConfigurationToLoRaPayloads(string deviceConfigurationDifferenceJson)
         {
-            DatabaseDeviceSettings deviceConfigurationDifferences =
-                JsonConvert.DeserializeObject<DatabaseDeviceSettings>(deviceConfigurationDifferenceJson);
+            DeviceSettings deviceConfigurationDifferences =
+                JsonConvert.DeserializeObject<DeviceSettings>(deviceConfigurationDifferenceJson);
             List<string> payloads = DeviceConfigurationToLoRaPayloads(deviceConfigurationDifferences);
             return payloads;
         }
 
         /// <inheritdoc />
-        public List<string> DeviceConfigurationToLoRaPayloads(DatabaseDeviceSettings deviceConfigurationDifferences)
+        public List<string> DeviceConfigurationToLoRaPayloads(DeviceSettings deviceConfigurationDifferences)
         {
             DeviceConfigurationToPayloadInformationConverter converter = new DeviceConfigurationToPayloadInformationConverter();
             List<PayloadInformation> payloadInfos = converter.Convert(deviceConfigurationDifferences);
@@ -88,7 +88,7 @@
         }
 
         /// <inheritdoc />
-        public string DeviceConfigurationToGsmCommunication(DatabaseDeviceSettings deviceConfigurations)
+        public string DeviceConfigurationToGsmCommunication(DeviceSettings deviceConfigurations)
         {
             var converter = new DeviceConfigurationToGsmCommunicationConverter();
             string gsmCommunication = converter.Convert(deviceConfigurations);
@@ -98,7 +98,7 @@
         /// <inheritdoc />
         public string DeviceConfigurationToGsmCommunication(string deviceConfigurationDifferenceJson)
         {
-            DatabaseDeviceSettings deviceConfigurationDifferences = JsonConvert.DeserializeObject<DatabaseDeviceSettings>(deviceConfigurationDifferenceJson);
+            DeviceSettings deviceConfigurationDifferences = JsonConvert.DeserializeObject<DeviceSettings>(deviceConfigurationDifferenceJson);
             return DeviceConfigurationToGsmCommunication(deviceConfigurationDifferences);
         }
 

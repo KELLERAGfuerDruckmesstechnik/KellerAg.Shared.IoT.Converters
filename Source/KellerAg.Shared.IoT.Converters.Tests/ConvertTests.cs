@@ -119,7 +119,7 @@ namespace KellerAg.Shared.IoT.Converters.Tests
             var s = Newtonsoft.Json.JsonConvert.SerializeObject(businessObject);
 
             // Act
-            DatabaseDeviceSettings result = convert.BusinessObjectToDeviceConfiguration(businessObject);
+            DeviceSettings result = convert.BusinessObjectToDeviceConfiguration(businessObject);
 
             // Assert
 
@@ -174,7 +174,7 @@ namespace KellerAg.Shared.IoT.Converters.Tests
             // Arrange
             var convert = new KellerAg.Shared.IoT.Converters.IoTConvert();
             string deviceConfigurationDifferenceJson = "{\"generalLongitudeText\":\"lond1234\",\"hardwareConnectionType\":3,\"hardwarePowerExternalDevice\":12,\"hardwareMeasureSaveChannel0\":false,\"hardwareMeasureSaveChannel1\":true,\"hardwareDataConnectionCallNumber\":\"string\",\"measurementTimer\":12345,\"measurementInterval\":987,\"waterLevelCalculationLength\":42}";
-            DatabaseDeviceSettings deviceSettings = JsonConvert.DeserializeObject<DatabaseDeviceSettings>(deviceConfigurationDifferenceJson);
+            DeviceSettings deviceSettings = JsonConvert.DeserializeObject<DeviceSettings>(deviceConfigurationDifferenceJson);
 
             // Act
             var result = convert.DeviceConfigurationToGsmCommunication(deviceSettings);
@@ -188,7 +188,7 @@ namespace KellerAg.Shared.IoT.Converters.Tests
         {
             // Arrange
             var convert = new KellerAg.Shared.IoT.Converters.IoTConvert();
-            DatabaseDeviceSettings deviceConfigurations = new DatabaseDeviceSettings
+            DeviceSettings deviceConfigurations = new DeviceSettings
             {
                 AlarmChannelNumber = 55,
                 CheckTimer = 12345,

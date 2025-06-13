@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net6.0;net8.0;net9.0</TargetFrameworks>
-    <Version>3.25.0</Version>
+    <Version>3.26.0</Version>
     <Company>KELLER Pressure</Company>
     <Authors>KELLER Pressure</Authors>
     <RepositoryUrl>https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters</RepositoryUrl>
@@ -16,6 +16,6 @@
     <WarningLevel>6</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\KellerAg.Shared.Entities\KellerAg.Shared.Entities.csproj" />
+    <PackageReference Include="KellerAg.Shared.Entities" Version="3.25.7" />
   </ItemGroup>
 </Project>

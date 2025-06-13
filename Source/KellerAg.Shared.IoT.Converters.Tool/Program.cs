@@ -1,5 +1,4 @@
-﻿using KellerAg.Shared.IoT.Converters; //for the converters
-using JsonToBusinessObjects.Conversion; //for some used entities/DTOs
+﻿using JsonToBusinessObjects.Conversion; //for some used entities/DTOs
 using JsonToBusinessObjects.DataContainers; //for some used entities/DTOs
 
 using System.Text.Json; //for serialization

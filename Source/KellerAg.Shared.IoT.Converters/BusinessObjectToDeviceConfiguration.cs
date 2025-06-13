@@ -7,7 +7,7 @@ namespace KellerAg.Shared.IoT.Converters
 {
     public static class BusinessObjectToDeviceConfiguration
     {
-        public static DatabaseDeviceSettings CreateConfiguration(
+        public static DeviceSettings CreateConfiguration(
             string deviceSerialNumber,
             GprsSettings gprsSettings,
             TextEmailSmsLocSettings textEmailSmsLocSettings,
@@ -16,7 +16,7 @@ namespace KellerAg.Shared.IoT.Converters
             FtpSettings ftpSettings,
             MeasurementSettings2 measurementSettings2)
         {
-            var configurationEntity = new DatabaseDeviceSettings
+            var configurationEntity = new DeviceSettings
             {
                 CreationDateTime   = DateTime.UtcNow,
                 State              = SendState.ConfirmedActiveness,

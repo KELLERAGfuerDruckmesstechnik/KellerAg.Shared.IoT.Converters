@@ -4,7 +4,7 @@
     <!-- The identifier that must be unique within the hosting gallery -->
     <PackageId>KellerAg.Cloud.JsonToBusinessObjects</PackageId>
     <!-- The package version number that is used when resolving dependencies -->
-    <PackageVersion>3.25.1.0</PackageVersion>
+    <PackageVersion>3.26.1.0</PackageVersion>
     <!-- Authors contain text that appears directly on the gallery -->
     <authors>KELLER Pressure</authors>
     <!-- The description can be used in package manager UI. Note that the nuget.org gallery uses information you add in the portal. -->
@@ -22,7 +22,7 @@
   <PropertyGroup>
     <Product>KellerAg.Cloud.JsonToBusinessObjects</Product>
     <Company>KELLER Pressure</Company>
-    <Version>3.25.1</Version>
+    <Version>3.26.1</Version>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath />

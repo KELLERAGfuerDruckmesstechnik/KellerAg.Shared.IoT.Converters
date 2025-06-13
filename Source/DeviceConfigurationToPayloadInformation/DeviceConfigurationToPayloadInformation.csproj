@@ -1,14 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net6.0;net8.0;net9.0</TargetFrameworks>
-    <Version>3.25.0</Version>
+    <Version>3.26.0</Version>
     <Company>KELLER Pressure</Company>
     <Authors>Sebastian Mojado</Authors>
     <Description>Used by KellerAg.Shared.IoT.Converters</Description>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\KellerAg.Shared.Entities\KellerAg.Shared.Entities.csproj" />
+    <PackageReference Include="KellerAg.Shared.Entities" Version="3.25.7" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\KellerAg.Shared.LoRaPayloadConverter\KellerAg.Shared.LoRaPayloadConverter.csproj" />
   </ItemGroup>
 </Project>

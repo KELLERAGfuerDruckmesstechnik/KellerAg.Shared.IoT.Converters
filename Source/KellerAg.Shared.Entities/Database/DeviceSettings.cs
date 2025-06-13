@@ -42,7 +42,7 @@
     /// The Configuration entity.
     /// Important: for the properties, do not use the same name as for Device, otherwise the ordering won't work.
     /// </summary>
-    public class DatabaseDeviceSettings
+    public class DeviceSettings
     {
         [Key]
         public int Id { get; set; }

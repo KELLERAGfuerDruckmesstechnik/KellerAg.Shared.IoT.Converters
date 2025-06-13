@@ -8,10 +8,16 @@
     <PackageTags>KELLER, KELLER Pressure, Druckmesstechnik, Pressure, pressure sensors, PressureSuite, PressureSuite cloud, LoRaWAN, LoRa, Loriot.io, Actility, TTN</PackageTags>
     <Description>KELLER Pressure Entities for various purposes</Description>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <AssemblyVersion>3.25.4.4</AssemblyVersion>
-    <FileVersion>3.25.4.4</FileVersion>
-    <Version>3.25.4.4</Version>
+    <AssemblyVersion>3.25.7</AssemblyVersion>
+    <FileVersion>3.25.7</FileVersion>
+    <Version>3.25.7</Version>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <PackageReleaseNotes>
+      2025-06-13 Release as own package
+    </PackageReleaseNotes>
+  </PropertyGroup>
+  <PropertyGroup>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE</DefineConstants>

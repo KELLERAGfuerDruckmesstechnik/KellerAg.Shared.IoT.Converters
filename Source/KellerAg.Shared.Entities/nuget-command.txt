@@ -1,4 +1,4 @@
 - change the version numbers in the changed project (project files)
 - change nuspec
 - execute: 
-nuget pack KellerAg.Shared.IoT.Converters.nuspec -OutputDirectory [OUTPUT_PATH]
+nuget pack KellerAg.Shared.Entites.nuspec -OutputDirectory [OUTPUT_PATH]

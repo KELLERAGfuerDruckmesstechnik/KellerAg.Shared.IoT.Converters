@@ -15,13 +15,13 @@ namespace DeviceConfigurationToGsmCommunication.Tests
         [Fact]
         public void WhenTryingToConvertWithEmptyDeviceConfig_ThenExceptionIsThrown()
         {
-            testee.Invoking(_ => _.Convert(new DatabaseDeviceSettings())).Should().Throw<EmptyGsmMessageException>();
+            testee.Invoking(_ => _.Convert(new DeviceSettings())).Should().Throw<EmptyGsmMessageException>();
         }
 
         [Fact]
         public void WhenTryingToConvertWithCompleteDeviceConfig_ThenFullTextIsProduced()
         {
-            var config = new DatabaseDeviceSettings
+            var config = new DeviceSettings
             {
                 GeneralNetworkName = "Test Network Name",
                 GeneralOwnTelNumber = "+41793893499",
@@ -183,7 +183,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
         [Fact(Skip = "FTP changes will be ignored")]
         public void WhenTryingToConvertWithASimpleDeviceConfig_ThenSimpleTextIsProduced()
         {
-            var config = new DatabaseDeviceSettings
+            var config = new DeviceSettings
             {
                 FtpUsername = "datamanager_666@gsmdata.ch",
                 FtpSourceControlPort = 21
@@ -197,7 +197,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
         [Fact]
         public void WhenTryingToConvertByteField_ThenSimpleTextIsProduced()
         {
-            var config = new DatabaseDeviceSettings
+            var config = new DeviceSettings
             {
                 MeasurementSendSms = true,
                 AlarmSendSms = false,
@@ -217,7 +217,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
         [Fact]
         public void WhenTryingToConvertPositiveDecimalFields_ThenSimpleTextIsProduced()
         {
-            var config = new DatabaseDeviceSettings
+            var config = new DeviceSettings
             {
                 AlarmOnThreshold = 1,
                 AlarmOffThreshold = 1,
@@ -248,7 +248,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
         [Fact]
         public void WhenTryingToConvertNegativeDecimalFields_ThenSimpleTextIsProduced()
         {
-            var config = new DatabaseDeviceSettings
+            var config = new DeviceSettings
             {
                 AlarmOnThreshold = -1,
                 AlarmOffThreshold = -1,
@@ -279,7 +279,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
         [Fact]
         public void WhenTryingToConvertDecimalFieldWithNineDigits_ThenSimpleTextIsProduced()
         {
-            var config = new DatabaseDeviceSettings
+            var config = new DeviceSettings
             {
                 AlarmOnThreshold = 999999999.4m
             };
@@ -292,7 +292,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
         [Fact]
         public void WhenTryingToConvertDecimalFieldWithMoreThanNineDigits_ThenExceptionIsThrown()
         {
-            var config = new DatabaseDeviceSettings
+            var config = new DeviceSettings
             {
                 AlarmOnThreshold = 999999999.5m
             };
@@ -303,7 +303,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
         [Fact]
         public void WhenTryingToConvertDecimalFieldWithMoreThanNineDecimals_ThenRoundedDownDecimalIsProduced()
         {
-            var config = new DatabaseDeviceSettings
+            var config = new DeviceSettings
             {
                 AlarmOnThreshold = 0.00000001m
             };
@@ -316,7 +316,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
         [Fact]
         public void WhenTryingToConvertDecimalFieldWithMoreThanNineDecimals_ThenRoundedUpDecimalIsProduced()
         {
-            var config = new DatabaseDeviceSettings
+            var config = new DeviceSettings
             {
                 AlarmOnThreshold = 0.00000005m
             };
@@ -329,7 +329,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
         [Fact]
         public void WhenTryingToConvertNegativeDecimalFieldWithNineDigits_ThenSimpleTextIsProduced()
         {
-            var config = new DatabaseDeviceSettings
+            var config = new DeviceSettings
             {
                 AlarmOnThreshold = -999999999.4m
             };
@@ -342,7 +342,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
         [Fact]
         public void WhenTryingToConvertNegativeDecimalFieldWithMoreThanNineDigits_ThenExceptionIsThrown()
         {
-            var config = new DatabaseDeviceSettings
+            var config = new DeviceSettings
             {
                 AlarmOnThreshold = -999999999.5m
             };
@@ -353,7 +353,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
         [Fact]
         public void WhenTryingToConvertNegativeDecimalFieldWithMoreThanNineDecimals_ThenRoundedDownDecimalIsProduced()
         {
-            var config = new DatabaseDeviceSettings
+            var config = new DeviceSettings
             {
                 AlarmOnThreshold = -0.00000011m
             };
@@ -366,7 +366,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
         [Fact]
         public void WhenTryingToConvertNegativeDecimalFieldRoundedToZero_ThenPositiveRoundedDecimalIsProduced()
         {
-            var config = new DatabaseDeviceSettings
+            var config = new DeviceSettings
             {
                 AlarmOnThreshold = -0.00000001m
             };
@@ -379,7 +379,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
         [Fact]
         public void WhenTryingToConvertNegativeDecimalFieldWithMoreThanNineDecimals_ThenRoundedUpDecimalIsProduced()
         {
-            var config = new DatabaseDeviceSettings
+            var config = new DeviceSettings
             {
                 AlarmOnThreshold = -0.00000005m
             };
@@ -392,7 +392,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
         [Fact]
         public void WhenTryingToConvertTrueBooleanValue_ThenSimpleTextIsProduced()
         {
-            var config = new DatabaseDeviceSettings
+            var config = new DeviceSettings
             {
              //   FtpUseTLS = true,
              //   FtpUseActiveMode = true,
@@ -409,7 +409,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
         [Fact]
         public void WhenTryingToConvertFalseBooleanValue_ThenSimpleTextIsProduced()
         {
-            var config = new DatabaseDeviceSettings
+            var config = new DeviceSettings
             {
            //     FtpUseTLS = false,
             //    FtpUseActiveMode = false,
@@ -426,7 +426,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
         [Fact]
         public void WhenTryingToConvertByteValue_ThenSimpleTextIsProduced()
         {
-            var config = new DatabaseDeviceSettings
+            var config = new DeviceSettings
             {
                 GprsModemProtocol = 5,
                 MeasurementSendMailAfterX = 5,
@@ -453,7 +453,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
         [Fact]
         public void WhenTryingToConvertZeroByteValue_ThenSimpleTextIsProduced()
         {
-            var config = new DatabaseDeviceSettings
+            var config = new DeviceSettings
             {
                 GprsModemProtocol = 0,
                 MeasurementSendMailAfterX = 0,
@@ -480,7 +480,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
         [Fact]
         public void WhenTryingToConvertIntegerWithinMinAndMax_ThenSimpleTextIsProduced()
         {
-            var config = new DatabaseDeviceSettings
+            var config = new DeviceSettings
             {
              //   FtpPort = 1024,
              //   FtpSourceControlPort = 1025,
@@ -511,7 +511,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
         [Fact(Skip = "FTP changes will be ignored")]
         public void WhenTryingToConvertIntegerOutOfUpperBound_ThenExceptionIsThrown()
         {
-            var config = new DatabaseDeviceSettings
+            var config = new DeviceSettings
             {
                 FtpPort = 65536
             };
@@ -522,7 +522,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
         [Fact]
         public void WhenTryingToConvertIntegerOutOfLowerBound_ThenExceptionIsThrown()
         {
-            var config = new DatabaseDeviceSettings
+            var config = new DeviceSettings
             {
                 AlarmInterval = -1
             };
@@ -533,7 +533,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
         [Fact(Skip = "FTP changes will be ignored")]
         public void WhenTryingToConvertString_ThenSimpleTextIsProduced()
         {
-            var config = new DatabaseDeviceSettings
+            var config = new DeviceSettings
             {
                 GprsAPN = "Test APN"
             };
@@ -546,7 +546,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
         [Fact(Skip = "GprsAPN is not supported anymore")]
         public void WhenTryingToConvertTooLongString_ThenExceptionIsThrown()
         {
-            var config = new DatabaseDeviceSettings
+            var config = new DeviceSettings
             {
                 GprsAPN = "Test APN wich should be way too long for the converter to process it"
             };
@@ -562,7 +562,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
 
             for (int i = unsupportedStartCharacter; i <= unsupportedEndCharacter; i++)
             {
-                var config = new DatabaseDeviceSettings
+                var config = new DeviceSettings
                 {
                     GprsAPN = char.ConvertFromUtf32(i)
                 };
@@ -575,7 +575,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
 
             for (int i = unsupportedStartCharacter; i <= unsupportedEndCharacter; i++)
             {
-                var config = new DatabaseDeviceSettings
+                var config = new DeviceSettings
                 {
                     GprsAPN = char.ConvertFromUtf32(i)
                 };
@@ -587,7 +587,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
         [Fact]
         public void WhenTryingToConvertTimerFields_ThenEmptyConfigurationIsGenerated()
         {
-            var config = new DatabaseDeviceSettings
+            var config = new DeviceSettings
             {
                 AlarmTimer = 1,
                 CheckTimer = 2,
