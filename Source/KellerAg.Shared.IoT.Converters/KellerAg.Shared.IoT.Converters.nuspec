@@ -2,20 +2,24 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>KellerAg.Shared.IoT.Converters</id>
-    <version>3.25.3</version>
+    <version>3.25.4</version>
     <authors>Sebastian Mojado</authors>
     <owners>KELLER Pressure</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
-    <projectUrl>https://docs.pressuresuite.com/cloud-interfaces/iot-converter</projectUrl>
-    <description>Converter library with many helpful methods to convert proprietary KELLER protocol format data to readable DTOs and reverse. Also converts LoRa-JSON from TheThingsNetwork, Actility/Thingspark, Loriot.io messages with KELLER payload to readable DTOs.</description>
     <releaseNotes>
       2022-09-16 Version with open-sourced and slightly updated files
       2024-06-19 Updated internal naming and versioning
       2025-06-04 Added Netmore Lora format
+      2025-06-13 To avoid confusion we changed DeviceSettings to DatabaseDeviceSettings
     </releaseNotes>
-    <tags>KELLER, KELLER Pressure, Druckmesstechnik, Pressure, pressure sensors, PressureSuite, LoRaWAN, LoRa, Loriot.io, Actility, TTN</tags>
+    <tags>KELLER, KELLER Pressure, Druckmesstechnik, Pressure, pressure sensors, PressureSuite, LoRaWAN, LoRa, Loriot.io, Netmore, Actility, TTN</tags>
     <repository type="git" url="https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.IoT.Converters"/>
+    <projectUrl>https://docs.pressuresuite.com/cloud-interfaces/iot-converter</projectUrl>
+    <description>
+      Converter library with many helpful methods to convert proprietary KELLER protocol format data to readable DTOs and reverse.
+      Also converts LoRa-JSON from TheThingsNetwork, Actility/Thingspark, Loriot.io, Netmore messages with KELLER payload to readable DTOs.
+    </description>
     <dependencies>
       <group targetFramework="net6.0">
         <dependency id="Newtonsoft.Json" version="13.0.3" />
