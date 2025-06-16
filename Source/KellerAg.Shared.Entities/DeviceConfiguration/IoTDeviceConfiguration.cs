@@ -75,7 +75,7 @@ namespace KellerAg.Shared.Entities.DeviceConfiguration
 
         public RejoinFunctionConfigurationModel Rejoin { get; set; }
         public bool RejoinFunctionEnabled { get; set; }
-        
+
         public LoRaConnectionConfigurationModel LoRaSettings { get; set; }
         public LocationInfoConfigurationModel LocationInfo { get; set; }
     }
@@ -105,7 +105,7 @@ namespace KellerAg.Shared.Entities.DeviceConfiguration
         /// Only works with <see cref="RecordDataTransferEnabled"/> enabled
         /// </summary>
         public int SendAfterAmountOfFilesReached { get; set; }
-        
+
         /// <summary>
         /// Only works with <see cref="RecordDataTransferEnabled"/> enabled
         /// </summary>
@@ -113,7 +113,7 @@ namespace KellerAg.Shared.Entities.DeviceConfiguration
 
         /// <summary>
         /// Only works with <see cref="RecordDataTransferEnabled"/> enabled
-        /// </summary>
+        /// This can be changed by the device if the value of "Event.EventType >= 2" -> better control the enable/disable of events with "Event.EventType = 1" (off)
         /// </summary>
         public bool EventFunctionEnabled { get; set; }
 
@@ -150,7 +150,7 @@ namespace KellerAg.Shared.Entities.DeviceConfiguration
 
     public class EventFunctionConfigurationModel
     {
-        public DateTime NextDetection{ get; set; }
+        public DateTime NextDetection { get; set; }
         public TimeSpan EventDetectionInterval { get; set; }
         public TimeSpan OnActiveInterval { get; set; }
 
@@ -161,11 +161,11 @@ namespace KellerAg.Shared.Entities.DeviceConfiguration
         /// 3 = Delta/Save
         /// 4 = Delta/Send
         /// </summary>
-        public int EventType  { get; set; }
-        public int EventChannel  { get; set; }
-        public double TriggerOnValue  { get; set; }
-        public double TriggerOffValue  { get; set; }
-        public double DeltaValue  { get; set; }
+        public int EventType { get; set; }
+        public int EventChannel { get; set; }
+        public double TriggerOnValue { get; set; }
+        public double TriggerOffValue { get; set; }
+        public double DeltaValue { get; set; }
 
         /// <summary>
         /// Record data is sent at the latest after this amount of files are reached
@@ -207,7 +207,7 @@ namespace KellerAg.Shared.Entities.DeviceConfiguration
     }
 
     public class CellularIdentificationConfigurationModel : LocationInfoConfigurationModel
-    { 
+    {
         public string Id { get; set; }
     }
 
@@ -218,6 +218,14 @@ namespace KellerAg.Shared.Entities.DeviceConfiguration
         public bool CheckSms { get; set; }
         public string SmsAccessPw { get; set; }
         public string SmsText { get; set; }
+        /// <summary>
+        /// 0 = Deactivated
+        /// 1 = Update after each connection
+        /// 2 = Update only when difference larger than <see cref="TimeSynchronizationThreshold"/>
+        /// </summary>
+        private int TimeSynchronizationMode { get; set; }
+
+        private TimeSpan TimeSynchronizationThreshold { get; set; }
     }
 
     public class InternetConnectionConfigurationModel
@@ -284,6 +292,14 @@ namespace KellerAg.Shared.Entities.DeviceConfiguration
         /// Use SSL/TLS
         /// </summary>
         public bool UseSecureProtocol { get; set; }
+        /// <summary>
+        /// 0 = SSLv3
+        /// 1 = TLSv1.0
+        /// 2 = TLSv1.1
+        /// 3 = TLSv1.2
+        /// 4 = TLSv1.3
+        /// </summary>
+        public int TlsVersion { get; set; }
     }
 
     public class LoRaConnectionConfigurationModel
@@ -301,7 +317,7 @@ namespace KellerAg.Shared.Entities.DeviceConfiguration
         public string AppSessionKey { get; set; }
         /// <summary>
         /// 0 = unconfirmed
-        /// 2 = confirmed
+        /// 1 = confirmed
         /// </summary>
         public int UpLinkMode { get; set; }
         /// <summary>

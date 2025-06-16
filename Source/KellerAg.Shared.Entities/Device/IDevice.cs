@@ -12,6 +12,10 @@ namespace KellerAg.Shared.Entities.Device
 
         byte Address { get; }
 
+        int FirmwareYear { get; }
+
+        int FirmwareWeek { get; }
+
         bool IsSupported { get; }
 
         bool IsModbusSupported { get; }
