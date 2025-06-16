@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>KellerAg.Shared.Entities</id>
+    <version>3.25.7</version>
+    <owners>KELLER Pressure</owners>
+    <description>
+      Some helper classes
+    </description>
+    <authors>Sebastian Mojado</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <releaseNotes>
+      2025-06-13 Release as own packages 
+    </releaseNotes>
+    <tags>KELLER, KELLER Pressure, Druckmesstechnik, Pressure, pressure sensors, PressureSuite, LoRaWAN, LoRa, Loriot.io, Netmore, Actility, TTN</tags>
+    <repository type="git" url="https://github.com/KELLERAGfuerDruckmesstechnik/KellerAg.Shared.Entites"/>
+    <projectUrl>https://docs.pressuresuite.com/cloud-interfaces/iot-converter</projectUrl>
+    <dependencies>
+      <group targetFramework="net6.0">
+        <dependency id="NodaTime" version="3.1.4" />
+        <dependency id="TimeZoneConverter" version="6.0.1" />
+      </group>
+      <group targetFramework="net8.0">
+        <dependency id="NodaTime" version="3.1.4" />
+        <dependency id="TimeZoneConverter" version="6.0.1" />
+      </group>
+      <group targetFramework="net9.0">
+        <dependency id="NodaTime" version="3.1.4" />
+        <dependency id="TimeZoneConverter" version="6.0.1" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\net6.0\KellerAg.Shared.Entities.dll" target="lib\net6.0" />
+    <file src="bin\Release\net8.0\KellerAg.Shared.Entities.dll" target="lib\net8.0" />
+    <file src="bin\Release\net9.0\KellerAg.Shared.Entities.dll" target="lib\net9.0" />
+
+    <file src="bin\Release\net6.0\KellerAg.Shared.Entities.xml" target="lib\net6.0" />
+    <file src="bin\Release\net8.0\KellerAg.Shared.Entities.xml" target="lib\net8.0" />
+    <file src="bin\Release\net9.0\KellerAg.Shared.Entities.xml" target="lib\net9.0" />
+
+    <file src="bin\Release\net6.0\NodaTime.dll" target="lib\net6.0" />
+    <file src="bin\Release\net6.0\TimeZoneConverter.dll" target="lib\net6.0" />
+
+    <file src="bin\Release\net8.0\NodaTime.dll" target="lib\net8.0" />
+    <file src="bin\Release\net8.0\TimeZoneConverter.dll" target="lib\net8.0" />
+
+    <file src="bin\Release\net9.0\NodaTime.dll" target="lib\net9.0" />
+    <file src="bin\Release\net9.0\TimeZoneConverter.dll" target="lib\net9.0" />
+  </files>
+</package>
