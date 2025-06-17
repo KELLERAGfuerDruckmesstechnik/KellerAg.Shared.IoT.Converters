@@ -30,9 +30,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nuget-
       - name: Build
-        run: dotnet build --configuration Release
-      - name: Test
         run: dotnet build LiveEditor/LiveEditor.sln --configuration Release
+      - name: Test
+        run: dotnet test
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
