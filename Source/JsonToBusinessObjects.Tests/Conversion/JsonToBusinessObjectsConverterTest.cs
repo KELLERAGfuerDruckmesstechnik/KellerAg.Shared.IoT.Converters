@@ -110,12 +110,12 @@
     ""k"": ""110"",
     ""l"": ""smtp.gsmdata.ch"",
     ""m"": ""25"",
-    ""n"": ""p.schlegel@keller-druck.ch""
+    ""n"": ""p.schlegel@keller-pressure.com""
   },
   ""b"": {
-    ""a"": ""p.schlegel@keller-druck.ch"",
-    ""b"": ""p.schlegel@keller-druck.ch"",
-    ""c"": ""p.schlegel@keller-druck.ch"",
+    ""a"": ""p.schlegel@keller-pressure.com"",
+    ""b"": ""p.schlegel@keller-pressure.com"",
+    ""c"": ""p.schlegel@keller-pressure.com"",
     ""g"": ""SMS Pass"",
     ""j"": ""1234"",
     ""k"": """",

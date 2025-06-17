@@ -2,7 +2,7 @@
 namespace JsonToBusinessObjects.DataContainers
 {
     /// <summary>
-    /// Also see: https://wiki.keller-druck.com/display/ORGET/Ph03-Review01-CLOUD1_W1
+    /// Also see: https://wiki.keller-pressure.com/display/ORGET/Ph03-Review01-CLOUD1_W1
     /// </summary>
     public enum ProductLineName
     {

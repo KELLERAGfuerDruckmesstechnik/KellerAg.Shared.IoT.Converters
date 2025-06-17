@@ -43,7 +43,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
                 GprsSmsServiceCenterNr = "+41783456000",
                 GprsPasswordForQuerySms = "QueryPW",
                 GprsModemProtocol = 1,
-                FtpServerName = "ftp.keller-druck.com",
+                FtpServerName = "ftp.keller-pressure.com",
                 FtpServerPath = "folder",
                 FtpUsername = "Username",
                 FtpAccount = "AccountName",
@@ -62,9 +62,9 @@ namespace DeviceConfigurationToGsmCommunication.Tests
                 MailReturnAddress = "doris.leuthard@gmail.com",
                 MailOptSmtpUsername = "SMTP Username",
                 MailOptSmtpPassword = "SMTP Password",
-                MailSmtpServer = "smtp.keller-druck.ch",
+                MailSmtpServer = "smtp.keller-pressure.com",
                 MailSmtpPort = 55,
-                MailPop3Server = "pop.keller-druck.ch",
+                MailPop3Server = "pop.keller-pressure.com",
                 MailPop3Port = 56,
                 LockTimerMeasurement = true,
                 LockTimerAlarm = false,
@@ -75,7 +75,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
                 MeasurementSendSms = true,
                 MeasurementSendMail = false,
                 MeasurementSendFTP = true,
-                MeasurementMailAddress = "measuerement@keller-druck.com",
+                MeasurementMailAddress = "measuerement@keller-pressure.com",
                 MeasurementSmsNumber = "+41793854745",
                 MeasurementSmsText = "MEASURE",
                 MeasurementSendMailAfterX = 20,
@@ -85,7 +85,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
                 InfoSendSms = false,
                 InfoSendMail = true,
                 InfoSendFTP = false,
-                InfoMailAddress = "info@keller-druck.com",
+                InfoMailAddress = "info@keller-pressure.com",
                 InfoSmsNumber = "+49582164834",
                 CheckInterval = 68506,
                 CheckSendSms = true,
@@ -96,7 +96,7 @@ namespace DeviceConfigurationToGsmCommunication.Tests
                 AlarmSendSms = false,
                 AlarmSendMail = true,
                 AlarmSendFTP = false,
-                AlarmMailAddress = "alarm@keller-druck.com",
+                AlarmMailAddress = "alarm@keller-pressure.com",
                 AlarmSmsNumber = "+652423842347",
                 AlarmSmsText = "ALARM",
                 AlarmSendXTimes = 50,
@@ -158,8 +158,8 @@ namespace DeviceConfigurationToGsmCommunication.Tests
 
             string convertedObject = testee.Convert(config);
             string expected = "#a/a=New APN/b=546813/c=Password/d=dns.swisscom.ch/e=SMTP Name/f=POP Username/g=POP Password" +
-                    "/h=SMTP Username/i=SMTP Password/j=pop.keller-druck.ch/k=56/l=smtp.keller-druck.ch/m=55/n=beni.ricchiuto@gmail.com" +
-                "#b/a=measuerement@keller-druck.com/b=alarm@keller-druck.com/c=info@keller-druck.com/g=QueryPW/j=6526" +
+                    "/h=SMTP Username/i=SMTP Password/j=pop.keller-pressure.com/k=56/l=smtp.keller-pressure.com/m=55/n=beni.ricchi@gmail.com" +
+                "#b/a=measuerement@keller-pressure.com/b=alarm@keller-pressure.com/c=info@keller-pressure.com/g=QueryPW/j=6526" +
                     "/k=+5821347865/m=+41793854745/n=+652423842347/o=+49582164834/q=+41783456124/r=Test Network Name/s=+41793893499" +
                     "/t=Hinter dem Haus/u=MEASURE/v=ALARM/w=ANSWER/0=7.58831/1=5.38752/2=500" +
                 "#c/g=68501/h=68511/i=68503/j=68506/k=68531" +
@@ -168,11 +168,11 @@ namespace DeviceConfigurationToGsmCommunication.Tests
                     "/k=+122.00000/m=+1.0000000/n=-50.001000/o=+10.470000/p=+2.3000000/q=+1.0500000/r=+5.1000000" +
                         "/s=+45.200000/t=+6.5100000/u=+78.400000/0=+7.5883100/1=+5.3875200/2=+500.00000" +
                 "#f/g=68521/h=68522/m=11/n=3/o=15/q=22/z=9/3=250" +
-                "#k/a=ftp.keller-druck.com/b=Username/c=PasswordForFTP/d=AccountName/e=65/f=21/g=66/h=folder";
+                "#k/a=ftp.keller-pressure.com/b=Username/c=PasswordForFTP/d=AccountName/e=65/f=21/g=66/h=folder";
 
             string newExpected =
                 "#a/e=SMTP Name" +
-                "#b/a=measuerement@keller-druck.com/b=alarm@keller-druck.com/c=info@keller-druck.com/k=+5821347865/m=+41793854745/n=+652423842347/o=+49582164834/r=Test Network Name/s=+41793893499/t=Hinter dem Haus/u=MEASURE/v=ALARM/w=ANSWER/0=7.58831/1=5.38752/2=500" +
+                "#b/a=measuerement@keller-pressure.com/b=alarm@keller-pressure.com/c=info@keller-pressure.com/k=+5821347865/m=+41793854745/n=+652423842347/o=+49582164834/r=Test Network Name/s=+41793893499/t=Hinter dem Haus/u=MEASURE/v=ALARM/w=ANSWER/0=7.58831/1=5.38752/2=500" +
                 "#c/g=68501/h=68511/i=68503/j=68506/k=68531/m=103/o=21/p=85/q=20/r=8/s=2/t=50/v=6/w=4/x=21/y=21/z=105/0=1/2=1/3=7/4=4/5=5/6=2/7=0/8=0/9=3" +
                 "#d/a=+5.6850000/b=+7.3540000/c=+2.4710000/f=+7.1400000/g=+5.2100000/i=+1.2500000/j=+94.210000/k=+122.00000/m=+1.0000000/n=-50.001000/o=+10.470000/p=+2.3000000/q=+1.0500000/r=+5.1000000/s=+45.200000/t=+6.5100000/u=+78.400000/0=+7.5883100/1=+5.3875200/2=+500.00000" +
                 "#f/g=68521/h=68522/m=11/n=3/o=15/q=22/z=9/3=250";

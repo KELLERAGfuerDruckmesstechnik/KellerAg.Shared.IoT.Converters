@@ -8,7 +8,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="KellerAg.Shared.Entities" Version="3.25.7" />
+    <PackageReference Include="KellerAg.Shared.Entities" Version="3.25.12" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KellerAg.Shared.LoRaPayloadConverter\KellerAg.Shared.LoRaPayloadConverter.csproj" />

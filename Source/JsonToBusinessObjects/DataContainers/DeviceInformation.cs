@@ -6,7 +6,7 @@ namespace JsonToBusinessObjects.DataContainers
     {
         /// <summary>
         /// Each device belongs to a product line which are f.i. "LoRa", "GSM" or the newer "ARC1"
-        /// See https://wiki.keller-druck.com/display/ORGET/Ph03-Review01-CLOUD1_W1
+        /// See https://wiki.keller-pressure.com/display/ORGET/Ph03-Review01-CLOUD1_W1
         /// </summary>
         public ProductLineName ProductLine { get; set; }
 
@@ -33,7 +33,7 @@ namespace JsonToBusinessObjects.DataContainers
         public byte? MeasuredHumidity { get; set; }
 
         /// <summary>
-        /// See https://wiki.keller-druck.com/display/ORGET/Ph03-Review01-CLOUD1_W1
+        /// See https://wiki.keller-pressure.com/display/ORGET/Ph03-Review01-CLOUD1_W1
         /// #I/t
         ///  /t=0  2G (GSM)
         ///  /t=1  2G (GSM Compact)

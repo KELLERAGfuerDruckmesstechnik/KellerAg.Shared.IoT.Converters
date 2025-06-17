@@ -38,7 +38,7 @@ Also converts LoRa-JSON from TheThingsNetwork, Actility/Thingspark, Loriot.io me
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="KellerAg.Shared.Entities" Version="3.25.7" />
+    <PackageReference Include="KellerAg.Shared.Entities" Version="3.25.12" />
   </ItemGroup>
 
   <ItemGroup>
