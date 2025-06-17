@@ -98,10 +98,8 @@ See: https://iotconverter.pressuresuite.com
   <img src="./Readme.LiveEditor.ToLoRaDevice.png"  width="400" /> 
 </p>
 
-## Todos
-- Open-Source Entities (KellerAg.Shared.Entities)
+## Todo
 - Extend DeviceSettings.cs and add conversion from DTO to LoRaWAN Json
-- Combine all namespaces and DLLs into one
 
 ## FAQ
 Question: *This is C#/.NET library. Do you also have another language such as Java or Python?*  
