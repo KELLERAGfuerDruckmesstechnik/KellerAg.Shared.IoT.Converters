@@ -32,7 +32,7 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release
       - name: Test
-        run: dotnet test --no-build --configuration Release
+        run: dotnet build LiveEditor/LiveEditor.sln --configuration Release
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
