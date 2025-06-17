@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>KellerAg.Shared.IoT.Converters</id>
-    <version>3.26.1</version>
+    <version>3.26.2</version>
     <authors>Sebastian Mojado</authors>
     <owners>KELLER Pressure</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -24,15 +24,11 @@
     <dependencies>
       <group targetFramework="net6.0">
         <dependency id="Newtonsoft.Json" version="13.0.3" />
-        <dependency id="KellerAg.Shared.Entities" version="3.25.7" />
+        <dependency id="KellerAg.Shared.Entities" version="3.25.12" />
       </group>
       <group targetFramework="net8.0">
         <dependency id="Newtonsoft.Json" version="13.0.3" />
-        <dependency id="KellerAg.Shared.Entities" version="3.25.7" />
-      </group>
-      <group targetFramework="net9.0">
-        <dependency id="Newtonsoft.Json" version="13.0.3" />
-        <dependency id="KellerAg.Shared.Entities" version="3.25.7" />
+        <dependency id="KellerAg.Shared.Entities" version="3.25.12" />
       </group>
     </dependencies>
   </metadata>
@@ -51,17 +47,8 @@
     <file src="..\JsonToBusinessObjects\bin\Release\net8.0\JsonToBusinessObjects.dll" target="lib\net8.0" />
     <file src="bin\Release\net8.0\KellerAg.Shared.IoT.Converters.dll" target="lib\net8.0" />
 
-    <!-- Include the DLLs for net9.0 -->
-    <file src="..\DeviceConfigurationToGsmCommunication\bin\Release\net9.0\DeviceConfigurationToGsmCommunication.dll" target="lib\net9.0" />
-    <file src="..\DeviceConfigurationToPayloadInformation\bin\Release\net9.0\DeviceConfigurationToPayloadInformation.dll" target="lib\net9.0" />
-    <file src="..\GsmCommunicationToJson\bin\Release\net9.0\GsmCommunicationToJson.dll" target="lib\net9.0" />
-    <file src="..\JsonToBusinessObjects\bin\Release\net9.0\JsonToBusinessObjects.dll" target="lib\net9.0" />
-   
-    <file src="bin\Release\net9.0\KellerAg.Shared.IoT.Converters.dll" target="lib\net9.0" />
-
     <!-- Include any other necessary files like XML documentation for all frameworks -->
     <file src="bin\Release\net6.0\KellerAg.Shared.IoT.Converters.xml" target="lib\net6.0" />
     <file src="bin\Release\net8.0\KellerAg.Shared.IoT.Converters.xml" target="lib\net8.0" />
-    <file src="bin\Release\net9.0\KellerAg.Shared.IoT.Converters.xml" target="lib\net9.0" />
   </files>
 </package>

@@ -15,7 +15,7 @@
                     <label for="LABEL 1">Add KELLER GSM-Text to convert to Json</label>
                     <pre><code>    string gsmCommunicationText = await File.ReadAllTextAsync(pathToFile);</code></pre>
                     <div class="btn-group" style="margin: 10px">
-                        <RadzenButton Click="@(args => ChooseTextFileContentButtonClick(null, false ))" Text="Load Example Measurements File " Style="margin-left: 10px;" />
+                        <RadzenButton Click="@(args => ChooseTextFileContentButtonClick(null, false))" Text="Load Example Measurements File " Style="margin-left: 10px;" />
                         <RadzenButton Click="@(args => ChooseTextFileContentButtonClick(null, true))" Text="Load Example Configuration File" Style="margin-left: 20px;" />
                     </div>
                     @if (FtpConversion.IsFileAConfigurationMessage)
@@ -68,25 +68,25 @@
             {
                 <div class="form-group">
                     <RadzenCard>
-                        <label for="LABEL 5">BusinessObject to time series</label>  
+                        <label for="LABEL 5">BusinessObject to time series</label>
                         See Measurement Data in<pre><code>  businessObjectResult.Measurements;</code></pre>
 
-                        <RadzenGrid AllowFiltering="false" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" AllowPaging="false"
-                                    AllowSorting="true" Data="@_measurements" TItem="BlazorMeasurement">
+                        <RadzenDataGrid AllowFiltering="false" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" AllowPaging="false"
+                                        AllowSorting="true" Data="@_measurements" TItem="BlazorMeasurement">
                             <Columns>
-                                <RadzenGridColumn TItem="BlazorMeasurement" Property="Time" Title="Time">
-                                    <Template Context="data">
-                                        @($"{data.Time:u}")
+                                <RadzenDataGridColumn TItem="BlazorMeasurement" Property="Time" Title="Time">
+                                    <Template Context="measurement">
+                                        @($"{measurement.Time:u}")
                                     </Template>
-                                </RadzenGridColumn>
+                                </RadzenDataGridColumn>
 
-                                <RadzenGridColumn TItem="BlazorMeasurement" Property="Values" Title="Values">
-                                    <Template Context="data">
-                                        @($"{string.Join("  |  ", data.Values)}")
+                                <RadzenDataGridColumn TItem="BlazorMeasurement" Property="Values" Title="Values">
+                                    <Template Context="measurement">
+                                        @($"{string.Join("  |  ", measurement.Values)}")
                                     </Template>
-                                </RadzenGridColumn>
+                                </RadzenDataGridColumn>
                             </Columns>
-                        </RadzenGrid>
+                        </RadzenDataGrid>
                     </RadzenCard>
                 </div>
             }
