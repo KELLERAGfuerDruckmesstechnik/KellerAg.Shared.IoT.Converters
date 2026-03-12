@@ -105,5 +105,29 @@
         /// <param name="deviceConfigurationDifferenceJson">DeviceSettings DTO serialized to JSON</param>
         /// <returns></returns>
         List<string> DeviceConfigurationToLoRaPayloads(string deviceConfigurationDifferenceJson);
+
+        /// <summary>
+        /// CSV Export: Converts measurement data to TXT1 format (TOPKAPI compatible).
+        /// Each line contains the date/time (month/day/year hour:minute:second, e.g. 09/20/2004 00:00:00) followed by space-separated
+        /// measurement values for each channel ordered by channel number.
+        /// The first value is accessible in TOPKAPI using #F1, the second using #F2, etc.
+        /// </summary>
+        /// <param name="businessObjectRoot">The business object containing channel measurement data.</param>
+        /// <returns>A string in TXT1 tabulated ASCII format.</returns>
+        string BusinessObjectToTxt1(BusinessObjectRoot businessObjectRoot);
+
+        /// <summary>
+        /// CSV Export: Converts measurement data to TXT2 format (TOPKAPI compatible).
+        /// Each line contains the timestamp (YYMMDDhhmmss), a variable identifier, and a single value.
+        /// Values are accessible in TOPKAPI using #Fn or #En addresses.
+        /// </summary>
+        /// <param name="businessObjectRoot">The business object containing channel measurement data.</param>
+        /// <param name="variableNames">
+        /// Optional ordered list of variable identifiers for each channel (sorted by channel number).
+        /// Each name must start with a letter and may only contain letters, numbers, underscores, and periods.
+        /// Defaults to "CH{channelNumber}" when null or when fewer names than channels are provided.
+        /// </param>
+        /// <returns>A string in TXT2 tabulated ASCII format.</returns>
+        string BusinessObjectToTxt2(BusinessObjectRoot businessObjectRoot, IReadOnlyList<string> variableNames = null);
     }
 }

@@ -7,6 +7,7 @@ namespace KellerAg.Shared.IoT.Converters.Tests
     using Newtonsoft.Json;
     using JsonToBusinessObjects.DataContainers;
     using JsonToBusinessObjects.DataContainers.Configuration;
+    using System.Collections.Generic;
     using System.Globalization;
     using System;
 
@@ -312,6 +313,151 @@ namespace KellerAg.Shared.IoT.Converters.Tests
 
             // Assert
             Assert.IsNotNull(result.Measurements);
+        }
+
+        [TestMethod]
+        public void BusinessObjectToTxt1_GivenBusinessObjectWithMeasurements_ShouldProduceLinesWithTimestampAndChannelValues()
+        {
+            // Arrange
+            var convert = new KellerAg.Shared.IoT.Converters.IoTConvert();
+            var measurements = new JsonToBusinessObjects.Conversion.ChannelDataStorage();
+            var ts1 = new DateTime(2004, 9, 20, 0, 0, 0, DateTimeKind.Utc);
+            var ts2 = new DateTime(2004, 9, 21, 0, 0, 0, DateTimeKind.Utc);
+            measurements.StoreInChannel(0, new JsonToBusinessObjects.Conversion.DataPoint(ts1, 1.5f));
+            measurements.StoreInChannel(0, new JsonToBusinessObjects.Conversion.DataPoint(ts2, 2.5f));
+            measurements.StoreInChannel(1, new JsonToBusinessObjects.Conversion.DataPoint(ts1, 10f));
+            measurements.StoreInChannel(1, new JsonToBusinessObjects.Conversion.DataPoint(ts2, 20f));
+            var businessObject = new JsonToBusinessObjects.DataContainers.BusinessObjectRoot
+            {
+                Measurements = measurements
+            };
+
+            // Act
+            string result = convert.BusinessObjectToTxt1(businessObject);
+
+            // Assert
+            Assert.IsTrue(result.Contains("09/20/2004 00:00:00 1.5 10"));
+            Assert.IsTrue(result.Contains("09/21/2004 00:00:00 2.5 20"));
+        }
+
+        [TestMethod]
+        public void BusinessObjectToTxt1_GivenNullBusinessObject_ShouldReturnEmptyString()
+        {
+            // Arrange
+            var convert = new KellerAg.Shared.IoT.Converters.IoTConvert();
+
+            // Act
+            string result = convert.BusinessObjectToTxt1(null);
+
+            // Assert
+            Assert.AreEqual(string.Empty, result);
+        }
+
+        [TestMethod]
+        public void BusinessObjectToTxt1_GivenBusinessObjectWithNoMeasurements_ShouldReturnEmptyString()
+        {
+            // Arrange
+            var convert = new KellerAg.Shared.IoT.Converters.IoTConvert();
+            var businessObject = new JsonToBusinessObjects.DataContainers.BusinessObjectRoot
+            {
+                Measurements = null
+            };
+
+            // Act
+            string result = convert.BusinessObjectToTxt1(businessObject);
+
+            // Assert
+            Assert.AreEqual(string.Empty, result);
+        }
+
+        [TestMethod]
+        public void BusinessObjectToTxt2_GivenBusinessObjectWithMeasurementsAndDefaultNames_ShouldProduceLinesWithTimestampChannelNameAndValue()
+        {
+            // Arrange
+            var convert = new KellerAg.Shared.IoT.Converters.IoTConvert();
+            var measurements = new JsonToBusinessObjects.Conversion.ChannelDataStorage();
+            var ts = new DateTime(2016, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            measurements.StoreInChannel(0, new JsonToBusinessObjects.Conversion.DataPoint(ts, 95.01f));
+            measurements.StoreInChannel(1, new JsonToBusinessObjects.Conversion.DataPoint(ts, 28.69f));
+            var businessObject = new JsonToBusinessObjects.DataContainers.BusinessObjectRoot
+            {
+                Measurements = measurements
+            };
+
+            // Act
+            string result = convert.BusinessObjectToTxt2(businessObject);
+
+            // Assert
+            Assert.IsTrue(result.Contains("160101000000 CH0"));
+            Assert.IsTrue(result.Contains("160101000000 CH1"));
+        }
+
+        [TestMethod]
+        public void BusinessObjectToTxt2_GivenBusinessObjectWithMeasurementsAndCustomNames_ShouldUseProvidedVariableNames()
+        {
+            // Arrange
+            var convert = new KellerAg.Shared.IoT.Converters.IoTConvert();
+            var measurements = new JsonToBusinessObjects.Conversion.ChannelDataStorage();
+            var ts = new DateTime(2016, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            measurements.StoreInChannel(0, new JsonToBusinessObjects.Conversion.DataPoint(ts, 95.01f));
+            measurements.StoreInChannel(1, new JsonToBusinessObjects.Conversion.DataPoint(ts, 28.69f));
+            measurements.StoreInChannel(2, new JsonToBusinessObjects.Conversion.DataPoint(ts, 60.79f));
+            var businessObject = new JsonToBusinessObjects.DataContainers.BusinessObjectRoot
+            {
+                Measurements = measurements
+            };
+            var variableNames = new List<string> { "VARIABLE1", "VARIABLE2", "VARIABLE3" };
+
+            // Act
+            string result = convert.BusinessObjectToTxt2(businessObject, variableNames);
+
+            // Assert
+            Assert.IsTrue(result.Contains("160101000000 VARIABLE1"));
+            Assert.IsTrue(result.Contains("160101000000 VARIABLE2"));
+            Assert.IsTrue(result.Contains("160101000000 VARIABLE3"));
+        }
+
+        [TestMethod]
+        public void BusinessObjectToTxt2_GivenNullBusinessObject_ShouldReturnEmptyString()
+        {
+            // Arrange
+            var convert = new KellerAg.Shared.IoT.Converters.IoTConvert();
+
+            // Act
+            string result = convert.BusinessObjectToTxt2(null);
+
+            // Assert
+            Assert.AreEqual(string.Empty, result);
+        }
+
+        [TestMethod]
+        public void BusinessObjectToTxt2_GivenMultipleTimestamps_ShouldOrderRowsByTimestampThenByChannel()
+        {
+            // Arrange
+            var convert = new KellerAg.Shared.IoT.Converters.IoTConvert();
+            var measurements = new JsonToBusinessObjects.Conversion.ChannelDataStorage();
+            var ts1 = new DateTime(2016, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            var ts2 = new DateTime(2016, 1, 1, 12, 0, 0, DateTimeKind.Utc);
+            measurements.StoreInChannel(0, new JsonToBusinessObjects.Conversion.DataPoint(ts1, 8.79f));
+            measurements.StoreInChannel(0, new JsonToBusinessObjects.Conversion.DataPoint(ts2, 9.22f));
+            measurements.StoreInChannel(1, new JsonToBusinessObjects.Conversion.DataPoint(ts1, 11.38f));
+            measurements.StoreInChannel(1, new JsonToBusinessObjects.Conversion.DataPoint(ts2, 83.32f));
+            var businessObject = new JsonToBusinessObjects.DataContainers.BusinessObjectRoot
+            {
+                Measurements = measurements
+            };
+            var variableNames = new List<string> { "VARIABLE1", "VARIABLE2" };
+
+            // Act
+            string result = convert.BusinessObjectToTxt2(businessObject, variableNames);
+            var lines = result.Split(new[] { '\r', '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
+
+            // Assert
+            Assert.AreEqual(4, lines.Length);
+            Assert.IsTrue(lines[0].StartsWith("160101000000 VARIABLE1"));
+            Assert.IsTrue(lines[1].StartsWith("160101000000 VARIABLE2"));
+            Assert.IsTrue(lines[2].StartsWith("160101120000 VARIABLE1"));
+            Assert.IsTrue(lines[3].StartsWith("160101120000 VARIABLE2"));
         }
     }
 }

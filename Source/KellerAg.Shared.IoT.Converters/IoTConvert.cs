@@ -167,5 +167,17 @@
             //here you might to check result.HasErrors
             return result.BusinessObjectRoot;
         }
+
+        /// <inheritdoc />
+        public string BusinessObjectToTxt1(BusinessObjectRoot businessObjectRoot)
+        {
+            return BusinessObjectToCsvConverter.ConvertToTxt1(businessObjectRoot);
+        }
+
+        /// <inheritdoc />
+        public string BusinessObjectToTxt2(BusinessObjectRoot businessObjectRoot, IReadOnlyList<string> variableNames = null)
+        {
+            return BusinessObjectToCsvConverter.ConvertToTxt2(businessObjectRoot, variableNames);
+        }
     }
 }
